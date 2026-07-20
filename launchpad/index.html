@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Project Launchpad</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="intro">
+        <div>
+          <p class="eyebrow">AI Project Launchpad</p>
+          <h1>Find a project you can actually start today.</h1>
+          <p class="intro-copy">
+            Answer five small questions and get three project ideas shaped around
+            your goal, time, confidence, and GitHub showcase value.
+          </p>
+        </div>
+        <div class="status-panel" aria-label="Project planning flow">
+          <span>1. Tell us where you are</span>
+          <span>2. Compare three directions</span>
+          <span>3. Generate a README draft</span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Project idea generator">
+        <form class="question-panel" id="project-form">
+          <div class="field-group">
+            <label for="level">Current level</label>
+            <select id="level" name="level">
+              <option value="beginner">Zero foundation</option>
+              <option value="learning">Learning the basics</option>
+              <option value="builder">Can build small projects</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="goal">Main goal</label>
+            <select id="goal" name="goal">
+              <option value="portfolio">Build a portfolio</option>
+              <option value="learning">Learn useful skills</option>
+              <option value="recognition">Earn stars and recognition</option>
+              <option value="productivity">Improve daily productivity</option>
+              <option value="fun">Make something fun</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="interest">Interest area</label>
+            <select id="interest" name="interest">
+              <option value="ai">AI tools</option>
+              <option value="learning">Learning</option>
+              <option value="life">Daily life</option>
+              <option value="github">GitHub projects</option>
+              <option value="game">Games</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="time">Daily time</label>
+            <select id="time" name="time">
+              <option value="short">30 minutes</option>
+              <option value="medium">1 hour</option>
+              <option value="long">2 hours or more</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="mood">Current mood</label>
+            <select id="mood" name="mood">
+              <option value="lost">A bit lost</option>
+              <option value="quick">Want quick results</option>
+              <option value="careful">Afraid it will be too hard</option>
+              <option value="wow">Want something impressive</option>
+            </select>
+          </div>
+
+          <button class="primary-action" type="submit">Generate Ideas</button>
+        </form>
+
+        <div class="results-panel">
+          <div class="results-header">
+            <div>
+              <p class="eyebrow">Recommendations</p>
+              <h2>Your three best directions</h2>
+            </div>
+            <button class="ghost-action" id="reset-button" type="button">Reset</button>
+          </div>
+          <div class="cards-grid" id="cards-grid"></div>
+        </div>
+      </section>
+
+      <section class="readme-panel" aria-label="Generated README draft">
+        <div>
+          <p class="eyebrow">README Draft</p>
+          <h2 id="readme-title">Choose a project card to generate a README.</h2>
+        </div>
+        <pre id="readme-output">Your README draft will appear here.</pre>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
