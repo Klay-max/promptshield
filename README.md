@@ -2,6 +2,10 @@
 
 🛡️ **PromptShield** 是一款专注于 AI 提示词（Prompt）安全检测的工具，帮助用户识别和防范提示词注入攻击、恶意指令等安全风险。
 
+<p align="center">
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-green">
+</p>
+
 ## ✨ 功能特性
 
 - 🔒 **注入检测**：识别提示词注入攻击（Prompt Injection）
@@ -78,6 +82,15 @@ PromptShield 旨在帮助开发者和用户：
 - 了解提示词安全风险
 - 检测潜在的恶意输入
 - 提升 AI 应用的安全性
+
+## 🔗 同一个作者的其他项目
+
+> 本仓库与以下项目同属作者 Darwin 的 AI 工具矩阵，当前均为 Private。
+
+- [MyHomepage](https://github.com/Klay-max/MyHomepage) — 跨设备书签 + 信息聚合仪表盘
+- [aboutresume](https://github.com/Klay-max/aboutresume) — 个人作品集站点
+- [evalkit](https://github.com/Klay-max/evalkit) — AI 教育测评工具包
+- [hiring-ai](https://github.com/Klay-max/hiring-ai) — AI 招聘文档分析
 
 ## 📄 许可证
 
