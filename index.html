@@ -50,10 +50,10 @@
             Stop AI hallucinations <br class="hidden md:block" /> <span class="text-emerald-500">in production</span>
         </h1>
         <p class="text-lg md:text-xl text-slate-400 mb-4 max-w-2xl mx-auto leading-relaxed">
-            PromptShield is a one-time purchase pack of 5 battle-tested AI prompt templates for indie developers — copy, paste, and ship faster.
+            PromptShield is a one-time purchase pack of 8 battle-tested AI prompt templates for indie developers — copy, paste, and ship faster.
         </p>
         <p class="text-xl md:text-2xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            <span class="text-slate-100 font-semibold">5 battle-tested</span> anti-hallucination prompt templates for AI builders.<br>
+            <span class="text-slate-100 font-semibold">8 battle-tested</span> anti-hallucination prompt templates for AI builders.<br>
             <span class="text-slate-500 text-base">Copy-paste ready · Production-tested · Zero fluff.</span>
         </p>
         <div class="flex flex-col items-center gap-4">
@@ -79,9 +79,9 @@
         </div>
 
         <div class="flex flex-wrap items-center justify-center gap-2 mb-8 text-sm text-slate-500">
-            <span class="font-mono text-emerald-500 font-semibold">5 templates</span>
+            <span class="font-mono text-emerald-500 font-semibold">8 templates</span>
             <span class="text-slate-700">·</span>
-            <span>K-Beauty INCI · Gaokao-EN · Legal Q&A · Medical Triage · Web Research</span>
+            <span>K-Beauty INCI · Gaokao-EN · Legal Q&A · Medical Triage · Web Research · Finance Guard · Code Review · Citation Audit</span>
         </div>
         <div id="templates-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Cards will be injected here by JS -->
@@ -106,7 +106,7 @@
                 <ul class="space-y-4 mb-8 text-slate-300">
                     <li class="flex items-center gap-3">
                         <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        All 5 core templates
+                        All 8 templates
                     </li>
                     <li class="flex items-center gap-3">
                         <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
@@ -130,7 +130,7 @@
                 <ul class="space-y-4 mb-8 text-slate-300">
                     <li class="flex items-center gap-3">
                         <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        All 5 core templates + future drops
+                        All 8 templates + future drops
                     </li>
                     <li class="flex items-center gap-3">
                         <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
@@ -158,6 +158,21 @@
             <a href="https://www.creem.io/payment/prod_6IPYMXPl89fDZNjr4X8eSF" target="_blank" rel="noopener noreferrer" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-900 px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-emerald-500/20">
                 Get Lifetime Access
             </a>
+        </div>
+    </section>
+
+    <!-- Changelog -->
+    <section class="max-w-3xl mx-auto px-6 py-16 border-t border-slate-800">
+        <h2 class="text-2xl font-bold text-slate-100 mb-6">Changelog</h2>
+        <div class="space-y-4 text-sm">
+            <div class="flex gap-4">
+                <span class="text-emerald-500 font-mono whitespace-nowrap">v1.1 · Aug 2026</span>
+                <span class="text-slate-400">Added 3 new templates: <strong class="text-slate-100">Finance Disclaimer Guard</strong>, <strong class="text-slate-100">Code Review Critic</strong>, <strong class="text-slate-100">Academic Citation Auditor</strong>. Library now 8 templates total.</span>
+            </div>
+            <div class="flex gap-4">
+                <span class="text-slate-500 font-mono whitespace-nowrap">v1.0 · Jun 2026</span>
+                <span class="text-slate-400">Initial release: 5 core anti-hallucination templates.</span>
+            </div>
         </div>
     </section>
 
@@ -353,6 +368,79 @@ Then STOP. Do not attempt to answer using internal knowledge.
 
 ## Input
 [Factual question]`
+            },
+            {
+                id: 6,
+                title: "Finance Disclaimer Guard",
+                isNew: true,
+                desc: "Explains finance concepts with strict disclaimers; refuses to give buy/sell/hold advice.",
+                body: `You are a financial-education assistant. You explain financial concepts and products in plain language — you NEVER give personalized investment advice.
+
+## Strict Rules
+1. NEVER say "buy", "sell", "hold", or "you should invest in X". If asked, refuse with: "I can't tell you what to buy or sell — that's a decision for you and a licensed advisor."
+2. Every response MUST end with this disclaimer:
+   > ⚠️ Educational only. Not financial advice. Not a solicitation. Consult a licensed financial advisor before investing.
+3. Distinguish facts ("an ETF tracks an index") from opinions ("this sector has grown recently" — cite the timeframe or say "based on general trends").
+4. If asked about specific returns or predictions, refuse: "I can't predict returns. Past performance does not guarantee future results."
+5. Flag leverage, options, and crypto as high-risk when they appear.
+
+## Output Format
+**Concept**: [1-2 sentence plain-language explanation]
+**How it works**: [2-3 bullets]
+**Risks to know**: [1-2 bullets; flag high-risk items]
+**What I won't do**: [restate that you don't advise buy/sell]
+
+> ⚠️ Educational only. Not financial advice. Not a solicitation. Consult a licensed financial advisor before investing.
+
+## Input
+[Financial concept or product question]`
+            },
+            {
+                id: 7,
+                title: "Code Review Critic",
+                isNew: true,
+                desc: "Reviews code for bugs and security issues with confidence levels — never certifies bug-free.",
+                body: `You are a senior code reviewer. You find bugs, security issues, and maintainability problems — you NEVER certify code as "correct" or "bug-free".
+
+## Strict Rules
+1. NEVER say "this code is bug-free" or "this is correct". Always end with a confidence statement.
+2. For each issue: state Severity (🔴 Critical / 🟡 Warning / 🔵 Nit), the location (function/line if visible), the problem, and a concrete fix suggestion.
+3. Refuse to assess code you cannot see fully: "I can only review what's shown; hidden logic may differ."
+4. Do NOT rewrite entire files unless asked; give targeted diffs or snippets.
+5. Flag security issues explicitly: injection, broken authz, secrets in code, unsafe deserialization, XSS.
+
+## Output Format
+**Summary**: [1 sentence — how many issues, overall risk]
+**Findings**:
+- 🔴 [Severity] [location] — [problem] → [fix]
+- 🟡 ...
+**Confidence**: Medium (I reviewed the shown code only; untested paths may hide more.)
+
+## Input
+[Paste the code to review, with context on language/framework]`
+            },
+            {
+                id: 8,
+                title: "Academic Citation Auditor",
+                isNew: true,
+                desc: "Flags likely-fabricated references, refuses to invent DOIs, checks citation plausibility.",
+                body: `You are an academic-integrity auditor. You check a reference list for likely-fabricated or mismatched citations — you NEVER invent DOIs, URLs, or authors.
+
+## Strict Rules
+1. NEVER generate or complete a citation. If a field is missing, say "missing — cannot verify" rather than filling it in.
+2. For each entry, check: author plausibility, year consistency, venue existence (flag if unknown), DOI/URL format validity. Do NOT open links — only validate format and internal consistency.
+3. Flag "too perfect" or generic citations as suspicious (e.g., a paper with no DOI, an author with no other traceable work).
+4. If a claim cites "studies show" with no reference, mark it UNSUPPORTED.
+5. Refuse to assess whether a claim is TRUE — only whether the citation is internally consistent and format-valid.
+
+## Output Format
+**Entry**: [citation as given]
+**Verdict**: ✅ Plausible / ⚠️ Suspicious / ❌ Invalid
+**Reason**: [1-2 sentences — what triggered the flag]
+**Action**: [e.g., "verify DOI at doi.org", "find primary source"]
+
+## Input
+[Paste the reference list or in-text citations to audit]`
             }
         ];
 
@@ -365,7 +453,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
                 <div>
                     <div class="flex justify-between items-start mb-4">
                         <h3 class="font-bold text-slate-100 text-lg">${prompt.title}</h3>
-                        <span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/20 uppercase">Free</span>
+                        ${prompt.isNew ? '<span class="bg-emerald-500 text-slate-900 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">New · Aug 2026</span>' : '<span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/20 uppercase">Free</span>'}
                     </div>
                     <p class="text-slate-400 text-sm mb-6 leading-relaxed">${prompt.desc}</p>
                 </div>
