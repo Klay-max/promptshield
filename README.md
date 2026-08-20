@@ -1,101 +1,58 @@
-# PromptShield - AI 提示词安全检测工具
+# PromptShield — Anti-Hallucination Prompt Templates
 
-🛡️ **PromptShield** 是一款专注于 AI 提示词（Prompt）安全检测的工具，帮助用户识别和防范提示词注入攻击、恶意指令等安全风险。
+🛡️ **PromptShield** is a curated pack of **anti-hallucination AI prompt templates** for developers and indie builders. Every template enforces strict rules — citations required, refuse when uncertain, explicit disclaimers — so your AI features stop making things up in production.
 
-<p align="center">
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-green">
-</p>
+> Positioning: a small digital product / monetization experiment by Darwin (Klay). It is **not** a security scanner or injection-detection tool.
 
-## ✨ 功能特性
+## ✨ What's inside
 
-- 🔒 **注入检测**：识别提示词注入攻击（Prompt Injection）
-- 🚫 **恶意指令识别**：检测潜在的危险指令和越权操作
-- 📊 **安全评分**：为提示词提供安全等级评分
-- 🛠️ **AI Launchpad**：AI 项目快速启动工具
+5 battle-tested templates, copy-paste ready:
 
-## 🚀 在线访问
+- **K-Beauty INCI Analyzer** — cosmetic ingredient breakdown with conservative EWG-style ratings
+- **Gaokao-EN Wordbank Builder** — CEFR B1–B2 vocabulary tables for Chinese college-entrance exam prep
+- **Legal Q&A Guard** — answers only with a stated jurisdiction + double disclaimers
+- **Medical Triage Filter** — symptom-to-department routing, never diagnoses
+- **Web-Search-Required Researcher** — refuses to answer without verified citations
 
-访问 https://klay-max.github.io/promptshield
+Free templates are MIT licensed. Lifetime unlocks the same 5 core templates plus future drops.
 
-## 📁 项目结构
+## 🚀 Live site
 
-```
-promptshield/
-├── index.html          # 主页 - 提示词安全检测
-├── privacy.html        # 隐私政策
-├── terms.html          # 服务条款
-└── launchpad/          # AI Launchpad 工具
-    ├── index.html
-    ├── script.js
-    └── styles.css
-```
+https://anjianzhao.online
 
-## 🛠️ 技术栈
+## 🛠️ AI Launchpad (free companion tool)
 
-- **前端**：纯 HTML5 + CSS3 + JavaScript
-- **样式**：现代 CSS、响应式设计
-- **部署**：GitHub Pages
+Turns a one-line idea into a project README + blueprint:
 
-## 📝 功能说明
+`launchpad/index.html`
 
-### 1. 提示词安全检测
-- 实时分析输入的提示词
-- 识别潜在的注入攻击模式
-- 提供安全改进建议
+## 🧰 Tech stack
 
-### 2. AI Launchpad
-- AI 项目快速启动工具
-- 项目模板生成
-- 开发环境配置向导
+- Pure HTML5 + CSS (Tailwind via CDN) + vanilla JavaScript
+- No build step, no backend, no runtime dependencies
+- Deployed on Vercel (custom domain `anjianzhao.online`)
 
-## 🚀 本地开发
+## 📝 Local development
 
 ```bash
-# 克隆仓库
-git clone https://github.com/Klay-max/promptshield.git
-
-# 进入目录
-cd promptshield
-
-# 启动本地服务器（任意方式）
 # Python 3
 python -m http.server 8000
-
-# Node.js
-npx serve .
-
-# 访问 http://localhost:8000
+# then open http://localhost:8000
 ```
 
-## 📄 页面说明
+## 💳 Pricing & payments
 
-| 页面 | 描述 |
-|------|------|
-| `index.html` | 主页面 - 提示词安全检测工具 |
-| `launchpad/index.html` | AI 项目快速启动工具 |
-| `privacy.html` | 隐私政策页面 |
-| `terms.html` | 服务条款页面 |
+- **Free** — all 5 core templates, MIT licensed.
+- **Lifetime — $49** — first 100 buyers; includes future template drops. Processed by Creem (Merchant of Record). 14-day refund.
 
-## 🔒 安全说明
+## 🔗 Same author
 
-PromptShield 旨在帮助开发者和用户：
-- 了解提示词安全风险
-- 检测潜在的恶意输入
-- 提升 AI 应用的安全性
+Private repos in Darwin's AI toolkit: `aboutresume` (portfolio), `evalkit` (AI education assessment), `MyHomepage`, `hiring-ai`.
 
-## 🔗 同一个作者的其他项目
+## 📄 License
 
-> 本仓库与以下项目同属作者 Darwin 的 AI 工具矩阵，当前均为 Private。
-
-- [MyHomepage](https://github.com/Klay-max/MyHomepage) — 跨设备书签 + 信息聚合仪表盘
-- [aboutresume](https://github.com/Klay-max/aboutresume) — 个人作品集站点
-- [evalkit](https://github.com/Klay-max/evalkit) — AI 教育测评工具包
-- [hiring-ai](https://github.com/Klay-max/hiring-ai) — AI 招聘文档分析
-
-## 📄 许可证
-
-MIT License
+MIT — for the codebase. Templates are licensed per the Terms of Service on the site.
 
 ---
 
-**作者**：Darwin An
+**Author**: Darwin An

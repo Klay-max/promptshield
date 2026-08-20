@@ -36,6 +36,7 @@
         <div class="hidden md:flex gap-8 text-sm font-medium">
             <a href="#templates" class="hover:text-emerald-500 transition-colors">Templates</a>
             <a href="#pricing" class="hover:text-emerald-500 transition-colors">Pricing</a>
+            <a href="launchpad/index.html" class="hover:text-emerald-500 transition-colors">Launchpad</a>
         </div>
     </nav>
 
@@ -59,8 +60,8 @@
             <div class="text-slate-100 font-semibold text-lg mb-2">
                 $49 · One-time payment · Lifetime access
             </div>
-            <a href="#subscribe" class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20">
-                Get free templates
+            <a href="#templates" class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20">
+                Browse free templates
             </a>
             <p class="text-slate-400 text-sm">
                 Trusted by indie hackers shipping AI products
@@ -109,11 +110,11 @@
                     </li>
                     <li class="flex items-center gap-3">
                         <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Email updates
+                        Use in any project (MIT)
                     </li>
                 </ul>
-                <a href="#subscribe" class="block text-center w-full py-3 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-100 font-bold transition-colors">
-                    Subscribe below
+                <a href="#templates" class="block text-center w-full py-3 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-100 font-bold transition-colors">
+                    Get all 5 free
                 </a>
             </div>
 
@@ -129,15 +130,11 @@
                 <ul class="space-y-4 mb-8 text-slate-300">
                     <li class="flex items-center gap-3">
                         <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        30+ templates when launched
+                        All 5 core templates + future drops
                     </li>
                     <li class="flex items-center gap-3">
                         <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                         Lifetime updates
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Private Discord access
                     </li>
                 </ul>
                 <a href="https://www.creem.io/payment/prod_6IPYMXPl89fDZNjr4X8eSF" target="_blank" rel="noopener noreferrer" class="block w-full py-3.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold text-center transition-all shadow-lg shadow-emerald-500/20">
@@ -149,34 +146,18 @@
             </div>
         </div>
         <p class="text-center text-slate-400 mt-8 text-sm">
-            After the first 100 lifetime spots, Pro becomes $9/month.
+            Price goes up after the first 100 lifetime spots.
         </p>
     </section>
 
-    <!-- Email Subscribe Form -->
+    <!-- Updates Info (B1: no fake form; updates delivered to Creem purchase email) -->
     <section id="subscribe" class="max-w-3xl mx-auto px-6 py-24 mb-32">
         <div class="bg-slate-800 p-12 rounded-3xl border border-slate-700 text-center shadow-2xl">
             <h2 class="text-3xl font-bold text-slate-100 mb-4">Stay updated</h2>
-            <p class="text-slate-400 mb-8">Get new battle-tested prompts delivered to your inbox every week.</p>
-            
-            <form id="subscribe-form" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input 
-                    type="email" 
-                    id="email-input"
-                    required
-                    placeholder="you@example.com"
-                    class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors"
-                >
-                <button 
-                    type="submit"
-                    class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-emerald-500/20"
-                >
-                    Subscribe
-                </button>
-            </form>
-            <p id="success-msg" class="hidden mt-6 text-emerald-500 font-medium">
-                You're on the list. New templates land in your inbox.
-            </p>
+            <p class="text-slate-400 mb-8 max-w-xl mx-auto">PromptShield is built in public. New templates and improvements ship as we go. Grab <strong class="text-slate-100">Lifetime</strong> and updates are delivered to the email you use at Creem checkout — no separate signup needed.</p>
+            <a href="https://www.creem.io/payment/prod_6IPYMXPl89fDZNjr4X8eSF" target="_blank" rel="noopener noreferrer" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-900 px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-emerald-500/20">
+                Get Lifetime Access
+            </a>
         </div>
     </section>
 
@@ -423,28 +404,8 @@ Then STOP. Do not attempt to answer using internal knowledge.
             }, 2000);
         }
 
-        // Subscription Logic
-        const subForm = document.getElementById('subscribe-form');
-        subForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email-input').value;
-            
-            // TODO: replace with Buttondown or Resend API on day 2
-            
-            // Basic validation (browser does most via type="email")
-            if (!email) return;
-
-            // Save to localStorage
-            let subs = JSON.parse(localStorage.getItem('promptshield_subscribers') || '[]');
-            if (!subs.includes(email)) {
-                subs.push(email);
-                localStorage.setItem('promptshield_subscribers', JSON.stringify(subs));
-            }
-
-            // Success UI
-            subForm.classList.add('hidden');
-            document.getElementById('success-msg').classList.remove('hidden');
-        });
+        // Updates are delivered via the buyer's Creem purchase email (see #subscribe section).
+        // No separate newsletter form is collected or stored.
     </script>
 </body>
 </html>
