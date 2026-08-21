@@ -1,114 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - PromptShield</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>body { font-family: 'Inter', sans-serif; }</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - PromptShield</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --bg:#fff; --bg-alt:#f5f5f7; --text:#1d1d1f; --text-2:#6e6e73; --text-3:#86868b;
+            --border:#d2d2d7; --accent:#008a5e; --accent-hover:#00754e; --accent-soft:rgba(0,138,94,.10);
+            --radius:18px; --maxw:760px;
+            --font:-apple-system, BlinkMacSystemFont, "SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-.011em}
+        a{color:inherit}
+        nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08)}
+        .nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 22px;height:52px;display:flex;align-items:center;justify-content:space-between}
+        .brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:18px;letter-spacing:-.02em}
+        .brand .logo{width:26px;height:26px;border-radius:7px;background:var(--accent);display:flex;align-items:center;justify-content:center}
+        .brand .logo svg{width:16px;height:16px;color:#fff}
+        .nav-right{display:flex;align-items:center;gap:22px}
+        .back{font-size:13px;color:var(--text-2);transition:color .2s}
+        .back:hover{color:var(--text)}
+        .lang-toggle{font-size:13px;font-weight:500;color:var(--text);border:1px solid var(--border);border-radius:980px;padding:5px 14px;cursor:pointer;background:transparent;transition:all .2s;font-family:var(--font)}
+        .lang-toggle:hover{border-color:var(--text-3);background:var(--bg-alt)}
+        main{max-width:var(--maxw);margin:0 auto;padding:72px 22px 40px}
+        h1.page-title{font-size:clamp(32px,5vw,46px);font-weight:600;letter-spacing:-.025em;margin-bottom:8px}
+        .updated{font-size:14px;color:var(--text-3);margin-bottom:44px}
+        .legal-section{margin-bottom:34px}
+        .legal-section h2{font-size:21px;font-weight:600;letter-spacing:-.02em;margin-bottom:12px}
+        .legal-section p{font-size:16px;color:var(--text-2);margin-bottom:10px}
+        .legal-section ul{list-style:none;margin-top:6px}
+        .legal-section li{font-size:16px;color:var(--text-2);padding:7px 0 7px 22px;position:relative}
+        .legal-section li::before{content:"";position:absolute;left:4px;top:15px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+        .legal-section a{color:var(--accent)}
+        .legal-section strong{color:var(--text);font-weight:600}
+        .legal-section code{background:var(--bg-alt);padding:1px 6px;border-radius:6px;font-family:"JetBrains Mono",monospace;font-size:14px;color:var(--accent)}
+        footer{border-top:1px solid var(--border);background:var(--bg-alt);padding:30px 0;margin-top:40px}
+        .foot-inner{max-width:var(--maxw);margin:0 auto;padding:0 22px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+        .foot-inner .copy{font-size:13px;color:var(--text-3)}
+        .foot-links{display:flex;gap:24px;font-size:13px}
+        .foot-links a{color:var(--text-2);transition:color .2s}
+        .foot-links a:hover{color:var(--accent)}
+    </style>
 </head>
-<body class="bg-slate-900 text-slate-300 min-h-screen">
+<body>
 
-  <header class="border-b border-slate-800">
-    <div class="max-w-3xl mx-auto px-6 py-5 flex justify-between items-center">
-      <a href="/" class="text-slate-100 font-bold text-lg">PromptShield</a>
-      <a href="/" class="text-sm text-slate-400 hover:text-emerald-500">← Back to home</a>
-    </div>
-  </header>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="brand">
+                <span class="logo"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></span>
+                PromptShield
+            </a>
+            <div class="nav-right">
+                <a href="index.html" class="back" data-i18n="back">← Back to home</a>
+                <button id="langToggle" class="lang-toggle" onclick="toggleLang()">中文</button>
+            </div>
+        </div>
+    </nav>
 
-  <main class="max-w-3xl mx-auto px-6 py-12">
-    <h1 class="text-3xl font-bold text-slate-100 mb-2">Privacy Policy</h1>
-    <p class="text-sm text-slate-500 mb-10">Last updated: August 20, 2026</p>
+    <main>
+        <h1 class="page-title" id="pageTitle">Privacy Policy</h1>
+        <p class="updated" id="pageUpdated"></p>
+        <div id="legal-content"></div>
+    </main>
 
-    <div class="space-y-8 leading-relaxed">
+    <footer>
+        <div class="foot-inner">
+            <div class="copy" data-i18n="footer.text">PromptShield · Built by an indie hacker shipping in public · 2026</div>
+            <div class="foot-links">
+                <a href="index.html" data-i18n="nav.home">Home</a>
+                <a href="terms.html" data-i18n="footer.terms">Terms</a>
+                <a href="https://github.com/Klay-max" target="_blank" data-i18n="footer.github">GitHub</a>
+            </div>
+        </div>
+    </footer>
 
-      <section>
-        <h2 class="text-xl font-bold text-slate-100 mb-3">1. Who We Are</h2>
-        <p>PromptShield (the "Service") is operated by Klay, an independent solo developer based in Hangzhou, China. This Privacy Policy explains what personal data we collect, how we use it, and your rights regarding that data.</p>
-        <p class="mt-2">Contact: <a href="mailto:darwin152140@gmail.com" class="text-emerald-500 hover:underline">darwin152140@gmail.com</a></p>
-      </section>
+    <script>
+        const I18N = {
+            en:{
+                'back':'← Back to home','lang.toggle':'中文',
+                'footer.text':'PromptShield · Built by an indie hacker shipping in public · 2026',
+                'nav.home':'Home','footer.terms':'Terms','footer.github':'GitHub'
+            },
+            zh:{
+                'back':'← 返回首页','lang.toggle':'EN',
+                'footer.text':'PromptShield · 由一个公开构建的独立开发者打造 · 2026',
+                'nav.home':'首页','footer.terms':'条款','footer.github':'GitHub'
+            }
+        };
+        const LEGAL = {
+            en:{
+                title:'Privacy Policy', updated:'Last updated: August 20, 2026',
+                sections:[
+                    { h:'1. Who We Are', html:'<p>PromptShield (the "Service") is operated by Klay, an independent solo developer based in Hangzhou, China. This Privacy Policy explains what personal data we collect, how we use it, and your rights regarding that data.</p><p>Contact: <a href="mailto:darwin152140@gmail.com">darwin152140@gmail.com</a></p>' },
+                    { h:'2. Data We Collect', html:'<p>We collect the minimum data necessary to provide the Service:</p><ul>'
+                        + '<li><strong>Email address</strong>: when you purchase Lifetime access via Creem, we receive your email from the transaction to deliver license and update notices.</li>'
+                        + '<li><strong>Payment information</strong>: when you purchase Lifetime access, payment is processed by our third-party provider Creem.io. We do not store your card number; we only receive a transaction confirmation.</li>'
+                        + '<li><strong>Anonymous browsing data</strong>: basic analytics (page views, referrer) may be collected by our hosting provider (Vercel) for security and performance.</li>'
+                        + '</ul>' },
+                    { h:'3. How We Use Your Data', html:'<ul>'
+                        + '<li>Send you license delivery and product updates to the email associated with your Creem purchase.</li>'
+                        + '<li>Process and confirm your purchase.</li>'
+                        + '<li>Provide customer support when you contact us.</li>'
+                        + '<li>Comply with legal obligations.</li>'
+                        + '</ul><p>We do <strong>not</strong> sell, rent, or trade your personal data to third parties for marketing.</p>' },
+                    { h:'4. Third-Party Services', html:'<p>We rely on these vetted third parties; each has its own privacy policy:</p><ul>'
+                        + '<li><strong>Vercel</strong>: website hosting (<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">policy</a>)</li>'
+                        + '<li><strong>Creem.io</strong>: payment processing (<a href="https://www.creem.io/legal/privacy" target="_blank" rel="noopener noreferrer">policy</a>)</li>'
+                        + '</ul>' },
+                    { h:'5. Cookies & Local Storage', html:'<p>We do not use tracking cookies. The Service uses your browser\'s <code>localStorage</code> only to remember UI preferences (such as dismissed notices) on this device. This data never leaves your browser.</p>' },
+                    { h:'6. Data Retention', p:'We keep your purchase email (received from Creem) until you request deletion or as required by law. Payment records are retained for the period required by applicable tax and accounting law (typically 5–7 years).' },
+                    { h:'7. Your Rights', html:'<p>You have the right to:</p><ul>'
+                        + '<li>Access the personal data we hold about you.</li>'
+                        + '<li>Request correction or deletion of your data.</li>'
+                        + '<li>Withdraw consent (e.g., request deletion of your purchase email) at any time.</li>'
+                        + '<li>Lodge a complaint with your local data protection authority.</li>'
+                        + '</ul><p>To exercise any of these rights, email us at <a href="mailto:darwin152140@gmail.com">darwin152140@gmail.com</a>. We respond within 30 days.</p>' },
+                    { h:'8. Children\'s Privacy', p:'PromptShield is not directed to children under 16. We do not knowingly collect personal data from minors. If you believe a minor has provided us data, contact us and we will delete it.' },
+                    { h:'9. Changes to This Policy', p:'We may update this Privacy Policy from time to time. Material changes will be announced on the homepage and via email to customers. The "Last updated" date at the top reflects the current version.' },
+                    { h:'10. Contact', html:'<p>Questions about this policy? Reach out:</p><ul>'
+                        + '<li>Email: <a href="mailto:darwin152140@gmail.com">darwin152140@gmail.com</a></li>'
+                        + '<li>GitHub: <a href="https://github.com/Klay-max" target="_blank" rel="noopener noreferrer">github.com/Klay-max</a></li>'
+                        + '</ul>' }
+                ]
+            },
+            zh:{
+                title:'隐私政策', updated:'最后更新：2026年8月20日',
+                sections:[
+                    { h:'1. 我们是谁', html:'<p>PromptShield（"本服务"）由 Klay 运营，他是一位常驻中国杭州的独立开发者。本隐私政策说明我们收集哪些个人数据、如何使用，以及你对这些数据拥有的权利。</p><p>联系方式：<a href="mailto:darwin152140@gmail.com">darwin152140@gmail.com</a></p>' },
+                    { h:'2. 我们收集的数据', html:'<p>我们仅收集提供服务所必需的最少数据：</p><ul>'
+                        + '<li><strong>邮箱地址</strong>：当你通过 Creem 购买终身版时，我们会从交易中收到你的邮箱，用于发送许可与更新通知。</li>'
+                        + '<li><strong>支付信息</strong>：购买终身版时，支付由第三方服务商 Creem.io 处理。我们不存储你的卡号，仅收到交易确认。</li>'
+                        + '<li><strong>匿名浏览数据</strong>：托管服务商（Vercel）可能收集基础分析数据（页面浏览、来源）用于安全与性能。</li>'
+                        + '</ul>' },
+                    { h:'3. 我们如何使用数据', html:'<ul>'
+                        + '<li>向你 Creem 购买所用的邮箱发送许可交付与产品更新。</li>'
+                        + '<li>处理并确认你的购买。</li>'
+                        + '<li>在你联系我们时提供客户支持。</li>'
+                        + '<li>履行法律义务。</li>'
+                        + '</ul><p>我们<strong>不会</strong>将你的个人数据出售、出租或交换给第三方用于营销。</p>' },
+                    { h:'4. 第三方服务', html:'<p>我们依赖以下经过筛选的第三方，各自有其隐私政策：</p><ul>'
+                        + '<li><strong>Vercel</strong>：网站托管（<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">政策</a>）</li>'
+                        + '<li><strong>Creem.io</strong>：支付处理（<a href="https://www.creem.io/legal/privacy" target="_blank" rel="noopener noreferrer">政策</a>）</li>'
+                        + '</ul>' },
+                    { h:'5. Cookie 与本地存储', html:'<p>我们不使用跟踪型 Cookie。本服务仅使用浏览器的 <code>localStorage</code> 在本设备记住界面偏好（如已关闭的提示）。这些数据永远不会离开你的浏览器。</p>' },
+                    { h:'6. 数据保留', p:'我们会保留从 Creem 收到的购买邮箱，直到你要求删除或法律另有要求。支付记录按适用税务与会计法规要求的期限保留（通常 5–7 年）。' },
+                    { h:'7. 你的权利', html:'<p>你有权：</p><ul>'
+                        + '<li>访问我们持有的关于你的个人数据。</li>'
+                        + '<li>要求更正或删除你的数据。</li>'
+                        + '<li>随时撤回同意（例如要求删除你的购买邮箱）。</li>'
+                        + '<li>向你所在地的数据保护机构投诉。</li>'
+                        + '</ul><p>行使上述任何权利，请发邮件至 <a href="mailto:darwin152140@gmail.com">darwin152140@gmail.com</a>。我们会在 30 天内回复。</p>' },
+                    { h:'8. 儿童隐私', p:'PromptShield 不面向 16 岁以下儿童。我们不会有意收集未成年人的个人数据。若你认为有未成年人向我们提供了数据，请联系我们，我们会删除。' },
+                    { h:'9. 本政策的变更', p:'我们可能不时更新本隐私政策。重大变更会在首页公告，并通过邮件通知客户。顶部的"最后更新"日期反映当前版本。' },
+                    { h:'10. 联系方式', html:'<p>对本政策有疑问？欢迎联系：</p><ul>'
+                        + '<li>邮箱：<a href="mailto:darwin152140@gmail.com">darwin152140@gmail.com</a></li>'
+                        + '<li>GitHub：<a href="https://github.com/Klay-max" target="_blank" rel="noopener noreferrer">github.com/Klay-max</a></li>'
+                        + '</ul>' }
+                ]
+            }
+        };
 
-      <section>
-        <h2 class="text-xl font-bold text-slate-100 mb-3">2. Data We Collect</h2>
-        <p>We collect the minimum data necessary to provide the Service:</p>
-        <ul class="list-disc pl-6 space-y-2 mt-2">
-          <li><strong class="text-slate-100">Email address</strong> — when you purchase Lifetime access via Creem, we receive your email from the transaction to deliver license and update notices.</li>
-          <li><strong class="text-slate-100">Payment information</strong> — when you purchase Lifetime access, payment is processed by our third-party provider Creem.io. We do not store your card number; we only receive a transaction confirmation.</li>
-          <li><strong class="text-slate-100">Anonymous browsing data</strong> — basic analytics (page views, referrer) may be collected by our hosting provider (Vercel) for security and performance.</li>
-        </ul>
-      </section>
+        const LS_KEY='ps-lang';
+        let lang = localStorage.getItem(LS_KEY) || 'en';
 
-      <section>
-        <h2 class="text-xl font-bold text-slate-100 mb-3">3. How We Use Your Data</h2>
-        <ul class="list-disc pl-6 space-y-2">
-          <li>Send you license delivery and product updates to the email associated with your Creem purchase.</li>
-          <li>Process and confirm your purchase.</li>
-          <li>Provide customer support when you contact us.</li>
-          <li>Comply with legal obligations.</li>
-        </ul>
-        <p class="mt-3">We do <strong class="text-slate-100">not</strong> sell, rent, or trade your personal data to third parties for marketing.</p>
-      </section>
+        function t(k){ return (I18N[lang] && I18N[lang][k]!=null) ? I18N[lang][k] : k; }
 
-      <section>
-        <h2 class="text-xl font-bold text-slate-100 mb-3">4. Third-Party Services</h2>
-        <p>We rely on these vetted third parties; each has its own privacy policy:</p>
-        <ul class="list-disc pl-6 space-y-2 mt-2">
-          <li><strong class="text-slate-100">Vercel</strong> — website hosting (<a href="https://vercel.com/legal/privacy-policy" target="_blank" class="text-emerald-500 hover:underline">policy</a>)</li>
-          <li><strong class="text-slate-100">Creem.io</strong> — payment processing (<a href="https://www.creem.io/legal/privacy" target="_blank" class="text-emerald-500 hover:underline">policy</a>)</li>
-        </ul>
-      </section>
+        function render(){
+            document.documentElement.lang = (lang==='zh') ? 'zh-CN' : 'en';
+            document.querySelectorAll('[data-i18n]').forEach(el=> el.textContent = t(el.getAttribute('data-i18n')));
+            document.getElementById('langToggle').textContent = t('lang.toggle');
+            const d = LEGAL[lang];
+            document.getElementById('pageTitle').textContent = d.title;
+            document.getElementById('pageUpdated').textContent = d.updated;
+            document.getElementById('legal-content').innerHTML = d.sections.map(s=>{
+                const body = s.html ? s.html : `<p>${s.p}</p>`;
+                return `<section class="legal-section"><h2>${s.h}</h2>${body}</section>`;
+            }).join('');
+        }
 
-      <section>
-        <h2 class="text-xl font-bold text-slate-100 mb-3">5. Cookies & Local Storage</h2>
-        <p>We do not use tracking cookies. The Service uses your browser's <code class="bg-slate-800 px-1 rounded text-emerald-400 text-sm">localStorage</code> only to remember UI preferences (such as dismissed notices) on this device. This data never leaves your browser.</p>
-      </section>
+        function toggleLang(){
+            lang = (lang==='en') ? 'zh' : 'en';
+            localStorage.setItem(LS_KEY, lang);
+            render();
+        }
 
-      <section>
-        <h2 class="text-xl font-bold text-slate-100 mb-3">6. Data Retention</h2>
-        <p>We keep your purchase email (received from Creem) until you request deletion or as required by law. Payment records are retained for the period required by applicable tax and accounting law (typically 5-7 years).</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-bold text-slate-100 mb-3">7. Your Rights</h2>
-        <p>You have the right to:</p>
-        <ul class="list-disc pl-6 space-y-2 mt-2">
-          <li>Access the personal data we hold about you.</li>
-          <li>Request correction or deletion of your data.</li>
-          <li>Withdraw consent (e.g., request deletion of your purchase email) at any time.</li>
-          <li>Lodge a complaint with your local data protection authority.</li>
-        </ul>
-        <p class="mt-3">To exercise any of these rights, email us at <a href="mailto:darwin152140@gmail.com" class="text-emerald-500 hover:underline">darwin152140@gmail.com</a>. We respond within 30 days.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-bold text-slate-100 mb-3">8. Children's Privacy</h2>
-        <p>PromptShield is not directed to children under 16. We do not knowingly collect personal data from minors. If you believe a minor has provided us data, contact us and we will delete it.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-bold text-slate-100 mb-3">9. Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. Material changes will be announced on the homepage and via email to customers. The "Last updated" date at the top reflects the current version.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-bold text-slate-100 mb-3">10. Contact</h2>
-        <p>Questions about this policy? Reach out:</p>
-        <ul class="list-disc pl-6 space-y-1 mt-2">
-          <li>Email: <a href="mailto:darwin152140@gmail.com" class="text-emerald-500 hover:underline">darwin152140@gmail.com</a></li>
-          <li>GitHub: <a href="https://github.com/Klay-max" target="_blank" class="text-emerald-500 hover:underline">github.com/Klay-max</a></li>
-        </ul>
-      </section>
-
-    </div>
-  </main>
-
-  <footer class="border-t border-slate-800 mt-16">
-    <div class="max-w-3xl mx-auto px-6 py-6 text-center text-sm text-slate-500">
-      PromptShield · Built by an indie hacker shipping in public · 2026
-    </div>
-  </footer>
+        document.addEventListener('DOMContentLoaded', render);
+    </script>
 </body>
 </html>

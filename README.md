@@ -6,19 +6,27 @@
 
 ## ✨ What's inside
 
-5 battle-tested templates, copy-paste ready:
+11 battle-tested templates, copy-paste ready:
 
 - **K-Beauty INCI Analyzer** — cosmetic ingredient breakdown with conservative EWG-style ratings
 - **Gaokao-EN Wordbank Builder** — CEFR B1–B2 vocabulary tables for Chinese college-entrance exam prep
 - **Legal Q&A Guard** — answers only with a stated jurisdiction + double disclaimers
 - **Medical Triage Filter** — symptom-to-department routing, never diagnoses
 - **Web-Search-Required Researcher** — refuses to answer without verified citations
+- **Finance Disclaimer Guard** — explains concepts, refuses buy/sell/hold advice
+- **Code Review Critic** — finds bugs & security issues, never certifies bug-free
+- **Academic Citation Auditor** — flags fabricated references, refuses to invent DOIs
+- **Support Reply Guard** — drafts support replies only from your knowledge base
+- **E-com Copy Guard** — writes product copy strictly from source specs
+- **Resume Fact-Checker** — flags inflated/fabricated résumé claims
 
-Free templates are MIT licensed. Lifetime unlocks the same 5 core templates plus future drops.
+All templates are MIT licensed. Lifetime unlocks all 11 templates plus future drops.
 
 ## 🚀 Live site
 
 https://anjianzhao.online
+
+🌐 **Bilingual** — every page (home, terms, privacy, Launchpad) supports English / 中文 with a one-tap toggle; the choice is saved in `localStorage` and shared across all pages.
 
 ## 🛠️ AI Launchpad (free companion tool)
 
@@ -28,7 +36,7 @@ Turns a one-line idea into a project README + blueprint:
 
 ## 🧰 Tech stack
 
-- Pure HTML5 + CSS (Tailwind via CDN) + vanilla JavaScript
+- Pure HTML5 + hand-written CSS (Apple-style design system) + vanilla JavaScript
 - No build step, no backend, no runtime dependencies
 - Deployed on Vercel (custom domain `anjianzhao.online`)
 
@@ -42,7 +50,7 @@ python -m http.server 8000
 
 ## 💳 Pricing & payments
 
-- **Free** — all 5 core templates, MIT licensed.
+- **Free** — all 11 templates, MIT licensed.
 - **Lifetime — $49** — first 100 buyers; includes future template drops. Processed by Creem (Merchant of Record). 14-day refund.
 
 ## 🔗 Same author
