@@ -1,215 +1,296 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PromptShield - Anti-Hallucination Prompt Templates</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>PromptShield — Anti-Hallucination Prompt Templates</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                }
-            }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --bg:#ffffff; --bg-alt:#f5f5f7; --text:#1d1d1f; --text-2:#6e6e73; --text-3:#86868b;
+            --border:#d2d2d7; --accent:#008a5e; --accent-hover:#00754e; --accent-soft:rgba(0,138,94,.10);
+            --radius:20px; --maxw:1024px;
+            --font:-apple-system, BlinkMacSystemFont, "SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+            --mono:"SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
         }
-    </script>
+        *{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.47;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;letter-spacing:-.011em}
+        a{color:inherit;text-decoration:none}
+        .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+        /* Nav */
+        nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08)}
+        .nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 22px;height:52px;display:flex;align-items:center;justify-content:space-between}
+        .brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:18px;letter-spacing:-.02em}
+        .brand .logo{width:26px;height:26px;border-radius:7px;background:var(--accent);display:flex;align-items:center;justify-content:center}
+        .brand .logo svg{width:16px;height:16px;color:#fff}
+        .nav-links{display:flex;align-items:center;gap:30px}
+        .nav-links a.link{font-size:13px;color:var(--text-2);transition:color .2s}
+        .nav-links a.link:hover{color:var(--text)}
+        .lang-toggle{font-size:13px;font-weight:500;color:var(--text);border:1px solid var(--border);border-radius:980px;padding:5px 14px;cursor:pointer;background:transparent;transition:all .2s;font-family:var(--font)}
+        .lang-toggle:hover{border-color:var(--text-3);background:var(--bg-alt)}
+        @media(max-width:640px){.nav-links a.link{display:none}.nav-links a.link.launch{display:inline}}
+
+        /* Hero */
+        .hero{text-align:center;padding:84px 22px 96px}
+        .badge{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:var(--accent);background:var(--accent-soft);border:1px solid rgba(0,138,94,.18);padding:6px 14px;border-radius:980px;margin-bottom:26px}
+        .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+        h1.hero-title{font-size:clamp(40px,7vw,76px);font-weight:600;letter-spacing:-.03em;line-height:1.04;margin-bottom:24px}
+        h1.hero-title .accent{color:var(--accent)}
+        .hero-sub{font-size:clamp(17px,2.2vw,21px);color:var(--text-2);max-width:620px;margin:0 auto 18px;line-height:1.5}
+        .hero-sub2{font-size:clamp(19px,2.4vw,24px);color:var(--text);font-weight:500;max-width:680px;margin:0 auto 8px;line-height:1.45}
+        .hero-sub2 small{display:block;font-size:15px;font-weight:400;color:var(--text-3);margin-top:8px}
+        .hero-price{font-size:17px;font-weight:600;color:var(--text);margin:30px 0 22px}
+        .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font);font-size:17px;font-weight:400;border-radius:980px;padding:12px 26px;cursor:pointer;transition:all .25s;border:none}
+        .btn-primary{background:var(--accent);color:#fff}
+        .btn-primary:hover{background:var(--accent-hover);transform:scale(1.02)}
+        .btn-primary:active{transform:scale(.98)}
+        .hero-trust{font-size:13px;color:var(--text-3);margin-top:18px}
+
+        /* Sections */
+        section.block{padding:86px 0;border-top:1px solid var(--border)}
+        .block.alt{background:var(--bg-alt)}
+        .sec-head{text-align:center;margin-bottom:54px}
+        .sec-head h2{font-size:clamp(30px,4.5vw,46px);font-weight:600;letter-spacing:-.025em}
+        .sec-head p{font-size:17px;color:var(--text-2);margin-top:12px}
+
+        /* Templates */
+        .tpl-meta{text-align:center;color:var(--text-3);font-size:14px;margin-bottom:40px}
+        .tpl-meta .count{color:var(--accent);font-weight:600;font-family:var(--mono)}
+        .tpl-meta .names{display:block;margin-top:6px;font-family:var(--mono);font-size:12.5px;line-height:1.7}
+        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+        .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .3s ease, box-shadow .3s ease;opacity:0;transform:translateY(24px)}
+        .card.in{opacity:1;transform:translateY(0)}
+        .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.10)}
+        .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+        .card-top h3{font-size:19px;font-weight:600;letter-spacing:-.02em;line-height:1.25}
+        .tag{font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 9px;border-radius:980px;white-space:nowrap;flex-shrink:0}
+        .tag.new{background:var(--accent);color:#fff}
+        .tag.free{background:var(--accent-soft);color:var(--accent);border:1px solid rgba(0,138,94,.2)}
+        .card p.desc{font-size:14.5px;color:var(--text-2);line-height:1.55;margin-bottom:22px}
+        .copy-btn{width:100%;font-family:var(--font);font-size:14px;font-weight:500;color:var(--text);background:var(--bg-alt);border:1px solid var(--border);border-radius:12px;padding:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s}
+        .copy-btn:hover{background:#ececef;color:var(--accent)}
+        .copy-btn svg{width:15px;height:15px}
+
+        /* Pricing */
+        .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:840px;margin:0 auto}
+        @media(max-width:720px){.price-grid{grid-template-columns:1fr}}
+        .price-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:38px 34px;position:relative}
+        .price-card.feature{border:1px solid var(--accent);box-shadow:0 12px 40px rgba(0,138,94,.12)}
+        .price-card .ribbon{position:absolute;top:0;right:0;background:var(--accent);color:#fff;font-size:11px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;padding:6px 12px;border-bottom-left-radius:14px}
+        .price-card h3{font-size:24px;font-weight:600}
+        .price-card .first100{font-size:11px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border:1px solid rgba(0,138,94,.2);padding:3px 9px;border-radius:980px;margin-left:8px;vertical-align:middle}
+        .price-card .amount{font-size:44px;font-weight:600;letter-spacing:-.03em;margin:14px 0 26px}
+        .price-card ul{list-style:none;margin-bottom:30px}
+        .price-card li{display:flex;align-items:center;gap:11px;font-size:15px;color:var(--text);padding:9px 0;border-bottom:1px solid rgba(0,0,0,.05)}
+        .price-card li svg{width:18px;height:18px;color:var(--accent);flex-shrink:0}
+        .price-card .btn{width:100%}
+        .price-note{text-align:center;color:var(--text-3);font-size:13px;margin-top:26px}
+        .secured{text-align:center;font-size:12.5px;color:var(--text-3);margin-top:12px}
+        .secured a{color:var(--accent)}
+
+        /* Subscribe */
+        .sub-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:28px;padding:60px 30px;text-align:center;max-width:760px;margin:0 auto}
+        .sub-card h2{font-size:clamp(28px,4vw,40px);font-weight:600;letter-spacing:-.025em;margin-bottom:16px}
+        .sub-card p{font-size:17px;color:var(--text-2);max-width:560px;margin:0 auto 28px;line-height:1.55}
+
+        /* Changelog */
+        .changelog{max-width:680px;margin:0 auto}
+        .cl-row{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid var(--border);font-size:15px}
+        .cl-row:last-child{border-bottom:none}
+        .cl-ver{font-family:var(--mono);font-size:13px;color:var(--accent);white-space:nowrap;flex-shrink:0;padding-top:1px}
+        .cl-body{color:var(--text-2);line-height:1.55}
+        .cl-body strong{color:var(--text);font-weight:600}
+
+        /* Footer */
+        footer{border-top:1px solid var(--border);background:var(--bg-alt);padding:34px 0}
+        .foot-inner{max-width:var(--maxw);margin:0 auto;padding:0 22px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+        .foot-inner .copy{font-size:13px;color:var(--text-3)}
+        .foot-links{display:flex;gap:26px;font-size:13px}
+        .foot-links a{color:var(--text-2);transition:color .2s}
+        .foot-links a:hover{color:var(--accent)}
+
+        /* Toast */
+        .toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(29,29,31,.94);color:#fff;font-size:15px;font-weight:500;padding:13px 26px;border-radius:980px;opacity:0;pointer-events:none;transition:all .3s ease;z-index:100;backdrop-filter:blur(10px)}
+        .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+        /* Reveal */
+        .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
+        .reveal.in{opacity:1;transform:translateY(0)}
+        @media(prefers-reduced-motion:reduce){.reveal,.card{opacity:1;transform:none;transition:none}}
+    </style>
 </head>
-<body class="bg-slate-900 text-slate-300 font-sans selection:bg-emerald-500/30 selection:text-emerald-500">
+<body>
 
     <!-- Nav -->
-    <nav class="max-w-7xl mx-auto px-6 py-8 flex justify-between items-center">
-        <div class="text-slate-100 font-bold text-xl flex items-center gap-2">
-            <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-900" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="brand">
+                <span class="logo">
+                    <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                </span>
+                PromptShield
+            </a>
+            <div class="nav-links">
+                <a href="#templates" class="link" data-i18n="nav.templates">Templates</a>
+                <a href="#pricing" class="link" data-i18n="nav.pricing">Pricing</a>
+                <a href="launchpad/index.html" class="link launch" data-i18n="nav.launchpad">Launchpad</a>
+                <button id="langToggle" class="lang-toggle" onclick="toggleLang()">中文</button>
             </div>
-            PromptShield
-        </div>
-        <div class="hidden md:flex gap-8 text-sm font-medium">
-            <a href="#templates" class="hover:text-emerald-500 transition-colors">Templates</a>
-            <a href="#pricing" class="hover:text-emerald-500 transition-colors">Pricing</a>
-            <a href="launchpad/index.html" class="hover:text-emerald-500 transition-colors">Launchpad</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="max-w-5xl mx-auto px-6 pt-20 pb-32 text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-xs font-mono">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            $49 Lifetime · One-time · First 100 only
-        </div>
-        <h1 class="text-5xl md:text-7xl font-extrabold text-slate-100 mb-6 tracking-tight">
-            Stop AI hallucinations <br class="hidden md:block" /> <span class="text-emerald-500">in production</span>
+    <!-- Hero -->
+    <header class="hero">
+        <span class="badge"><span class="dot"></span><span data-i18n="hero.badge">$49 Lifetime · One-time · First 100 only</span></span>
+        <h1 class="hero-title" data-i18n-hero>
+            <span data-i18n="hero.title1">Stop AI hallucinations</span><br>
+            <span class="accent" data-i18n="hero.title2">in production</span>
         </h1>
-        <p class="text-lg md:text-xl text-slate-400 mb-4 max-w-2xl mx-auto leading-relaxed">
-            PromptShield is a one-time purchase pack of 8 battle-tested AI prompt templates for indie developers — copy, paste, and ship faster.
+        <p class="hero-sub" data-i18n="hero.sub">PromptShield is a one-time pack of 11 battle-tested anti-hallucination prompt templates for indie developers: copy, paste, and ship faster.</p>
+        <p class="hero-sub2">
+            <span data-i18n="hero.sub2">11 battle-tested anti-hallucination prompt templates for AI builders.</span>
+            <small data-i18n="hero.sub2small">Copy-paste ready · Production-tested · Zero fluff.</small>
         </p>
-        <p class="text-xl md:text-2xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            <span class="text-slate-100 font-semibold">8 battle-tested</span> anti-hallucination prompt templates for AI builders.<br>
-            <span class="text-slate-500 text-base">Copy-paste ready · Production-tested · Zero fluff.</span>
-        </p>
-        <div class="flex flex-col items-center gap-4">
-            <div class="text-slate-100 font-semibold text-lg mb-2">
-                $49 · One-time payment · Lifetime access
+        <div class="hero-price" data-i18n="hero.price">$49 · One-time payment · Lifetime access</div>
+        <a href="#templates" class="btn btn-primary" data-i18n="hero.cta">Browse free templates</a>
+        <p class="hero-trust" data-i18n="hero.trust">Trusted by indie developers, built in public</p>
+    </header>
+
+    <!-- Templates -->
+    <section id="templates" class="block alt">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <h2 data-i18n="templates.title">Prompt Library</h2>
+                <p data-i18n="templates.sub">Copy these templates directly into your application code.</p>
             </div>
-            <a href="#templates" class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20">
-                Browse free templates
-            </a>
-            <p class="text-slate-400 text-sm">
-                Trusted by indie hackers shipping AI products
+            <p class="tpl-meta reveal">
+                <span class="count" data-i18n="templates.count">11 templates</span>
+                <span class="names" data-i18n="templates.names">K-Beauty INCI · Gaokao-EN · Legal Q&A · Medical Triage · Web Research · Finance Guard · Code Review · Citation Audit · Support Reply · E-com Copy · Resume Check</span>
             </p>
+            <div id="templates-grid" class="grid"></div>
         </div>
     </section>
 
-    <!-- Templates Grid -->
-    <section id="templates" class="max-w-7xl mx-auto px-6 py-24 border-t border-slate-800">
-        <div class="flex justify-between items-end mb-12">
-            <div>
-                <h2 class="text-3xl font-bold text-slate-100 mb-4">Prompt Library</h2>
-                <p class="text-slate-400">Copy these templates directly into your application code.</p>
+    <!-- Pricing -->
+    <section id="pricing" class="block">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <h2 data-i18n="pricing.title">Pricing</h2>
+                <p data-i18n="pricing.sub">Simple, transparent options for builders.</p>
             </div>
-        </div>
-
-        <div class="flex flex-wrap items-center justify-center gap-2 mb-8 text-sm text-slate-500">
-            <span class="font-mono text-emerald-500 font-semibold">8 templates</span>
-            <span class="text-slate-700">·</span>
-            <span>K-Beauty INCI · Gaokao-EN · Legal Q&A · Medical Triage · Web Research · Finance Guard · Code Review · Citation Audit</span>
-        </div>
-        <div id="templates-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Cards will be injected here by JS -->
+            <div id="pricing-grid" class="price-grid"></div>
+            <p class="price-note reveal" data-i18n="pricing.note">Price goes up after the first 100 lifetime spots.</p>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="max-w-5xl mx-auto px-6 py-24">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-slate-100 mb-4">Pricing</h2>
-            <p class="text-slate-400">Simple, transparent options for builders.</p>
-        </div>
-        
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- Free Tier -->
-            <div class="bg-slate-800 p-8 rounded-2xl border-2 border-emerald-500 relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-emerald-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
-                    Current
-                </div>
-                <h3 class="text-2xl font-bold text-slate-100 mb-2">Free</h3>
-                <div class="text-4xl font-bold text-emerald-500 mb-6">$0</div>
-                <ul class="space-y-4 mb-8 text-slate-300">
-                    <li class="flex items-center gap-3">
-                        <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        All 8 templates
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Use in any project (MIT)
-                    </li>
-                </ul>
-                <a href="#templates" class="block text-center w-full py-3 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-100 font-bold transition-colors">
-                    Get all 5 free
-                </a>
+    <!-- Subscribe -->
+    <section class="block alt">
+        <div class="wrap">
+            <div class="sub-card reveal">
+                <h2 data-i18n="subscribe.title">Stay updated</h2>
+                <p data-i18n="subscribe.sub">PromptShield is built in public. New templates and improvements ship as we go. Grab Lifetime and updates are delivered to the email you use at Creem checkout: no separate signup needed.</p>
+                <a href="https://www.creem.io/payment/prod_6IPYMXPl89fDZNjr4X8eSF" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="subscribe.cta">Get Lifetime Access</a>
             </div>
-
-            <!-- Pro Tier -->
-            <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700">
-                <div class="flex items-center gap-2 mb-2">
-                    <h3 class="text-2xl font-bold text-slate-100">Lifetime</h3>
-                    <span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/20 uppercase tracking-tighter">
-                        First 100 only
-                    </span>
-                </div>
-                <div class="text-4xl font-bold text-slate-100 mb-6">$49</div>
-                <ul class="space-y-4 mb-8 text-slate-300">
-                    <li class="flex items-center gap-3">
-                        <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        All 8 templates + future drops
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Lifetime updates
-                    </li>
-                </ul>
-                <a href="https://www.creem.io/payment/prod_6IPYMXPl89fDZNjr4X8eSF" target="_blank" rel="noopener noreferrer" class="block w-full py-3.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold text-center transition-all shadow-lg shadow-emerald-500/20">
-                    $49 · Get Lifetime Access
-                </a>
-                <p class="text-center text-xs text-slate-500 mt-3">
-                    One-time payment · 14-day refund · Secured by <a href="https://www.creem.io" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-emerald-500">Creem</a>
-                </p>
-            </div>
-        </div>
-        <p class="text-center text-slate-400 mt-8 text-sm">
-            Price goes up after the first 100 lifetime spots.
-        </p>
-    </section>
-
-    <!-- Updates Info (B1: no fake form; updates delivered to Creem purchase email) -->
-    <section id="subscribe" class="max-w-3xl mx-auto px-6 py-24 mb-32">
-        <div class="bg-slate-800 p-12 rounded-3xl border border-slate-700 text-center shadow-2xl">
-            <h2 class="text-3xl font-bold text-slate-100 mb-4">Stay updated</h2>
-            <p class="text-slate-400 mb-8 max-w-xl mx-auto">PromptShield is built in public. New templates and improvements ship as we go. Grab <strong class="text-slate-100">Lifetime</strong> and updates are delivered to the email you use at Creem checkout — no separate signup needed.</p>
-            <a href="https://www.creem.io/payment/prod_6IPYMXPl89fDZNjr4X8eSF" target="_blank" rel="noopener noreferrer" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-900 px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-emerald-500/20">
-                Get Lifetime Access
-            </a>
         </div>
     </section>
 
     <!-- Changelog -->
-    <section class="max-w-3xl mx-auto px-6 py-16 border-t border-slate-800">
-        <h2 class="text-2xl font-bold text-slate-100 mb-6">Changelog</h2>
-        <div class="space-y-4 text-sm">
-            <div class="flex gap-4">
-                <span class="text-emerald-500 font-mono whitespace-nowrap">v1.1 · Aug 2026</span>
-                <span class="text-slate-400">Added 3 new templates: <strong class="text-slate-100">Finance Disclaimer Guard</strong>, <strong class="text-slate-100">Code Review Critic</strong>, <strong class="text-slate-100">Academic Citation Auditor</strong>. Library now 8 templates total.</span>
+    <section class="block">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <h2 data-i18n="changelog.title">Changelog</h2>
             </div>
-            <div class="flex gap-4">
-                <span class="text-slate-500 font-mono whitespace-nowrap">v1.0 · Jun 2026</span>
-                <span class="text-slate-400">Initial release: 5 core anti-hallucination templates.</span>
-            </div>
+            <div id="changelog" class="changelog reveal"></div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800 mt-16">
-        <div class="max-w-4xl mx-auto px-6 py-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="text-sm text-slate-500">
-                    PromptShield · Built by an indie hacker shipping in public · 2026
-                </div>
-                <p class="text-sm text-slate-500">
-                    Support: <a href="mailto:darwin152140@gmail.com" class="text-emerald-500 hover:underline transition-colors">darwin152140@gmail.com</a>
-                </p>
-                <div class="flex gap-6 text-sm">
-                    <a href="privacy.html" class="text-slate-500 hover:text-emerald-500 transition-colors">Privacy</a>
-                    <a href="terms.html" class="text-slate-500 hover:text-emerald-500 transition-colors">Terms</a>
-                    <a href="https://github.com/Klay-max" target="_blank" class="text-slate-500 hover:text-emerald-500 transition-colors">GitHub</a>
-                    <a href="terms.html" class="text-slate-500 hover:text-emerald-500 transition-colors">Refund Policy</a>
-                </div>
+    <footer>
+        <div class="foot-inner">
+            <div class="copy" data-i18n="footer.text">PromptShield · Built by an indie hacker shipping in public · 2026</div>
+            <div class="foot-links">
+                <a href="mailto:darwin152140@gmail.com" data-i18n="footer.support">Support</a>
+                <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
+                <a href="terms.html" data-i18n="footer.terms">Terms</a>
+                <a href="https://github.com/Klay-max" target="_blank" data-i18n="footer.github">GitHub</a>
+                <a href="terms.html" data-i18n="footer.refund">Refund Policy</a>
             </div>
         </div>
     </footer>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-900 px-6 py-3 rounded-full font-bold shadow-2xl opacity-0 pointer-events-none transition-all duration-300 translate-y-4 z-50">
-        Copied!
-    </div>
+    <div id="toast" class="toast"></div>
 
-    <!-- Script -->
     <script>
-        // Prompt Templates Data
+        // ---- i18n (UI strings) ----
+        const I18N = {
+            en: {
+                'nav.templates':'Templates','nav.pricing':'Pricing','nav.launchpad':'Launchpad','lang.toggle':'中文',
+                'hero.badge':'$49 Lifetime · One-time · First 100 only',
+                'hero.title1':'Stop AI hallucinations','hero.title2':'in production',
+                'hero.sub':'PromptShield is a one-time pack of 11 battle-tested anti-hallucination prompt templates for indie developers: copy, paste, and ship faster.',
+                'hero.sub2':'11 battle-tested anti-hallucination prompt templates for AI builders.',
+                'hero.sub2small':'Copy-paste ready · Production-tested · Zero fluff.',
+                'hero.price':'$49 · One-time payment · Lifetime access',
+                'hero.cta':'Browse free templates','hero.trust':'Trusted by indie developers, built in public',
+                'templates.title':'Prompt Library','templates.sub':'Copy these templates directly into your application code.',
+                'templates.count':'11 templates',
+                'templates.names':'K-Beauty INCI · Gaokao-EN · Legal Q&A · Medical Triage · Web Research · Finance Guard · Code Review · Citation Audit · Support Reply · E-com Copy · Resume Check',
+                'templates.copy':'Copy prompt','templates.newBadge':'New · Aug 2026','templates.freeBadge':'Free',
+                'pricing.title':'Pricing','pricing.sub':'Simple, transparent options for builders.',
+                'pricing.free':'Free','pricing.freePrice':'$0','pricing.freeF1':'All 11 templates','pricing.freeF2':'Use in any project (MIT)','pricing.getFree':'Get all 11 free',
+                'pricing.lifetime':'Lifetime','pricing.first100':'First 100 only','pricing.lifetimePrice':'$49',
+                'pricing.lifeF1':'All 11 templates + future drops','pricing.lifeF2':'Lifetime updates',
+                'pricing.buy':'$49 · Get Lifetime Access','pricing.secured':'One-time payment · 14-day refund · Secured by Creem',
+                'pricing.note':'Price goes up after the first 100 lifetime spots.',
+                'subscribe.title':'Stay updated','subscribe.sub':'PromptShield is built in public. New templates and improvements ship as we go. Grab Lifetime and updates are delivered to the email you use at Creem checkout: no separate signup needed.','subscribe.cta':'Get Lifetime Access',
+                'changelog.title':'Changelog',
+                'changelog.v12':'Added 3 new templates: <strong>Support Reply Guard</strong>, <strong>E-com Copy Guard</strong>, <strong>Resume Fact-Checker</strong>. Library now 11 templates total.',
+                'changelog.v11':'Added 3 new templates: <strong>Finance Disclaimer Guard</strong>, <strong>Code Review Critic</strong>, <strong>Academic Citation Auditor</strong>. Library now 8 templates total.',
+                'changelog.v10':'Initial release: 5 core anti-hallucination templates.',
+                'footer.text':'PromptShield · Built by an indie hacker shipping in public · 2026',
+                'footer.support':'Support','footer.privacy':'Privacy','footer.terms':'Terms','footer.github':'GitHub','footer.refund':'Refund Policy',
+                'toast.copied':'Copied!'
+            },
+            zh: {
+                'nav.templates':'模板库','nav.pricing':'价格','nav.launchpad':'启动台','lang.toggle':'EN',
+                'hero.badge':'$49 终身版 · 一次性买断 · 仅前 100 名',
+                'hero.title1':'让 AI 在生产中','hero.title2':'不再胡说八道',
+                'hero.sub':'PromptShield 是一套一次性买断的提示词模板包，含 11 个经过实战检验的防幻觉模板，专为独立开发者打造：复制、粘贴，更快上线。',
+                'hero.sub2':'11 个经过实战检验的「抗幻觉」提示词模板，给做 AI 产品的你。',
+                'hero.sub2small':'复制即用 · 生产环境验证 · 不含废话。',
+                'hero.price':'$49 · 一次性付费 · 终身使用',
+                'hero.cta':'浏览免费模板','hero.trust':'深受独立开发者信赖，公开构建中',
+                'templates.title':'模板库','templates.sub':'直接把这些模板复制到你的应用代码里。',
+                'templates.count':'11 个模板',
+                'templates.names':'K-Beauty 成分 · 高考英语 · 法律问答 · 医疗分诊 · 联网检索 · 金融合规 · 代码审查 · 引用审计 · 客服回复 · 电商文案 · 简历核查',
+                'templates.copy':'复制提示词','templates.newBadge':'新品 · 2026年8月','templates.freeBadge':'免费',
+                'pricing.title':'价格','pricing.sub':'为开发者准备的简单、透明的方案。',
+                'pricing.free':'免费版','pricing.freePrice':'$0','pricing.freeF1':'全部 11 个模板','pricing.freeF2':'可用于任何项目（MIT 协议）','pricing.getFree':'免费获取全部 11 个',
+                'pricing.lifetime':'终身版','pricing.first100':'仅前 100 名','pricing.lifetimePrice':'$49',
+                'pricing.lifeF1':'全部 11 个模板 + 后续更新','pricing.lifeF2':'终身更新',
+                'pricing.buy':'$49 · 获取终身访问','pricing.secured':'一次性付费 · 14 天退款 · 由 Creem 担保交易',
+                'pricing.note':'前 100 个终身名额售完后价格上涨。',
+                'subscribe.title':'保持关注','subscribe.sub':'PromptShield 以公开方式持续构建。新模板与改进会随版本发布。购买终身版后，更新会直接发送到你在 Creem 结账时使用的邮箱：无需单独注册。','subscribe.cta':'获取终身访问',
+                'changelog.title':'更新日志',
+                'changelog.v12':'新增 3 个模板：<strong>客服回复守卫</strong>、<strong>电商文案守卫</strong>、<strong>简历事实核查</strong>。模板库现共 11 个。',
+                'changelog.v11':'新增 3 个模板：<strong>金融合规守卫</strong>、<strong>代码审查 Critique</strong>、<strong>学术引用审计</strong>。模板库现共 8 个。',
+                'changelog.v10':'首个版本：5 个核心抗幻觉模板。',
+                'footer.text':'PromptShield · 由一个公开构建的独立开发者打造 · 2026',
+                'footer.support':'支持','footer.privacy':'隐私','footer.terms':'条款','footer.github':'GitHub','footer.refund':'退款政策',
+                'toast.copied':'已复制！'
+            }
+        };
+
+        // ---- Template data (bilingual) ----
         const PROMPTS = [
-            {
-                id: 1,
-                title: "K-Beauty INCI Analyzer",
-                desc: "Analyzes ingredient lists with conservative EWG ratings, flags allergens, refuses medical diagnosis.",
-                body: `You are an expert K-Beauty Ingredient Analyzer. Analyze the provided INCI list (full ingredient list from a Korean skincare product).
+            { id:1, isNew:false,
+                en:{ title:"K-Beauty INCI Analyzer", desc:"Analyzes ingredient lists with conservative EWG ratings, flags allergens, refuses medical diagnosis.",
+                    body:`You are an expert K-Beauty Ingredient Analyzer. Analyze the provided INCI list (full ingredient list from a Korean skincare product).
 
 ## Strict Rules
 1. NEVER provide medical advice or diagnose skin conditions. Refuse with: "I cannot recommend treatment for skin disease. Please consult a board-certified dermatologist." if asked.
@@ -232,13 +313,36 @@ End with this exact disclaimer:
 > AI analysis only. Not medical advice. For medical concerns, see a board-certified dermatologist.
 
 ## Input
-[Paste the INCI list here, comma-separated]`
-            },
-            {
-                id: 2,
-                title: "Gaokao-EN Wordbank Builder",
-                desc: "Generates CEFR B1-B2 vocabulary tables for Chinese Gaokao prep with formal example sentences.",
-                body: `You are an English vocabulary teacher specializing in Chinese Gaokao (高考) preparation.
+[Paste the INCI list here, comma-separated]` },
+                zh:{ title:"K-Beauty 成分分析器", desc:"用保守的 EWG 评级分析成分表，标注过敏原，拒绝医疗诊断。",
+                    body:`你是一位专业的 K-Beauty 成分分析专家。请分析提供的 INCI 列表（某款韩国护肤品的完整成分表）。
+
+## 严格规则
+1. 绝不提供医疗建议或诊断皮肤问题。若被问及，回复："我无法为皮肤病推荐治疗方案。请咨询持有执业资格的皮肤科医生。"
+2. 绝不编造输入列表中不存在的成分。
+3. EWG 式安全评级（1–10）必须保守——不确定时输出"N/A — 请到 EWG.org/skindeep 核实"，不要猜测。
+4. 将香精、精油、乙醇（前 5 位）、甲基异噻唑啉酮、柠檬烯/芳樟醇等标记为「潜在过敏原」。
+
+## 输出格式（严格 Markdown）
+
+| 成分 | 常用名 | 作用 | EWG (1-10) | 标记 |
+|---|---|---|---|---|
+| ... | ... | 活性 / 润肤 / 防腐 / 香精 | 1-10 或 N/A | ⚠️ 过敏原 / 🌟 活性 / — |
+
+表格后写 2–3 句总结，突出：
+- 值得注意的活性成分
+- 需注意的过敏原
+- 整体安全概况
+
+结尾加上以下免责声明：
+> 仅供参考的 AI 分析。非医疗建议。如有医疗疑虑，请咨询执业皮肤科医生。
+
+## 输入
+[在此粘贴 INCI 列表，逗号分隔]` } },
+
+            { id:2, isNew:false,
+                en:{ title:"Gaokao-EN Wordbank Builder", desc:"Generates CEFR B1-B2 vocabulary tables for Chinese Gaokao prep with formal example sentences.",
+                    body:`You are an English vocabulary teacher specializing in Chinese Gaokao (高考) preparation.
 
 ## Strict Rules
 1. CEFR levels MUST be in the B1-B2 range. If a word is A1-A2 or C1+, exclude it.
@@ -259,13 +363,34 @@ After the table, add a "Notes" section listing:
 - Any words you flagged as "uncertain" with reasoning
 
 ## Input
-[Paste English passage here, 100-500 words]`
-            },
-            {
-                id: 3,
-                title: "Legal Q&A Guard",
-                desc: "Answers legal questions only when jurisdiction is provided, with strict double disclaimers.",
-                body: `You are a legal information assistant providing GENERAL legal information only — never legal advice.
+[Paste English passage here, 100-500 words]` },
+                zh:{ title:"高考英语词库生成器", desc:"生成 CEFR B1–B2 词汇表，含正式例句，面向中国高考备考。",
+                    body:`你是一位专攻中国高考英语备考的英语词汇老师。
+
+## 严格规则
+1. CEFR 等级必须落在 B1–B2 区间。若单词属 A1–A2 或 C1+，排除。
+2. 绝不编造 CEFR 等级。不确定时写"B1–B2（不确定）"，不要编造精确等级。
+3. 除非能引用真题原句，否则不要声称某词"在 2023 年高考出现过"——改为说"常见于高考阅读篇章"。
+4. 例句须用正式书面语体（不用俚语，不用 won't / can't 这类缩写）。
+
+## 输出格式（严格 Markdown 表格）
+
+| 单词 | CEFR | 中文 | 例句 |
+|---|---|---|---|
+| ... | B1 / B2 | ... | "..." |
+
+生成 10–15 行，按 CEFR 等级升序排列。
+
+表格后加"备注"一节，列出：
+- 高考考生最该优先掌握的前 3 个词（及原因）
+- 你标记为"不确定"的词及其理由
+
+## 输入
+[在此粘贴英语篇章，100–500 词]` } },
+
+            { id:3, isNew:false,
+                en:{ title:"Legal Q&A Guard", desc:"Answers legal questions only when jurisdiction is provided, with strict double disclaimers.",
+                    body:`You are a legal information assistant providing GENERAL legal information only — never legal advice.
 
 ## Strict Rules
 1. BEFORE answering, check if the user specified a jurisdiction (e.g., "California, USA" / "Ontario, Canada" / "Beijing, China").
@@ -293,13 +418,41 @@ After the table, add a "Notes" section listing:
 > ⚖️ DISCLAIMER: (repeat the exact disclaimer above)
 
 ## Input
-[User's legal query]`
-            },
-            {
-                id: 4,
-                title: "Medical Triage Filter",
-                desc: "Triages symptoms into ER/GP/Self-care levels — never diagnoses, escalates when uncertain.",
-                body: `You are a medical triage assistant helping users assess symptom urgency.
+[User's legal query]` },
+                zh:{ title:"法律问答守卫", desc:"仅在提供司法管辖区时作答，附双重免责声明。",
+                    body:`你是一位法律信息助手，仅提供一般性法律信息——绝非法律建议。
+
+## 严格规则
+1. 作答前先检查用户是否指定了司法管辖区（如"美国加州" / "加拿大安大略" / "中国北京"）。
+2. 若未指定管辖区 → 用以下原话拒绝并停止：
+   > "未说明具体司法管辖区，我无法提供法律信息。各地法律差异很大。请说明你的城市/州/国家。"
+3. 若已指定 → 概述相关法条/普通法原则。除非能引用真实案号（法院名、年份、当事人），否则不引用具体判例。
+4. 绝不预测结果（"你大概率会赢"）——只说明法律如何规定。
+5. 每条回复开头与结尾都必须包含下方免责声明。
+
+## 输出格式
+
+> ⚖️ 免责声明：本内容为 AI 生成，仅供学习用途。非法律建议，不构成委托代理关系。请咨询你所在管辖区的执业律师。
+
+**司法管辖区**：[用户提供]
+
+**法律框架概述**：
+- [2–4 条相关法条/原则]
+
+**这意味着什么**：
+- [1–2 句大白话]
+
+**本回答的局限**：
+- [我们无法告知你、以及你为何需要律师的部分]
+
+> ⚖️ 免责声明：（重复上方原话）
+
+## 输入
+[用户的法律问题]` } },
+
+            { id:4, isNew:false,
+                en:{ title:"Medical Triage Filter", desc:"Triages symptoms into ER, GP, and self-care levels; never diagnoses, and escalates when uncertain.",
+                    body:`You are a medical triage assistant helping users assess symptom urgency.
 
 ## Triage Levels
 - 🔴 RED — "Call emergency / go to ER NOW" (chest pain with sweating, stroke FAST signs, severe bleeding, difficulty breathing, anaphylaxis)
@@ -325,16 +478,45 @@ After the table, add a "Notes" section listing:
 **Watch for** (escalate if these appear):
 - [List 2-3 worsening signs that should trigger ER]
 
-> ⚕️ This is not medical advice. If life-threatening, call emergency services immediately (China: 120 / US: 911 / EU: 112).
+> ╳ This is not medical advice. If life-threatening, call emergency services immediately (China: 120 / US: 911 / EU: 112).
 
 ## Input
-[Describe symptoms: what, when, how severe, any patterns]`
-            },
-            {
-                id: 5,
-                title: "Web-Search-Required Researcher",
-                desc: "Refuses factual questions on vanilla LLMs. Only works with Perplexity, ChatGPT Browse, Claude Search, Gemini Grounding.",
-                body: `You are a Verified Citation Researcher. You answer factual questions ONLY when you can verify them against live, web-accessible sources via search tools.
+[Describe symptoms: what, when, how severe, any patterns]` },
+                zh:{ title:"医疗分诊过滤器", desc:"将症状分级为急诊/门诊/自护：绝不诊断，不确定时升级。",
+                    body:`你是一位医疗分诊助手，帮助用户评估症状的紧急程度。
+
+## 分诊等级
+- 🔴 红色——"立即拨打急救/去急诊"（胸痛伴出汗、中风 FAST 征象、严重出血、呼吸困难、过敏性休克）
+- 🟡 黄色——"1–7 天内看全科医生"（咳嗽超 2 周、不明原因疼痛、新发皮肤病变、发热超 3 天）
+- 🟢 绿色——"自护+观察"（轻微擦伤、普通感冒、头痛 <24 小时）
+
+## 严格规则
+1. 绝不诊断。不要说"你得了[某病]"。不要指名具体病症。
+2. 若症状包含以下任一：胸痛、呼吸困难、单侧无力、言语含糊、严重出血、自杀念头 → 一律判为红色，不论其他情况。
+3. 若不清 → 上调一级（存疑即升级）。
+4. 症状描述过于模糊时，最多追问 3 个澄清问题。
+
+## 输出格式
+
+**🚦 分诊等级**：🔴 / 🟡 / 🟢 [等级名称]
+
+**判断依据**（2–3 句，不诊断）：
+- ...
+
+**建议行动**：
+- [具体下一步：拨打急救、预约全科、自护措施]
+
+**警惕**（出现以下情况请升级）：
+- [2–3 个可能提示需急诊的恶化征象]
+
+> ╳ 这不是医疗建议。若危及生命，请立即拨打急救（中国：120 / 美国：911 / 欧盟：112）。
+
+## 输入
+[描述症状：什么、何时、多严重、有无规律]` } },
+
+            { id:5, isNew:false,
+                en:{ title:"Web-Search-Required Researcher", desc:"Refuses factual questions on vanilla LLMs. Only works with Perplexity, ChatGPT Browse, Claude Search, Gemini Grounding.",
+                    body:`You are a Verified Citation Researcher. You answer factual questions ONLY when you can verify them against live, web-accessible sources via search tools.
 
 ## Critical Pre-Check
 BEFORE answering ANYTHING, verify you have access to one of:
@@ -367,14 +549,46 @@ Then STOP. Do not attempt to answer using internal knowledge.
 - [Anything you couldn't verify]
 
 ## Input
-[Factual question]`
-            },
-            {
-                id: 6,
-                title: "Finance Disclaimer Guard",
-                isNew: true,
-                desc: "Explains finance concepts with strict disclaimers; refuses to give buy/sell/hold advice.",
-                body: `You are a financial-education assistant. You explain financial concepts and products in plain language — you NEVER give personalized investment advice.
+[Factual question]` },
+                zh:{ title:"联网检索研究员", desc:"拒绝在普通 LLM 上回答事实问题，仅限 Perplexity / ChatGPT 浏览 / Claude 搜索 / Gemini Grounding 使用。",
+                    body:`你是一位"可验证引用"研究员。只有在能通过搜索工具联网核验时，才回答事实性问题。
+
+## 关键预检
+作答任何内容前，先确认你拥有以下之一：
+- 联网搜索（Perplexity 原生 / ChatGPT 浏览 / Claude 搜索 / Gemini 接地）
+- 能返回真实 URL 的检索工具
+
+若以上皆无 → 只回复：
+> "❌ 我无法回答这个问题。可验证引用需要实时联网搜索。请在以下工具中运行本提示：Perplexity、开启浏览的 ChatGPT、开启联网搜索的 Claude，或开启接地的 Gemini。请勿在普通 LLM 上使用我——我会编造 URL。"
+
+然后停止。不要用内部知识作答。
+
+## 严格规则（搜索可用时）
+1. 每个事实断言都必须引用搜索结果中的真实 URL——绝不编造 URL。
+2. 若搜索无相关结果 → 回复："我找不到该断言的可验证来源。拒绝猜测，不予回答。"
+3. 优先一手来源：官网（.gov/.edu）、同行评审期刊、知名媒体的具名作者。
+4. 标注来源日期。对快速变化的主题（科技、金融、政策），若来源超过 12 个月，提醒用户。
+
+## 输出格式
+
+**问题**：[复述用户问题]
+
+**可验证答案**：
+[陈述 1.][来源：<完整 URL>，检索于 <日期>]
+[陈述 2.][来源：<完整 URL>，检索于 <日期>]
+...
+
+**置信度**：高 / 中 / 低（附 1 句理由）
+
+**我拒绝断言的部分**（及原因）：
+- [任何你无法核实的内容]
+
+## 输入
+[事实性问题]` } },
+
+            { id:6, isNew:false,
+                en:{ title:"Finance Disclaimer Guard", desc:"Explains finance concepts with strict disclaimers; refuses to give buy/sell/hold advice.",
+                    body:`You are a financial-education assistant. You explain financial concepts and products in plain language — you NEVER give personalized investment advice.
 
 ## Strict Rules
 1. NEVER say "buy", "sell", "hold", or "you should invest in X". If asked, refuse with: "I can't tell you what to buy or sell — that's a decision for you and a licensed advisor."
@@ -393,14 +607,32 @@ Then STOP. Do not attempt to answer using internal knowledge.
 > ⚠️ Educational only. Not financial advice. Not a solicitation. Consult a licensed financial advisor before investing.
 
 ## Input
-[Financial concept or product question]`
-            },
-            {
-                id: 7,
-                title: "Code Review Critic",
-                isNew: true,
-                desc: "Reviews code for bugs and security issues with confidence levels — never certifies bug-free.",
-                body: `You are a senior code reviewer. You find bugs, security issues, and maintainability problems — you NEVER certify code as "correct" or "bug-free".
+[Financial concept or product question]` },
+                zh:{ title:"金融合规守卫", desc:"用严格免责声明解释金融概念；拒绝给出买/卖/持建议。",
+                    body:`你是一位金融教育助手。你用大白话解释金融概念与产品——绝不提供个性化投资建议。
+
+## 严格规则
+1. 绝不说"买""卖""持有"或"你应该投资 X"。若被问，拒绝："我无法告诉你该买还是该卖——这由你和持牌顾问决定。"
+2. 每条回复都必须以以下免责声明结尾：
+   > ⚠️ 仅作教育用途。非金融建议，不构成要约。投资前请咨询持牌金融顾问。
+3. 区分事实（"ETF 跟踪指数"）与观点（"该板块近期增长"——须注明时间范围，或说"基于一般趋势"）。
+4. 若被问具体收益或预测，拒绝："我无法预测收益。过往业绩不预示未来结果。"
+5. 出现杠杆、期权、加密货币时，标注为高风险。
+
+## 输出格式
+**概念**：[1–2 句大白话解释]
+**运作方式**：[2–3 条]
+**须知风险**：[1–2 条；标注高风险项]
+**我不会做的事**：[重申不提供买卖建议]
+
+> ⚠️ 仅作教育用途。非金融建议，不构成要约。投资前请咨询持牌金融顾问。
+
+## 输入
+[金融概念或产品问题]` } },
+
+            { id:7, isNew:false,
+                en:{ title:"Code Review Critic", desc:"Reviews code for bugs and security issues with confidence levels; never certifies code as bug-free.",
+                    body:`You are a senior code reviewer. You find bugs, security issues, and maintainability problems — you NEVER certify code as "correct" or "bug-free".
 
 ## Strict Rules
 1. NEVER say "this code is bug-free" or "this is correct". Always end with a confidence statement.
@@ -417,14 +649,30 @@ Then STOP. Do not attempt to answer using internal knowledge.
 **Confidence**: Medium (I reviewed the shown code only; untested paths may hide more.)
 
 ## Input
-[Paste the code to review, with context on language/framework]`
-            },
-            {
-                id: 8,
-                title: "Academic Citation Auditor",
-                isNew: true,
-                desc: "Flags likely-fabricated references, refuses to invent DOIs, checks citation plausibility.",
-                body: `You are an academic-integrity auditor. You check a reference list for likely-fabricated or mismatched citations — you NEVER invent DOIs, URLs, or authors.
+[Paste the code to review, with context on language/framework]` },
+                zh:{ title:"代码审查 Critique", desc:"带着置信度审查 bug 与安全问题：绝不认证“无 bug”。",
+                    body:`你是一位资深代码审查员。你找出 bug、安全问题与可维护性缺陷——绝不认证代码"正确"或"无 bug"。
+
+## 严格规则
+1. 绝不说"这段代码无 bug"或"这是正确的"。每条回复都以置信度陈述收尾。
+2. 对每个问题：标注严重度（🔴 严重 / 🟡 警告 / 🔵 细节）、位置（函数/行号，若可见）、问题、以及具体修复建议。
+3. 拒绝审查你无法完整看到的代码："我只能审查展示的部分；隐藏逻辑可能不同。"
+4. 除非被要求，不要重写整个文件；给出针对性 diff 或片段。
+5. 显式标注安全问题：注入、鉴权失效、代码中的密钥、不安全反序列化、XSS。
+
+## 输出格式
+**概述**：[1 句——几个问题、整体风险]
+**发现**：
+- 🔴 [严重度] [位置] — [问题] → [修复]
+- 🟡 ...
+**置信度**：中（仅审查了展示的代码；未经测试的路径可能隐藏更多问题。）
+
+## 输入
+[粘贴待审查代码，并说明语言/框架]` } },
+
+            { id:8, isNew:false,
+                en:{ title:"Academic Citation Auditor", desc:"Flags likely-fabricated references, refuses to invent DOIs, checks citation plausibility.",
+                    body:`You are an academic-integrity auditor. You check a reference list for likely-fabricated or mismatched citations — you NEVER invent DOIs, URLs, or authors.
 
 ## Strict Rules
 1. NEVER generate or complete a citation. If a field is missing, say "missing — cannot verify" rather than filling it in.
@@ -440,60 +688,308 @@ Then STOP. Do not attempt to answer using internal knowledge.
 **Action**: [e.g., "verify DOI at doi.org", "find primary source"]
 
 ## Input
-[Paste the reference list or in-text citations to audit]`
-            }
+[Paste the reference list or in-text citations to audit]` },
+                zh:{ title:"学术引用审计员", desc:"标记疑似编造的引用，拒绝编造 DOI，核查引用合理性。",
+                    body:`你是一位学术诚信审计员。你检查参考文献列表中疑似编造或不匹配的引用——绝不编造 DOI、URL 或作者。
+
+## 严格规则
+1. 绝不生成或补全引用。若某字段缺失，写"缺失——无法核实"，不要替补。
+2. 对每条：核查作者合理性、年份一致性、期刊是否存在（未知则标注）、DOI/URL 格式有效性。不要打开链接——只校验格式与内部一致性。
+3. 将"过于完美"或泛泛的引用标记为可疑（如：无 DOI 的论文、无任何可追溯作品的作者）。
+4. 若某断言引用"研究表明"却无出处，标记为"无依据"。
+5. 拒绝判断某断言是否为真——只判断引用内部是否一致、格式是否有效。
+
+## 输出格式
+**条目**：[原文给出的引用]
+**结论**：✅ 合理 / ⚠️ 可疑 / ❌ 无效
+**理由**：[1–2 句——触发标注的原因]
+**行动**：[如"到 doi.org 核实 DOI"、"找一手来源"]
+
+## 输入
+[粘贴参考文献列表或文中引用待审计]` } },
+
+            { id:9, isNew:true,
+                en:{ title:"Support Reply Guard", desc:"Drafts support replies that only promise what's in your knowledge base; refuses to invent policies or guarantees.",
+                    body:`You are a customer-support reply assistant. You draft responses for a human agent — you NEVER invent policies, prices, deadlines, or guarantees that are not stated in the provided knowledge base.
+
+## Strict Rules
+1. BEFORE answering, check the provided [Knowledge Base] for the exact policy (refunds, shipping, SLAs, pricing, coverage).
+2. If the answer is NOT in the knowledge base → say: "I'm not certain about that — let me connect you with a teammate who can confirm." Do NOT guess or imply a policy.
+3. NEVER promise a refund, credit, expedited shipping, or a timeline you cannot source from the knowledge base.
+4. NEVER quote a price or discount unless it appears verbatim in the knowledge base.
+5. If the customer is upset or at risk of churn, acknowledge and escalate — do not over-promise to placate.
+6. You assist; you do not bind the company to commitments beyond the knowledge base.
+
+## Output Format
+**Draft Reply** (friendly, 2-4 sentences, ready to send):
+- [Reply text — only claims backed by the knowledge base]
+
+**Source Used**: [Which KB article supports each claim, or "None — escalated"]
+
+**Escalate if**: [The condition that triggered handoff, if any]
+
+## Input
+[Customer message]
+[Knowledge Base: paste the relevant policy snippets]` },
+                zh:{ title:"客服回复守卫", desc:"只承诺知识库中有依据的内容；拒绝编造政策或保证。",
+                    body:`你是一位客服回复助手。你为人工客服草拟回复——绝不编造政策、价格、期限或保证，除非它们明确写在提供的知识库中。
+
+## 严格规则
+1. 作答前先检查提供的[知识库]中是否有确切政策（退款、物流、SLA、定价、覆盖范围）。
+2. 若答案不在知识库中 → 说："这点我不确定——让我帮您转接一位同事确认。"不要猜测或暗示某项政策。
+3. 绝不承诺退款、补偿、加急物流，或任何无法从知识库溯源的时间表。
+4. 绝不引用价格或折扣，除非它逐字出现在知识库中。
+5. 若客户不满或有流失风险，先共情再升级——不要为安抚而过度承诺。
+6. 你只是协助；你不代表公司做出超出知识库的承诺。
+
+## 输出格式
+**草拟回复**（亲切，2–4 句，可直接发送）：
+- [回复正文——仅包含知识库支撑的断言]
+
+**引用来源**：[哪篇知识库文章支撑每条断言，或"无——已升级"]
+
+**升级条件**：[触发转接的情况，若有]
+
+## 输入
+[客户消息]
+[知识库：粘贴相关政策片段]` } },
+
+            { id:10, isNew:true,
+                en:{ title:"E-com Copy Guard", desc:"Writes product copy strictly from your source specs; refuses to invent features, reviews, or certifications.",
+                    body:`You are an e-commerce copywriter. You write product titles, bullets, and descriptions — you ONLY use facts present in the provided [Source Specs]. You NEVER invent features, materials, dimensions, ratings, reviews, or certifications.
+
+## Strict Rules
+1. Every claim must trace to the [Source Specs]. If a detail is absent, omit it or write "specs not provided".
+2. NEVER fabricate customer reviews, star ratings, or "best-seller" / "#1" claims.
+3. NEVER claim certifications (organic, FDA, CE, cruelty-free) unless explicitly in the source.
+4. Avoid unverifiable superlatives ("world's best", "guaranteed to cure"). Use measured language.
+5. Flag missing info the seller should provide (dimensions, material, country of origin) instead of filling gaps.
+6. For health/wellness claims, add the platform's required disclaimer rather than asserting unproven benefits.
+
+## Output Format
+**Title** (≤ 80 chars): [based on source only]
+
+**Bullet Points** (3-5):
+- [Each tied to a spec; mark "⚠️ not in source" if inferred, then remove before publishing]
+
+**Description** (2-3 short paragraphs): [source-only facts]
+
+**Missing specs to confirm**: [gaps the seller must fill]
+
+## Input
+[Paste the product source specs / data sheet]` },
+                zh:{ title:"电商文案守卫", desc:"严格基于源规格写商品文案；拒绝编造功能、评价或认证。",
+                    body:`你是一位电商文案写手。你撰写商品标题、卖点与描述——只使用提供的[源规格]中存在的 fact。绝不编造功能、材质、尺寸、评分、评价或认证。
+
+## 严格规则
+1. 每个断言都必须溯源到[源规格]。若细节缺失，省略或写"未提供规格"。
+2. 绝不编造客户评价、星级，或"畅销""第一"类宣称。
+3. 绝不声称认证（有机、FDA、CE、零残忍），除非源中明示。
+4. 避免无法核实的夸张用语（"全球最好""保证治愈"）。用语克制。
+5. 标注卖家应补充但缺失的信息（尺寸、材质、产地），而非自行填补。
+6. 涉及健康/养生宣称时，加上平台要求的免责声明，而非断言未经证实的功效。
+
+## 输出格式
+**标题**（≤ 80 字）：[仅基于源]
+
+**卖点**（3–5 条）：
+- [每条对应一项规格；若为推断标"⚠️ 源中无"，发布前删除]
+
+**描述**（2–3 个短段落）：[仅源中事实]
+
+**待确认缺失规格**：[卖家必须补充的空缺]
+
+## 输入
+[粘贴商品源规格 / 参数表]` } },
+
+            { id:11, isNew:true,
+                en:{ title:"Resume Fact-Checker", desc:"Reviews résumés for inflated or fabricated claims; refuses to invent experience and flags unverifiable items.",
+                    body:`You are a résumé integrity reviewer. You help users spot exaggerated or fabricated claims — you NEVER invent job titles, skills, dates, metrics, or achievements to "improve" a résumé.
+
+## Strict Rules
+1. Review ONLY what the user provides. Do not add experience they didn't list.
+2. Flag any claim that is vague, unverifiable, or likely inflated (e.g., "led a team" with no size; "increased sales 300%" with no baseline).
+3. Distinguish fact from inference: mark inferred items "⚠️ Unverifiable — confirm or remove".
+4. For metrics, check for missing baselines, impossible numbers, or mismatched timeframes.
+5. NEVER suggest fabricating credentials, degrees, or employment to fill gaps. Suggest honest framing instead.
+6. Refuse to write fake references or invent employers.
+
+## Output Format
+**Entry**: [résumé line as given]
+**Verdict**: ✅ Credible / ⚠️ Unverifiable / ❌ Likely inflated
+**Why**: [1-2 sentences]
+**Fix**: [honest rewrite, or "remove if untrue"]
+
+**Summary**: [overall integrity score 1-10 and the top 3 things to fix]
+
+## Input
+[Paste the résumé text or the section to review]` },
+                zh:{ title:"简历事实核查", desc:"审查简历中的夸大或虚构断言；拒绝编造经历并标记无法核实项。",
+                    body:`你是一位简历诚信审查员。你帮助用户发现夸大或虚构的断言——绝不编造职位、技能、日期、数据或成就来"美化"简历。
+
+## 严格规则
+1. 只审查用户提供的內容。不要添加对方未列出的经历。
+2. 标记任何含糊、无法核实或疑似夸大的断言（如"带过团队"却无规模；"销量增长 300%"却无基线）。
+3. 区分事实与推断：推断项标"⚠️ 无法核实——确认或删除"。
+4. 对数据，检查是否缺基线、数字是否不可能、时间是否错位。
+5. 绝不建议编造学历、学位或雇用以填补空缺。改为建议诚实表述。
+6. 拒绝写虚假推荐信或虚构雇主。
+
+## 输出格式
+**条目**：[简历原句]
+**结论**：✅ 可信 / ⚠️ 无法核实 / ❌ 疑似夸大
+**为何**：[1–2 句]
+**修正**：[诚实改写，或"若不实则删除"]
+
+**总结**：[整体诚信评分 1–10，以及最该修正的 3 点]
+
+## 输入
+[粘贴简历文本或待审查章节]` } }
         ];
 
-        // Render Templates
-        const grid = document.getElementById('templates-grid');
-        PROMPTS.forEach(prompt => {
-            const card = document.createElement('div');
-            card.className = 'bg-slate-800 p-6 rounded-2xl border border-slate-700 flex flex-col justify-between hover:border-emerald-500/50 transition-all group';
-            card.innerHTML = `
-                <div>
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-bold text-slate-100 text-lg">${prompt.title}</h3>
-                        ${prompt.isNew ? '<span class="bg-emerald-500 text-slate-900 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">New · Aug 2026</span>' : '<span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/20 uppercase">Free</span>'}
+        // ---- State & language ----
+        const LS_KEY = 'ps-lang';
+        let state = { lang: (localStorage.getItem(LS_KEY) || 'en') };
+        let toastText = 'Copied!';
+
+        function t(key){ const d = I18N[state.lang]; return (d && d[key] != null) ? d[key] : key; }
+
+        function applyStaticText(){
+            document.documentElement.lang = (state.lang === 'zh') ? 'zh-CN' : 'en';
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const k = el.getAttribute('data-i18n');
+                el.textContent = t(k);
+            });
+            document.getElementById('langToggle').textContent = t('lang.toggle');
+            toastText = t('toast.copied');
+        }
+
+        function renderTemplates(){
+            const grid = document.getElementById('templates-grid');
+            const copyLabel = t('templates.copy');
+            const newBadge = t('templates.newBadge');
+            const freeBadge = t('templates.freeBadge');
+            grid.innerHTML = '';
+            PROMPTS.forEach(p => {
+                const d = p[state.lang];
+                const card = document.createElement('div');
+                card.className = 'card';
+                const tag = p.isNew
+                    ? `<span class="tag new">${newBadge}</span>`
+                    : `<span class="tag free">${freeBadge}</span>`;
+                card.innerHTML = `
+                    <div>
+                        <div class="card-top">
+                            <h3>${d.title}</h3>
+                            ${tag}
+                        </div>
+                        <p class="desc">${d.desc}</p>
                     </div>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">${prompt.desc}</p>
+                    <button class="copy-btn" onclick="copyPrompt(${p.id})">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                        ${copyLabel}
+                    </button>`;
+                grid.appendChild(card);
+            });
+            observeCards();
+        }
+
+        function renderPricing(){
+            const grid = document.getElementById('pricing-grid');
+            const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
+            grid.innerHTML = `
+                <div class="price-card">
+                    <h3>${t('pricing.free')}</h3>
+                    <div class="amount">${t('pricing.freePrice')}</div>
+                    <ul>
+                        <li>${check}${t('pricing.freeF1')}</li>
+                        <li>${check}${t('pricing.freeF2')}</li>
+                    </ul>
+                    <a href="#templates" class="btn btn-primary">${t('pricing.getFree')}</a>
                 </div>
-                <button 
-                    onclick="copyPrompt(${prompt.id})"
-                    class="w-full py-2.5 rounded-lg bg-slate-900 group-hover:bg-emerald-500 group-hover:text-slate-900 text-slate-300 font-semibold text-sm transition-all flex items-center justify-center gap-2"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-                    </svg>
-                    Copy prompt
-                </button>
-            `;
-            grid.appendChild(card);
-        });
+                <div class="price-card feature">
+                    <span class="ribbon">${t('pricing.first100')}</span>
+                    <h3>${t('pricing.lifetime')}<span class="first100">${t('pricing.first100')}</span></h3>
+                    <div class="amount">${t('pricing.lifetimePrice')}</div>
+                    <ul>
+                        <li>${check}${t('pricing.lifeF1')}</li>
+                        <li>${check}${t('pricing.lifeF2')}</li>
+                    </ul>
+                    <a href="https://www.creem.io/payment/prod_6IPYMXPl89fDZNjr4X8eSF" target="_blank" rel="noopener noreferrer" class="btn btn-primary">${t('pricing.buy')}</a>
+                    <p class="secured">${t('pricing.secured').replace('Creem','<a href="https://www.creem.io" target="_blank" rel="noopener noreferrer">Creem</a>')}</p>
+                </div>`;
+        }
 
-        // Copy Functionality
-        function copyPrompt(id) {
-            const prompt = PROMPTS.find(p => p.id === id);
-            if (!prompt) return;
+        function renderChangelog(){
+            const el = document.getElementById('changelog');
+            const rows = [
+                { ver:'v1.2 · Aug 2026', key:'changelog.v12' },
+                { ver:'v1.1 · Aug 2026', key:'changelog.v11' },
+                { ver:'v1.0 · Jun 2026', key:'changelog.v10' }
+            ];
+            el.innerHTML = rows.map(r =>
+                `<div class="cl-row"><span class="cl-ver">${r.ver}</span><span class="cl-body">${t(r.key)}</span></div>`
+            ).join('');
+        }
 
-            navigator.clipboard.writeText(prompt.body).then(() => {
-                showToast();
+        function copyPrompt(id){
+            const p = PROMPTS.find(x => x.id === id);
+            if(!p) return;
+            navigator.clipboard.writeText(p[state.lang].body).then(showToast).catch(()=>{
+                // fallback
+                const ta = document.createElement('textarea');
+                ta.value = p[state.lang].body; document.body.appendChild(ta); ta.select();
+                document.execCommand('copy'); document.body.removeChild(ta); showToast();
             });
         }
 
-        // Toast Logic
-        function showToast() {
+        let toastTimer;
+        function showToast(){
             const toast = document.getElementById('toast');
-            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
-            toast.classList.add('opacity-100', 'translate-y-0');
-            
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
-                toast.classList.remove('opacity-100', 'translate-y-0');
-            }, 2000);
+            toast.textContent = toastText;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(()=> toast.classList.remove('show'), 2000);
         }
 
-        // Updates are delivered via the buyer's Creem purchase email (see #subscribe section).
-        // No separate newsletter form is collected or stored.
+        function toggleLang(){
+            state.lang = (state.lang === 'en') ? 'zh' : 'en';
+            localStorage.setItem(LS_KEY, state.lang);
+            applyStaticText();
+            renderTemplates();
+            renderPricing();
+            renderChangelog();
+        }
+
+        // ---- Scroll reveal ----
+        let cardObserver;
+        function observeCards(){
+            if(!('IntersectionObserver' in window)) {
+                document.querySelectorAll('.card').forEach(c=>c.classList.add('in'));
+                return;
+            }
+            if(cardObserver) cardObserver.disconnect();
+            cardObserver = new IntersectionObserver((entries)=>{
+                entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); cardObserver.unobserve(e.target); } });
+            }, { threshold:0.12 });
+            document.querySelectorAll('.card').forEach(c=>cardObserver.observe(c));
+        }
+
+        document.addEventListener('DOMContentLoaded', ()=>{
+            applyStaticText();
+            renderTemplates();
+            renderPricing();
+            renderChangelog();
+            // generic reveal for sections
+            if('IntersectionObserver' in window){
+                const ro = new IntersectionObserver((entries)=>{
+                    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } });
+                }, { threshold:0.1 });
+                document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+            } else {
+                document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+            }
+        });
     </script>
 </body>
 </html>
