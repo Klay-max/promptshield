@@ -122,6 +122,62 @@
         .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
         .reveal.in{opacity:1;transform:translateY(0)}
         @media(prefers-reduced-motion:reduce){.reveal,.card{opacity:1;transform:none;transition:none}}
+
+        /* Hero preview */
+        .hero-preview{margin:36px auto 0;max-width:680px;text-align:left;background:#0d0d0f;border-radius:16px;padding:18px 20px;font-family:var(--mono);font-size:13px;line-height:1.7;color:#e6e6e6;overflow:auto;box-shadow:0 18px 50px rgba(0,0,0,.18)}
+        .hero-preview .hl{color:#5fd0a8}
+        .hero-preview .cm{color:#7d7d85}
+
+        /* Steps (How it works) */
+        .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:920px;margin:0 auto}
+        @media(max-width:720px){.steps{grid-template-columns:1fr}}
+        .step-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:30px 26px}
+        .step-num{width:34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;margin-bottom:16px}
+        .step-card h3{font-size:18px;font-weight:600;margin-bottom:8px;letter-spacing:-.01em}
+        .step-card p{font-size:14.5px;color:var(--text-2);line-height:1.55}
+
+        /* Before / After */
+        .ba{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:920px;margin:0 auto}
+        @media(max-width:720px){.ba{grid-template-columns:1fr}}
+        .ba-col{border-radius:var(--radius);padding:26px;border:1px solid var(--border)}
+        .ba-col.bad{background:#fff5f5;border-color:#f3c2c2}
+        .ba-col.good{background:#f1fbf6;border-color:#bfe6d2}
+        .ba-col h4{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:14px}
+        .ba-col.bad h4{color:#c0392b}
+        .ba-col.good h4{color:var(--accent)}
+        .ba-col p{font-size:14.5px;line-height:1.6;color:var(--text);white-space:pre-wrap}
+
+        /* Why */
+        .why-grid{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+        .why-item{display:flex;gap:14px;align-items:flex-start}
+        .why-item .ic{color:var(--accent);flex-shrink:0;margin-top:2px}
+        .why-item p{font-size:16px;line-height:1.6;color:var(--text)}
+        .why-item p b{font-weight:600}
+
+        /* Template detail (expand) */
+        .card.expanded{box-shadow:0 18px 40px rgba(0,0,0,.10)}
+        .card-detail{margin-top:18px;border-top:1px solid var(--border);padding-top:16px;display:none;font-size:14px;line-height:1.6;color:var(--text-2)}
+        .card.expanded .card-detail{display:block}
+        .detail-field{margin-bottom:13px}
+        .detail-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-bottom:4px}
+        .detail-field .val{white-space:pre-wrap;font-family:var(--mono);font-size:13px;color:var(--text);background:var(--bg-alt);border-radius:10px;padding:10px 12px;line-height:1.55}
+        .expand-btn{width:100%;margin-top:14px;font-family:var(--font);font-size:13.5px;font-weight:500;color:var(--accent);background:transparent;border:1px solid var(--border);border-radius:12px;padding:9px;cursor:pointer;transition:all .2s}
+        .expand-btn:hover{background:var(--bg-alt)}
+
+        /* FAQ */
+        .faq{max-width:760px;margin:0 auto}
+        .faq details{border-bottom:1px solid var(--border);padding:20px 0}
+        .faq summary{font-size:17px;font-weight:500;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+        .faq summary::-webkit-details-marker{display:none}
+        .faq summary .pm{color:var(--text-3);font-size:22px;transition:transform .25s;flex-shrink:0}
+        .faq details[open] summary .pm{transform:rotate(45deg)}
+        .faq .ans{margin-top:14px;font-size:15px;line-height:1.65;color:var(--text-2)}
+
+        /* Author */
+        .author{max-width:760px;margin:0 auto;text-align:center}
+        .author .av{width:54px;height:54px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;margin:0 auto 18px}
+        .author p{font-size:16px;line-height:1.65;color:var(--text-2);max-width:600px;margin:0 auto}
+        .author a{color:var(--accent);font-weight:500}
     </style>
 </head>
 <body>
@@ -159,6 +215,7 @@
         <div class="hero-price" data-i18n="hero.price">$49 · One-time payment · Lifetime access</div>
         <a href="#templates" class="btn btn-primary" data-i18n="hero.cta">Browse free templates</a>
         <p class="hero-trust" data-i18n="hero.trust">Built in public · feedback welcome</p>
+        <pre class="hero-preview" data-i18n="hero.preview">You are an anti-hallucination editor. Only state what the source supports. Flag every claim it cannot verify. Never invent numbers, quotes, or sources.</pre>
     </header>
 
     <!-- Templates -->
@@ -173,6 +230,67 @@
                 <span class="names" data-i18n="templates.names">K-Beauty INCI · Gaokao-EN · Legal Q&A · Medical Triage · Web Research · Finance Guard · Code Review · Citation Audit · Support Reply · E-com Copy · Resume Check · Legal Contract · Admissions Essay · Data Guard</span>
             </p>
             <div id="templates-grid" class="grid"></div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="block">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <h2 data-i18n="how.title">How it works</h2>
+                <p data-i18n="how.sub">Three steps. No setup, no account, no API key.</p>
+            </div>
+            <div class="steps">
+                <div class="step-card reveal">
+                    <div class="step-num">1</div>
+                    <h3 data-i18n="how.s1t">Pick a template</h3>
+                    <p data-i18n="how.s1d">Choose the guard that matches your task — legal, medical, finance, code, and more.</p>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-num">2</div>
+                    <h3 data-i18n="how.s2t">Drop in your data</h3>
+                    <p data-i18n="how.s2d">Paste the text, draft, or dataset you want checked. The prompt tells the model exactly what to do.</p>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-num">3</div>
+                    <h3 data-i18n="how.s3t">Copy into your app</h3>
+                    <p data-i18n="how.s3d">Paste the filled prompt into ChatGPT, Claude, or your product. Get a grounded result.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before / After -->
+    <section class="block alt">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <h2 data-i18n="ba.title">The difference one prompt makes</h2>
+            </div>
+            <div class="ba">
+                <div class="ba-col bad reveal">
+                    <h4 data-i18n="ba.badTitle">Without PromptShield</h4>
+                    <p data-i18n="ba.bad">"This supplement cures fatigue. Studies prove it." — unsupported claim, invented proof, compliance risk.</p>
+                </div>
+                <div class="ba-col good reveal">
+                    <h4 data-i18n="ba.goodTitle">With PromptShield</h4>
+                    <p data-i18n="ba.good">"Supports everyday energy. (Not a cure — see disclaimer.)" — claim reframed, disclaimer attached, risk removed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why it matters -->
+    <section class="block">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <h2 data-i18n="why.title">Why it matters</h2>
+                <p data-i18n="why.sub">Hallucinations are not a bug you can patch once. They are a habit of the model.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-item reveal"><span class="ic">✓</span><p data-i18n-html="why.i1"><b>One wrong fact travels far.</b> A fabricated citation in a blog post gets cited by others before anyone checks.</p></div>
+                <div class="why-item reveal"><span class="ic">✓</span><p data-i18n-html="why.i2"><b>Confidence is not accuracy.</b> Models state guesses with the same tone as verified facts.</p></div>
+                <div class="why-item reveal"><span class="ic">✓</span><p data-i18n-html="why.i3"><b>A good prompt is cheaper than a bad outcome.</b> A 2-minute guard saves a retraction, a refund, or a lost client.</p></div>
+            </div>
         </div>
     </section>
 
@@ -195,6 +313,34 @@
                 <h2 data-i18n="subscribe.title">Stay updated</h2>
                 <p data-i18n="subscribe.sub">PromptShield is built in public. New templates and improvements ship as we go. Grab Lifetime and updates are delivered to the email you use at Creem checkout: no separate signup needed.</p>
                 <a href="https://www.creem.io/payment/prod_6IPYMXPl89fDZNjr4X8eSF" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="subscribe.cta">Get Lifetime Access</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="block">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <h2 data-i18n="faq.title">Frequently asked</h2>
+            </div>
+            <div class="faq">
+                <details class="reveal"><summary><span data-i18n="faq.q1">Will these prompts go out of date?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a1">The guard logic is stable; we refine wording as models change. Lifetime buyers get every update free.</div></details>
+                <details class="reveal"><summary><span data-i18n="faq.q2">Is this legal or medical advice?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a2">No. Every template is built to stay in "general information" and tells the model to defer to a professional. Nothing here replaces a licensed expert.</div></details>
+                <details class="reveal"><summary><span data-i18n="faq.q3">How is this different from ChatGPT Plus?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a3">Plus gives you a model. PromptShield gives you 14 task-specific guards that force the model to stay grounded — something the base model does not do on its own.</div></details>
+                <details class="reveal"><summary><span data-i18n="faq.q4">What do I get exactly?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a4">14 copy-paste prompt templates (EN + ZH), each with usage notes and worked examples. MIT licensed, yours forever.</div></details>
+                <details class="reveal"><summary><span data-i18n="faq.q5">What is your refund policy?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a5">14-day no-questions refund via Creem. If the pack is not useful, email us and we reverse it.</div></details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author -->
+    <section class="block alt">
+        <div class="wrap">
+            <div class="author reveal">
+                <div class="av">D</div>
+                <h2 data-i18n="author.title">Built by a practitioner</h2>
+                <p data-i18n="author.body">PromptShield is made by Darwin — an independent AI product builder who ships real products and writes the prompts he actually uses. No agency, no fake reviews, just working tools.</p>
+                <a href="https://anjianzhao.xyz" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="author.cta">See more of my work</a>
             </div>
         </div>
     </section>
@@ -255,7 +401,28 @@
                 'changelog.v10':'Initial release: 5 core anti-hallucination templates.',
                 'footer.text':'PromptShield · Built by an indie hacker shipping in public · 2026',
                 'footer.support':'Support','footer.privacy':'Privacy','footer.terms':'Terms','footer.github':'GitHub','footer.refund':'Refund Policy',
-                'toast.copied':'Copied!'
+                'toast.copied':'Copied!',
+                'hero.preview':'You are an anti-hallucination editor. Only state what the source supports. Flag every claim it cannot verify. Never invent numbers, quotes, or sources.',
+                'how.title':'How it works','how.sub':'Three steps. No setup, no account, no API key.',
+                'how.s1t':'Pick a template','how.s1d':'Choose the guard that matches your task — legal, medical, finance, code, and more.',
+                'how.s2t':'Drop in your data','how.s2d':'Paste the text, draft, or dataset you want checked. The prompt tells the model exactly what to do.',
+                'how.s3t':'Copy into your app','how.s3d':'Paste the filled prompt into ChatGPT, Claude, or your product. Get a grounded result.',
+                'ba.title':'The difference one prompt makes',
+                'ba.badTitle':'Without PromptShield','ba.bad':'"This supplement cures fatigue. Studies prove it." — unsupported claim, invented proof, compliance risk.',
+                'ba.goodTitle':'With PromptShield','ba.good':'"Supports everyday energy. (Not a cure — see disclaimer.)" — claim reframed, disclaimer attached, risk removed.',
+                'why.title':'Why it matters','why.sub':'Hallucinations are not a bug you can patch once. They are a habit of the model.',
+                'why.i1':'<b>One wrong fact travels far.</b> A fabricated citation in a blog post gets cited by others before anyone checks.',
+                'why.i2':'<b>Confidence is not accuracy.</b> Models state guesses with the same tone as verified facts.',
+                'why.i3':'<b>A good prompt is cheaper than a bad outcome.</b> A 2-minute guard saves a retraction, a refund, or a lost client.',
+                'faq.title':'Frequently asked',
+                'faq.q1':'Will these prompts go out of date?','faq.a1':'The guard logic is stable; we refine wording as models change. Lifetime buyers get every update free.',
+                'faq.q2':'Is this legal or medical advice?','faq.a2':'No. Every template is built to stay in "general information" and tells the model to defer to a professional. Nothing here replaces a licensed expert.',
+                'faq.q3':'How is this different from ChatGPT Plus?','faq.a3':'Plus gives you a model. PromptShield gives you 14 task-specific guards that force the model to stay grounded — something the base model does not do on its own.',
+                'faq.q4':'What do I get exactly?','faq.a4':'14 copy-paste prompt templates (EN + ZH), each with usage notes and worked examples. MIT licensed, yours forever.',
+                'faq.q5':'What is your refund policy?','faq.a5':'14-day no-questions refund via Creem. If the pack is not useful, email us and we reverse it.',
+                'author.title':'Built by a practitioner','author.body':'PromptShield is made by Darwin — an independent AI product builder who ships real products and writes the prompts he actually uses. No agency, no fake reviews, just working tools.','author.cta':'See more of my work',
+                'templates.expand':'View details','templates.collapse':'Hide details',
+                'templates.d.useCase':'When to use','templates.d.io':'Input → Output','templates.d.principle':'Why it guards','templates.d.boundary':'Boundary'
             },
             zh: {
                 'nav.templates':'模板库','nav.pricing':'价格','nav.launchpad':'启动台','lang.toggle':'EN',
@@ -284,7 +451,28 @@
                 'changelog.v10':'首个版本：5 个核心抗幻觉模板。',
                 'footer.text':'PromptShield · 由一个公开构建的独立开发者打造 · 2026',
                 'footer.support':'支持','footer.privacy':'隐私','footer.terms':'条款','footer.github':'GitHub','footer.refund':'退款政策',
-                'toast.copied':'已复制！'
+                'toast.copied':'已复制！',
+                'hero.preview':'你是抗幻觉编辑。只陈述来源支持的内容。标记每一处无法核实的论断。绝不编造数字、引用或来源。',
+                'how.title':'怎么用','how.sub':'三步。无需配置、无需账号、无需 API key。',
+                'how.s1t':'选模板','how.s1d':'挑一个匹配你任务的守卫——法律、医疗、金融、代码等。',
+                'how.s2t':'放入你的数据','how.s2d':'把要核查的文本、草稿或数据集粘进去。模板会告诉模型具体怎么做。',
+                'how.s3t':'复制到你的应用','how.s3d':'把填好的提示词粘进 ChatGPT、Claude 或你的产品，得到有依据的结果。',
+                'ba.title':'一个提示词的差别',
+                'ba.badTitle':'没有 PromptShield','ba.bad':'"这款补剂包治疲劳，研究证明。"——无依据的断言、编造的证据、合规风险。',
+                'ba.goodTitle':'用了 PromptShield','ba.good':'"助力日常精力（非治疗，见免责）。"——论断改写、附免责、风险消除。',
+                'why.title':'为什么重要','why.sub':'幻觉不是一次能修好的 bug，而是模型的习惯。',
+                'why.i1':'<b>一句错话传很远。</b>博客里编造的引用，在没人核查前就被别人转引。',
+                'why.i2':'<b>自信不等于准确。</b>模型把猜测说得和已验证事实一样笃定。',
+                'why.i3':'<b>好提示词比坏结果便宜。</b>两分钟的把关，省去一次撤稿、退款或丢客户。',
+                'faq.title':'常见问题',
+                'faq.q1':'这些提示词会过时吗？','faq.a1':'守卫逻辑稳定；我们会随模型演进打磨措辞。终身用户免费获得每次更新。',
+                'faq.q2':'这是法律或医疗建议吗？','faq.a2':'不是。每个模板都设计为停留在"普适信息"内，并让模型转交专业人士。此处不替代持证专家。',
+                'faq.q3':'和 ChatGPT Plus 有什么区别？','faq.a3':'Plus 给你一个模型。PromptShield 给你 14 个任务专属守卫，强制模型保持有据——这是基础模型自己做不到的。',
+                'faq.q4':'我具体得到什么？','faq.a4':'14 个复制即用的提示词模板（中英双语），每个带使用说明与示例。MIT 协议，永久归你。',
+                'faq.q5':'退款政策如何？','faq.a5':'通过 Creem 提供 14 天无理由退款。若模板不合适，发邮件我们即退回。',
+                'author.title':'由一线从业者打造','author.body':'PromptShield 由 Darwin 打造——一位独立 AI 产品开发者，做真实产品、写自己真在用的提示词。没有团队、没有假评测，只有能用的工具。','author.cta':'看我更多作品',
+                'templates.expand':'查看详情','templates.collapse':'收起',
+                'templates.d.useCase':'适用场景','templates.d.io':'输入 → 输出','templates.d.principle':'为什么能防幻觉','templates.d.boundary':'边界'
             }
         };
 
@@ -978,6 +1166,205 @@ End with this exact disclaimer:
 
         ];
 
+        const TEMPLATE_DETAILS = {
+          1: {
+            en: {
+              useCase: `Use when you must judge a skincare product from its INCI ingredient list — e.g. is it safe for sensitive skin, or does it contain a known irritant?`,
+              io: `Input: "Ingredients: Water, Glycerin, Niacinamide, Fragrance, Phenoxyethanol"\nOutput: "Fragrance is a known sensitizer — avoid for sensitive skin. Niacinamide 2-5% is gentle and sebum-regulating. Phenoxyethanol is a compliant preservative but must be under 1%."`,
+              principle: `Forces the model to reason only from documented ingredient properties, tag every "may / possibly" with an evidence level, and never claim a treatment effect.`,
+              boundary: `Not a substitute for a dermatologist. It interprets single ingredients; it does not grade the whole product.`
+            },
+            zh: {
+              useCase: `当你只能拿到成分表（INCI）就要判断一款护肤品是否适合敏感肌、是否含风险成分时使用。`,
+              io: `输入："成分：水、甘油、烟酰胺、香精、苯氧乙醇"\n输出："香精是已知致敏原，敏感肌建议避开；烟酰胺 2-5% 温和控油；苯氧乙醇为合规防腐剂，但浓度须低于 1%。"`,
+              principle: `强制模型只依据成分已知特性作答，凡"可能/或许"必须标注证据等级，禁止宣称疗效。`,
+              boundary: `不替代皮肤科医生。只解读单一成分，不评判产品整体优劣。`
+            }
+          },
+          2: {
+            en: {
+              useCase: `Use to translate or polish Gaokao / academic English without inventing facts, idioms, or citations the student never wrote.`,
+              io: `Input: "Translate: 这家公司去年的营收增长了百分之二十。"\nOutput: "The company's revenue grew by 20% last year." (no added source, no embellishment)`,
+              principle: `Binds the model to the source sentence only; invented examples, fake quotations, or "according to studies" are explicitly forbidden.`,
+              boundary: `Checks fidelity, not grammar perfection. It will not improve style beyond the literal meaning.`
+            },
+            zh: {
+              useCase: `用于翻译或润色高考 / 学术英语，且不编造学生没写过的词义、成语或引用。`,
+              io: `输入："翻译：这家公司去年的营收增长了百分之二十。"\n输出："The company's revenue grew by 20% last year."（不补来源、不加修饰）`,
+              principle: `约束模型只忠实于原句；明确禁止编造例句、假引文或"据研究表明"之类表述。`,
+              boundary: `只校验忠实度，不负责语法完美，不会超出字面意思美化文风。`
+            }
+          },
+          3: {
+            en: {
+              useCase: `Use to answer layperson legal questions while staying strictly inside general information — never personalized legal advice.`,
+              io: `Input: "Can a landlord enter my apartment without notice?"\nOutput: "Generally a landlord must give notice except emergencies. This is general info, not advice for your case — consult a licensed attorney."`,
+              principle: `Requires a "general information, not legal advice" disclaimer on every reply and refuses to predict case outcomes.`,
+              boundary: `No jurisdiction-specific rulings, no representation, no "you will win" promises.`
+            },
+            zh: {
+              useCase: `用于回答非专业人士的法律问题，但严格限定在"普适性信息"内，绝不给个性化法律意见。`,
+              io: `输入："房东可以不经通知进我房间吗？"\n输出："通常房东须提前通知，紧急情况除外。此为普适信息，非针对你个案的意见——请咨询执业律师。"`,
+              principle: `要求每条回复都带"普适信息、非法律意见"声明，并拒绝预测案件结果。`,
+              boundary: `不给出具体司法管辖区的裁判结论，不代理，不承诺"你必胜"。`
+            }
+          },
+          4: {
+            en: {
+              useCase: `Use to triage symptoms into self-care / see-a-doctor / emergency — without diagnosing or prescribing.`,
+              io: `Input: "I have chest pain when breathing."\nOutput: "Chest pain with breathing can be serious. Seek emergency care now — do not wait. This is triage, not a diagnosis."`,
+              principle: `Maps symptoms to urgency tiers and always escalates red-flag signals instead of explaining them away.`,
+              boundary: `No diagnosis, no prescription, no "it's probably nothing" for high-risk signs.`
+            },
+            zh: {
+              useCase: `用于把症状分级为"自我护理 / 就医 / 急诊"，但不做诊断、不开方。`,
+              io: `输入："我呼吸时胸口痛。"\n输出："呼吸伴胸痛可能很严重，请立即急诊，不要拖延。这是分诊，不是诊断。"`,
+              principle: `把症状映射到紧急度层级，遇到红旗信号一律升级处理，而非轻描淡写。`,
+              boundary: `不诊断、不开方，对高危信号绝不"应该没事"。`
+            }
+          },
+          5: {
+            en: {
+              useCase: `Use when a claim must be backed by retrieved sources, not the model's parametric memory.`,
+              io: `Input: "What did the 2024 FDA warning say about X?"\nOutput: "Based only on [source URL]: the FDA warned about ... If no source is provided, I cannot answer."`,
+              principle: `Answers are grounded in supplied evidence; the model declines to answer when the source is missing or contradictory.`,
+              boundary: `It cites, it does not verify the source's truth. You still confirm the primary reference.`
+            },
+            zh: {
+              useCase: `当某个论断必须用检索到的来源支撑、而非模型记忆来回答时使用。`,
+              io: `输入："2024 年 FDA 对 X 的警告说了什么？"\n输出："仅依据[来源链接]：FDA 警告……若未提供来源，我无法回答。"`,
+              principle: `回答须基于所供证据；来源缺失或自相矛盾时，模型拒绝作答。`,
+              boundary: `它只做引用，不验证来源本身的真伪。你仍需核对一手资料。`
+            }
+          },
+          6: {
+            en: {
+              useCase: `Use for any financial content (newsletters, posts, client notes) that must avoid implied guarantees or fabricated returns.`,
+              io: `Input: "Write a post about this stock."\nOutput: "Covers the thesis and risks. No "guaranteed returns", no specific price target unless sourced. Includes: not financial advice."`,
+              principle: `Strips absolute claims ("always beats the market"), requires risk disclosure, and forbids invented performance numbers.`,
+              boundary: `Not personalized investment advice. It polishes honesty, it does not pick winners.`
+            },
+            zh: {
+              useCase: `用于任何金融内容（ newsletter、帖子、客户备注），须避免暗示保证或编造收益。`,
+              io: `输入："写篇关于这只股票的帖子。"\n输出："覆盖逻辑与风险。无'稳赚'、无未来源的具体目标价。附：非投资建议。"`,
+              principle: `剔除绝对化表述（"永远跑赢"），要求披露风险，禁止编造业绩数字。`,
+              boundary: `非个性化投资建议。它打磨诚实度，不替你选股。`
+            }
+          },
+          7: {
+            en: {
+              useCase: `Use to review a pull request or code snippet for bugs, security, and clarity — with evidence, not vibes.`,
+              io: `Input: "Review: [code block]"\nOutput: "Line 12: unhandled null → NPE risk. Suggest null check. Severity: high. No claim it's the only issue."`,
+              principle: `Each finding cites the exact line and a reason; uncertain items are flagged "verify", never stated as fact.`,
+              boundary: `It reviews, it does not run tests. Untested paths may still hide issues.`
+            },
+            zh: {
+              useCase: `用于审查 PR 或代码片段的 bug、安全与清晰度——凭证据，不凭感觉。`,
+              io: `输入："审查：[代码块]"\n输出："第 12 行：未处理 null → 空指针风险。建议加空值判断。严重度：高。不声称这是唯一问题。"`,
+              principle: `每条发现都引用确切行号与理由；不确定项标"待核实"，绝不当作定论。`,
+              boundary: `它做审查，不跑测试。未覆盖路径仍可能藏问题。`
+            }
+          },
+          8: {
+            en: {
+              useCase: `Use before publishing any academic or long-form writing to catch fabricated or misrepresented citations.`,
+              io: `Input: "Check this paragraph's references."\nOutput: "Claim A cites Smith 2021 — verify the quote exists. Claim B's source looks fabricated: no such paper found."`,
+              principle: `Flags citations it cannot map to a real, retrievable source and refuses to invent DOIs or page numbers.`,
+              boundary: `It audits, it does not fetch the internet. You confirm each reference against the primary source.`
+            },
+            zh: {
+              useCase: `在发布任何学术或长文前，用于揪出编造或曲解的引用。`,
+              io: `输入："核查这段的参考文献。"\n输出："论断 A 引 Smith 2021——请核实引文属实。论断 B 的来源疑似编造：检索不到该论文。"`,
+              principle: `标记无法对应到真实可检索来源的引用，且拒绝编造 DOI 或页码。`,
+              boundary: `它做审计，不联网检索。你仍需逐一核对一手文献。`
+            }
+          },
+          9: {
+            en: {
+              useCase: `Use to draft customer-support replies that sound human, stay on-policy, and never invent refunds or features.`,
+              io: `Input: "User angry about late shipping."\nOutput: "Empathize, state the real policy, offer the actual remedy. No "we'll refund double" unless policy allows."`,
+              principle: `Anchors every reply to the provided policy text; invented compensations or features are blocked.`,
+              boundary: `It drafts within your policy. It cannot approve exceptions your policy does not permit.`
+            },
+            zh: {
+              useCase: `用于起草客服回复：像人话、守政策、绝不编造退款或功能。`,
+              io: `输入："用户因物流延迟很生气。"\n输出："共情 → 说明真实政策 → 给出实际补救。除非政策允许，否则不说'双倍补偿'。"`,
+              principle: `每条回复都锚定你提供的政策文本；编造的补偿或功能一律拦截。`,
+              boundary: `它在你政策内起草。政策不允许的特例，它无权批准。`
+            }
+          },
+          10: {
+            en: {
+              useCase: `Use to write product copy that sells without making claims you cannot substantiate.`,
+              io: `Input: "Copy for a vitamin that 'cures fatigue'."\nOutput: "Reframed: 'supports everyday energy' with compliant disclaimer. Dropped the unprovable 'cures'."`,
+              principle: `Converts absolute claims into support-language and appends the required disclaimer automatically.`,
+              boundary: `It edits within ad regulations; it does not invent clinical proof you do not have.`
+            },
+            zh: {
+              useCase: `用于写电商文案：能卖，但不写你无法证实的断言。`,
+              io: `输入："写一款'包治疲劳'的维生素文案。"\n输出："改写为：'助力日常精力'，并附合规免责。删去无法证实的'包治'。"`,
+              principle: `把绝对化断言转为"支持性"表述，并自动补上必要免责声明。`,
+              boundary: `它在广告合规范围内润色；不替你编造没有的临床证据。`
+            }
+          },
+          11: {
+            en: {
+              useCase: `Use to vet a resume or CV for inflated or fabricated achievements before it goes out.`,
+              io: `Input: "Led a team that grew revenue 300%."\nOutput: "Flag: 300% needs context (from what base? over what period?). Suggest quantifiable, verifiable wording."`,
+              principle: `Surfaces unverifiable superlatives and asks for the underlying number rather than accepting the claim.`,
+              boundary: `It flags risk, it does not call the candidate a liar. Final honesty is the candidate's responsibility.`
+            },
+            zh: {
+              useCase: `用于在简历发出前，核查夸大或虚构的成就。`,
+              io: `输入："带领团队让营收增长 300%。"\n输出："标记：300% 需上下文（基数？周期？）。建议改为可核实的量化表述。"`,
+              principle: `揪出无法核实的夸张词，要求给出底层数字，而非默认接受该论断。`,
+              boundary: `它标风险，不指认候选人是骗子。最终诚实由候选人负责。`
+            }
+          },
+          12: {
+            en: {
+              useCase: `Use to review a contract clause for one-sided or unusual terms — as a checklist, not a lawyer.`,
+              io: `Input: "Clause 7: auto-renewal with no exit."\nOutput: "Flagged: unilateral auto-renewal, no termination window. Risk: lock-in. Suggest negotiating an exit clause."`,
+              principle: `Highlights asymmetric, silent-renewal, or penalty-heavy clauses and explains why each matters.`,
+              boundary: `It flags, it does not negotiate or give legal advice. Escalate to counsel for binding decisions.`
+            },
+            zh: {
+              useCase: `用于审查合同条款中的单边或异常约定——作为清单，而非律师。`,
+              io: `输入："第 7 条：自动续约且无退出。"\n输出："标记：单边自动续约、无退出窗口。风险：被锁定。建议谈判加入退出条款。"`,
+              principle: `高亮不对称、静默续约、惩罚性条款，并解释每条为何重要。`,
+              boundary: `它只标记，不谈判、不给法律意见。具约束力的事项交律师。`
+            }
+          },
+          13: {
+            en: {
+              useCase: `Use to review admissions / application essays for fabricated or exaggerated background.`,
+              io: `Input: "I founded a nonprofit that fed 10,000 people."\nOutput: "Flag: verify the 10,000 figure and your exact role. If unverifiable, reframe to what you can prove."`,
+              principle: `Separates lived experience from embellishment and asks for the evidence behind each bold claim.`,
+              boundary: `It protects you from misrepresentation; it does not write the essay or invent a story.`
+            },
+            zh: {
+              useCase: `用于审查留学 / 申请文书中的虚构或夸大背景。`,
+              io: `输入："我创办了喂饱 1 万人的非营利组织。"\n输出："标记：请核实 1 万这一数字与你的真实角色。若无法证实，改写为你能证明的内容。"`,
+              principle: `区分真实经历与粉饰，并要求每个大胆论断都有证据支撑。`,
+              boundary: `它保护你不夸大失实；不替你写文书、不编造故事。`
+            }
+          },
+          14: {
+            en: {
+              useCase: `Use to interpret a dataset or chart for a post / report without inventing statistics or causal claims.`,
+              io: `Input: "Sales up 12% after the campaign."\nOutput: "States the 12% with the base period. Adds: correlation, not proof the campaign caused it. Suggests a control."`,
+              principle: `Reports numbers with their context and explicitly separates correlation from causation.`,
+              boundary: `It interprets, it does not collect data or run significance tests. Verify the raw numbers yourself.`
+            },
+            zh: {
+              useCase: `用于为帖子 / 报告解读数据集或图表，且不编造统计或因果论断。`,
+              io: `输入："活动后销量涨了 12%。"\n输出："给出 12% 及其基准期。补充：这是相关，非'活动导致'的因果证明。建议设对照组。"`,
+              principle: `带上下文报数，并明确区分相关与因果。`,
+              boundary: `它做解读，不采集数据、不跑显著性检验。原始数字请你自己核对。`
+            }
+          }
+        };
+
         // ---- State & language ----
         const LS_KEY = 'ps-lang';
         let state = { lang: (localStorage.getItem(LS_KEY) || 'en') };
@@ -985,11 +1372,13 @@ End with this exact disclaimer:
 
         function t(key){ const d = I18N[state.lang]; return (d && d[key] != null) ? d[key] : key; }
 
+        function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
         function applyStaticText(){
             document.documentElement.lang = (state.lang === 'zh') ? 'zh-CN' : 'en';
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const k = el.getAttribute('data-i18n');
-                el.textContent = t(k);
+            document.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(el => {
+                const k = el.getAttribute('data-i18n') || el.getAttribute('data-i18n-html');
+                if (el.hasAttribute('data-i18n-html')) { el.innerHTML = t(k); }
+                else { el.textContent = t(k); }
             });
             document.getElementById('langToggle').textContent = t('lang.toggle');
             toastText = t('toast.copied');
@@ -1000,14 +1389,25 @@ End with this exact disclaimer:
             const copyLabel = t('templates.copy');
             const newBadge = t('templates.newBadge');
             const freeBadge = t('templates.freeBadge');
+            const expandLabel = t('templates.expand');
+            const dl = { useCase:t('templates.d.useCase'), io:t('templates.d.io'), principle:t('templates.d.principle'), boundary:t('templates.d.boundary') };
             grid.innerHTML = '';
             PROMPTS.forEach(p => {
                 const d = p[state.lang];
+                const det = TEMPLATE_DETAILS[p.id] ? TEMPLATE_DETAILS[p.id][state.lang] : null;
                 const card = document.createElement('div');
                 card.className = 'card';
                 const tag = p.isNew
                     ? `<span class="tag new">${newBadge}</span>`
                     : `<span class="tag free">${freeBadge}</span>`;
+                const detailHtml = det ? `
+                    <button class="expand-btn" onclick="toggleDetail(${p.id}, this)">${expandLabel}</button>
+                    <div class="card-detail">
+                        <div class="detail-field"><div class="detail-label">${dl.useCase}</div><div class="val">${escapeHtml(det.useCase)}</div></div>
+                        <div class="detail-field"><div class="detail-label">${dl.io}</div><div class="val">${escapeHtml(det.io)}</div></div>
+                        <div class="detail-field"><div class="detail-label">${dl.principle}</div><div class="val">${escapeHtml(det.principle)}</div></div>
+                        <div class="detail-field"><div class="detail-label">${dl.boundary}</div><div class="val">${escapeHtml(det.boundary)}</div></div>
+                    </div>` : '';
                 card.innerHTML = `
                     <div>
                         <div class="card-top">
@@ -1015,6 +1415,7 @@ End with this exact disclaimer:
                             ${tag}
                         </div>
                         <p class="desc">${d.desc}</p>
+                        ${detailHtml}
                     </div>
                     <button class="copy-btn" onclick="copyPrompt(${p.id})">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
@@ -1023,6 +1424,12 @@ End with this exact disclaimer:
                 grid.appendChild(card);
             });
             observeCards();
+        }
+
+        function toggleDetail(id, btn){
+            const card = btn.closest('.card');
+            const open = card.classList.toggle('expanded');
+            btn.textContent = open ? t('templates.collapse') : t('templates.expand');
         }
 
         function renderPricing(){
