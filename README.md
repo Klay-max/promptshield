@@ -6,7 +6,7 @@
 
 ## ✨ What's inside
 
-14 battle-tested templates, copy-paste ready:
+20 battle-tested templates, copy-paste ready:
 
 - **K-Beauty INCI Analyzer** — cosmetic ingredient breakdown with conservative EWG-style ratings
 - **Gaokao-EN Wordbank Builder** — CEFR B1–B2 vocabulary tables for Chinese college-entrance exam prep
@@ -22,8 +22,14 @@
 - **Legal Contract Guard** — flags one-sided clauses, refuses legal advice
 - **Admissions Essay Guard** — flags fabricated credentials, refuses to invent
 - **Data Interpretation Guard** — explains data with caveats, refuses fake stats
+- **Social Post Copy Guard** — flags unverified claims & fake urgency in social captions, never fabricates engagement
+- **Cold Email Guard** — flags spammy tactics & fabricated case studies in outreach
+- **Product Description Guard** — flags unverifiable specs & fake reviews in listings
+- **UX Copy Guard** — flags dark patterns & misleading microcopy in UI text
+- **Meeting Notes Guard** — turns raw notes into decisions/actions without inventing owners
+- **Investment Research Guard** — summarizes market info with sourced claims, no guarantees
 
-All templates are MIT licensed. Lifetime unlocks all 14 templates plus future drops.
+All templates are MIT licensed. Lifetime unlocks all 20 templates plus future drops.
 
 ## 🚀 Live site
 
@@ -53,7 +59,7 @@ python -m http.server 8000
 
 ## 💳 Pricing & payments
 
-- **Free** — all 14 templates, MIT licensed.
+- **Free** — all 20 templates, MIT licensed.
 - **Lifetime — $49** — first 100 buyers; includes future template drops. Processed by Creem (Merchant of Record). 14-day refund.
 
 ## 🔗 Same author
