@@ -76,6 +76,14 @@
         .copy-btn:hover{background:#ececef;color:var(--accent)}
         .copy-btn svg{width:15px;height:15px}
 
+        /* Filter bar */
+        .filter-bar{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 28px}
+        .chip{font-family:var(--font);font-size:13px;font-weight:500;color:var(--text-2);background:var(--bg);border:1px solid var(--border);border-radius:980px;padding:8px 15px;cursor:pointer;transition:all .18s;white-space:nowrap}
+        .chip:hover{color:var(--text);border-color:rgba(0,0,0,.2)}
+        .chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+        .chip .chip-n{font-size:11px;opacity:.6;margin-left:6px}
+        @media(max-width:560px){.filter-bar{gap:7px}.chip{padding:7px 12px;font-size:12px}}
+
         /* Pricing */
         .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:840px;margin:0 auto}
         @media(max-width:720px){.price-grid{grid-template-columns:1fr}}
@@ -207,9 +215,9 @@
             <span data-i18n="hero.title1">Stop AI hallucinations</span><br>
             <span class="accent" data-i18n="hero.title2">in production</span>
         </h1>
-        <p class="hero-sub" data-i18n="hero.sub">PromptShield is a one-time pack of 14 battle-tested anti-hallucination prompt templates for indie developers: copy, paste, and ship faster.</p>
+        <p class="hero-sub" data-i18n="hero.sub">PromptShield is a one-time pack of 20 battle-tested anti-hallucination prompt templates for indie developers: copy, paste, and ship faster.</p>
         <p class="hero-sub2">
-            <span data-i18n="hero.sub2">14 battle-tested anti-hallucination prompt templates for AI builders.</span>
+            <span data-i18n="hero.sub2">20 battle-tested anti-hallucination prompt templates for AI builders.</span>
             <small data-i18n="hero.sub2small">Copy-paste ready · Production-tested · Zero fluff.</small>
         </p>
         <div class="hero-price" data-i18n="hero.price">$49 · One-time payment · Lifetime access</div>
@@ -226,9 +234,10 @@
                 <p data-i18n="templates.sub">Copy these templates directly into your application code.</p>
             </div>
             <p class="tpl-meta reveal">
-                <span class="count" data-i18n="templates.count">14 templates</span>
-                <span class="names" data-i18n="templates.names">K-Beauty INCI · Gaokao-EN · Legal Q&A · Medical Triage · Web Research · Finance Guard · Code Review · Citation Audit · Support Reply · E-com Copy · Resume Check · Legal Contract · Admissions Essay · Data Guard</span>
+                <span class="count" data-i18n="templates.count">20 templates</span>
+                <span class="names" data-i18n="templates.names">K-Beauty INCI · Gaokao-EN · Legal Q&A · Medical Triage · Web Research · Finance Guard · Code Review · Citation Audit · Support Reply · E-com Copy · Resume Check · Legal Contract · Admissions Essay · Data Guard · Social Post · Cold Email · Product Description · UX Copy · Meeting Notes · Investment Research</span>
             </p>
+            <div id="filter-bar" class="filter-bar" role="tablist" aria-label="Filter templates by category"></div>
             <div id="templates-grid" class="grid"></div>
         </div>
     </section>
@@ -326,8 +335,8 @@
             <div class="faq">
                 <details class="reveal"><summary><span data-i18n="faq.q1">Will these prompts go out of date?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a1">The guard logic is stable; we refine wording as models change. Lifetime buyers get every update free.</div></details>
                 <details class="reveal"><summary><span data-i18n="faq.q2">Is this legal or medical advice?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a2">No. Every template is built to stay in "general information" and tells the model to defer to a professional. Nothing here replaces a licensed expert.</div></details>
-                <details class="reveal"><summary><span data-i18n="faq.q3">How is this different from ChatGPT Plus?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a3">Plus gives you a model. PromptShield gives you 14 task-specific guards that force the model to stay grounded — something the base model does not do on its own.</div></details>
-                <details class="reveal"><summary><span data-i18n="faq.q4">What do I get exactly?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a4">14 copy-paste prompt templates (EN + ZH), each with usage notes and worked examples. MIT licensed, yours forever.</div></details>
+                <details class="reveal"><summary><span data-i18n="faq.q3">How is this different from ChatGPT Plus?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a3">Plus gives you a model. PromptShield gives you 20 task-specific guards that force the model to stay grounded — something the base model does not do on its own.</div></details>
+                <details class="reveal"><summary><span data-i18n="faq.q4">What do I get exactly?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a4">20 copy-paste prompt templates (EN + ZH), each with usage notes and worked examples. MIT licensed, yours forever.</div></details>
                 <details class="reveal"><summary><span data-i18n="faq.q5">What is your refund policy?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a5">14-day no-questions refund via Creem. If the pack is not useful, email us and we reverse it.</div></details>
             </div>
         </div>
@@ -378,25 +387,27 @@
                 'nav.templates':'Templates','nav.pricing':'Pricing','nav.launchpad':'Launchpad','lang.toggle':'中文',
                 'hero.badge':'$49 Lifetime · One-time · First 100 only',
                 'hero.title1':'Stop AI hallucinations','hero.title2':'in production',
-                'hero.sub':'PromptShield is a one-time pack of 14 battle-tested anti-hallucination prompt templates for indie developers: copy, paste, and ship faster.',
-                'hero.sub2':'14 battle-tested anti-hallucination prompt templates for AI builders.',
+                'hero.sub':'PromptShield is a one-time pack of 20 battle-tested anti-hallucination prompt templates for indie developers: copy, paste, and ship faster.',
+                'hero.sub2':'20 battle-tested anti-hallucination prompt templates for AI builders.',
                 'hero.sub2small':'Copy-paste ready · Production-tested · Zero fluff.',
                 'hero.price':'$49 · One-time payment · Lifetime access',
                 'hero.cta':'Browse free templates','hero.trust':'Built in public · feedback welcome',
                 'templates.title':'Prompt Library','templates.sub':'Copy these templates directly into your application code.',
-                'templates.count':'14 templates',
-                'templates.names':'K-Beauty INCI · Gaokao-EN · Legal Q&A · Medical Triage · Web Research · Finance Guard · Code Review · Citation Audit · Support Reply · E-com Copy · Resume Check · Legal Contract · Admissions Essay · Data Guard',
+                'templates.count':'20 templates',
+                'templates.names':'K-Beauty INCI · Gaokao-EN · Legal Q&A · Medical Triage · Web Research · Finance Guard · Code Review · Citation Audit · Support Reply · E-com Copy · Resume Check · Legal Contract · Admissions Essay · Data Guard · Social Post · Cold Email · Product Description · UX Copy · Meeting Notes · Investment Research',
                 'templates.copy':'Copy prompt','templates.newBadge':'New · Aug 2026','templates.freeBadge':'Free',
                 'pricing.title':'Pricing','pricing.sub':'Simple, transparent options for builders.',
-                'pricing.free':'Free','pricing.freePrice':'$0','pricing.freeF1':'All 14 templates','pricing.freeF2':'Use in any project (MIT)','pricing.getFree':'Get all 14 free',
+                'pricing.free':'Free','pricing.freePrice':'$0','pricing.freeF1':'All 20 templates','pricing.freeF2':'Use in any project (MIT)','pricing.getFree':'Get all 20 free',
                 'pricing.lifetime':'Lifetime','pricing.first100':'First 100 only','pricing.lifetimePrice':'$49',
-                'pricing.lifeF1':'All 14 templates + future drops','pricing.lifeF2':'Lifetime updates',
+                'pricing.lifeF1':'All 20 templates + future drops','pricing.lifeF2':'Lifetime updates',
                 'pricing.buy':'$49 · Get Lifetime Access','pricing.secured':'One-time payment · 14-day refund · Secured by Creem',
                 'pricing.note':'Price goes up after the first 100 lifetime spots.',
                 'subscribe.title':'Stay updated','subscribe.sub':'PromptShield is built in public. New templates and improvements ship as we go. Grab Lifetime and updates are delivered to the email you use at Creem checkout: no separate signup needed.','subscribe.cta':'Get Lifetime Access',
                 'changelog.title':'Changelog',
                 'changelog.v12':'Added 3 new templates: <strong>Support Reply Guard</strong>, <strong>E-com Copy Guard</strong>, <strong>Resume Fact-Checker</strong>. Library now 11 templates total.',
                 'changelog.v13':'Added 3 new templates: <strong>Legal Contract Guard</strong>, <strong>Admissions Essay Guard</strong>, <strong>Data Interpretation Guard</strong>. Library now 14 templates total.',
+                'changelog.v14':'Added template detail expanders (use case, input/output, principle, boundary), a Before/After comparison, an FAQ, and an author trust section to make the library more credible and useful.',
+                'changelog.v15':'Expanded the library from 14 to 20 anti-hallucination templates across more industries, and added a category filter so you can jump straight to your field.',
                 'changelog.v11':'Added 3 new templates: <strong>Finance Disclaimer Guard</strong>, <strong>Code Review Critic</strong>, <strong>Academic Citation Auditor</strong>. Library now 8 templates total.',
                 'changelog.v10':'Initial release: 5 core anti-hallucination templates.',
                 'footer.text':'PromptShield · Built by an indie hacker shipping in public · 2026',
@@ -417,8 +428,8 @@
                 'faq.title':'Frequently asked',
                 'faq.q1':'Will these prompts go out of date?','faq.a1':'The guard logic is stable; we refine wording as models change. Lifetime buyers get every update free.',
                 'faq.q2':'Is this legal or medical advice?','faq.a2':'No. Every template is built to stay in "general information" and tells the model to defer to a professional. Nothing here replaces a licensed expert.',
-                'faq.q3':'How is this different from ChatGPT Plus?','faq.a3':'Plus gives you a model. PromptShield gives you 14 task-specific guards that force the model to stay grounded — something the base model does not do on its own.',
-                'faq.q4':'What do I get exactly?','faq.a4':'14 copy-paste prompt templates (EN + ZH), each with usage notes and worked examples. MIT licensed, yours forever.',
+                'faq.q3':'How is this different from ChatGPT Plus?','faq.a3':'Plus gives you a model. PromptShield gives you 20 task-specific guards that force the model to stay grounded — something the base model does not do on its own.',
+                'faq.q4':'What do I get exactly?','faq.a4':'20 copy-paste prompt templates (EN + ZH), each with usage notes and worked examples. MIT licensed, yours forever.',
                 'faq.q5':'What is your refund policy?','faq.a5':'14-day no-questions refund via Creem. If the pack is not useful, email us and we reverse it.',
                 'author.title':'Built by a practitioner','author.body':'PromptShield is made by Darwin — an independent AI product builder who ships real products and writes the prompts he actually uses. No agency, no fake reviews, just working tools.','author.cta':'See more of my work',
                 'templates.expand':'View details','templates.collapse':'Hide details',
@@ -428,25 +439,27 @@
                 'nav.templates':'模板库','nav.pricing':'价格','nav.launchpad':'启动台','lang.toggle':'EN',
                 'hero.badge':'$49 终身版 · 一次性买断 · 仅前 100 名',
                 'hero.title1':'让 AI 在生产中','hero.title2':'不再胡说八道',
-                'hero.sub':'PromptShield 是一套一次性买断的提示词模板包，含 14 个经过实战检验的防幻觉模板，专为独立开发者打造：复制、粘贴，更快上线。',
-                'hero.sub2':'14 个经过实战检验的「抗幻觉」提示词模板，给做 AI 产品的你。',
+                'hero.sub':'PromptShield 是一套一次性买断的提示词模板包，含 20 个经过实战检验的防幻觉模板，专为独立开发者打造：复制、粘贴，更快上线。',
+                'hero.sub2':'20 个经过实战检验的「抗幻觉」提示词模板，给做 AI 产品的你。',
                 'hero.sub2small':'复制即用 · 生产环境验证 · 不含废话。',
                 'hero.price':'$49 · 一次性付费 · 终身使用',
                 'hero.cta':'浏览免费模板','hero.trust':'公开构建中 · 欢迎反馈',
                 'templates.title':'模板库','templates.sub':'直接把这些模板复制到你的应用代码里。',
-                'templates.count':'14 个模板',
-                'templates.names':'K-Beauty 成分 · 高考英语 · 法律问答 · 医疗分诊 · 联网检索 · 金融合规 · 代码审查 · 引用审计 · 客服回复 · 电商文案 · 简历核查 · 合同审查 · 申请文书 · 数据解读',
+                'templates.count':'20 个模板',
+                'templates.names':'K-Beauty 成分 · 高考英语 · 法律问答 · 医疗分诊 · 联网检索 · 金融合规 · 代码审查 · 引用审计 · 客服回复 · 电商文案 · 简历核查 · 合同审查 · 申请文书 · 数据解读 · 社媒文案 · 营销邮件 · 商品描述 · UX文案 · 会议纪要 · 投资研究',
                 'templates.copy':'复制提示词','templates.newBadge':'新品 · 2026年8月','templates.freeBadge':'免费',
                 'pricing.title':'价格','pricing.sub':'为开发者准备的简单、透明的方案。',
-                'pricing.free':'免费版','pricing.freePrice':'$0','pricing.freeF1':'全部 14 个模板','pricing.freeF2':'可用于任何项目（MIT 协议）','pricing.getFree':'免费获取全部 14 个',
+                'pricing.free':'免费版','pricing.freePrice':'$0','pricing.freeF1':'全部 20 个模板','pricing.freeF2':'可用于任何项目（MIT 协议）','pricing.getFree':'免费获取全部 20 个',
                 'pricing.lifetime':'终身版','pricing.first100':'仅前 100 名','pricing.lifetimePrice':'$49',
-                'pricing.lifeF1':'全部 14 个模板 + 后续更新','pricing.lifeF2':'终身更新',
+                'pricing.lifeF1':'全部 20 个模板 + 后续更新','pricing.lifeF2':'终身更新',
                 'pricing.buy':'$49 · 获取终身访问','pricing.secured':'一次性付费 · 14 天退款 · 由 Creem 担保交易',
                 'pricing.note':'前 100 个终身名额售完后价格上涨。',
                 'subscribe.title':'保持关注','subscribe.sub':'PromptShield 以公开方式持续构建。新模板与改进会随版本发布。购买终身版后，更新会直接发送到你在 Creem 结账时使用的邮箱：无需单独注册。','subscribe.cta':'获取终身访问',
                 'changelog.title':'更新日志',
                 'changelog.v12':'新增 3 个模板：<strong>客服回复守卫</strong>、<strong>电商文案守卫</strong>、<strong>简历事实核查</strong>。模板库现共 11 个。',
                 'changelog.v13':'新增 3 个模板：<strong>法务合同审查守卫</strong>、<strong>留学申请文书守卫</strong>、<strong>数据解读守卫</strong>。模板库现共 14 个。',
+                'changelog.v14':'新增模板详情展开（使用场景、输入/输出、原则、边界）、前后对比、常见问题与作者信任区，让模板库更可信、更实用。',
+                'changelog.v15':'模板库从 14 个扩展到 20 个抗幻觉模板，覆盖更多行业，并新增分类筛选，可直接定位到你的领域。',
                 'changelog.v11':'新增 3 个模板：<strong>金融合规守卫</strong>、<strong>代码审查 Critique</strong>、<strong>学术引用审计</strong>。模板库现共 8 个。',
                 'changelog.v10':'首个版本：5 个核心抗幻觉模板。',
                 'footer.text':'PromptShield · 由一个公开构建的独立开发者打造 · 2026',
@@ -467,8 +480,8 @@
                 'faq.title':'常见问题',
                 'faq.q1':'这些提示词会过时吗？','faq.a1':'守卫逻辑稳定；我们会随模型演进打磨措辞。终身用户免费获得每次更新。',
                 'faq.q2':'这是法律或医疗建议吗？','faq.a2':'不是。每个模板都设计为停留在"普适信息"内，并让模型转交专业人士。此处不替代持证专家。',
-                'faq.q3':'和 ChatGPT Plus 有什么区别？','faq.a3':'Plus 给你一个模型。PromptShield 给你 14 个任务专属守卫，强制模型保持有据——这是基础模型自己做不到的。',
-                'faq.q4':'我具体得到什么？','faq.a4':'14 个复制即用的提示词模板（中英双语），每个带使用说明与示例。MIT 协议，永久归你。',
+                'faq.q3':'和 ChatGPT Plus 有什么区别？','faq.a3':'Plus 给你一个模型。PromptShield 给你 20 个任务专属守卫，强制模型保持有据——这是基础模型自己做不到的。',
+                'faq.q4':'我具体得到什么？','faq.a4':'20 个复制即用的提示词模板（中英双语），每个带使用说明与示例。MIT 协议，永久归你。',
                 'faq.q5':'退款政策如何？','faq.a5':'通过 Creem 提供 14 天无理由退款。若模板不合适，发邮件我们即退回。',
                 'author.title':'由一线从业者打造','author.body':'PromptShield 由 Darwin 打造——一位独立 AI 产品开发者，做真实产品、写自己真在用的提示词。没有团队、没有假评测，只有能用的工具。','author.cta':'看我更多作品',
                 'templates.expand':'查看详情','templates.collapse':'收起',
@@ -479,6 +492,7 @@
         // ---- Template data (bilingual) ----
         const PROMPTS = [
             { id:1, isNew:false,
+                cat:'health',
                 en:{ title:"K-Beauty INCI Analyzer", desc:"Analyzes ingredient lists with conservative EWG ratings, flags allergens, refuses medical diagnosis.",
                     body:`You are an expert K-Beauty Ingredient Analyzer. Analyze the provided INCI list (full ingredient list from a Korean skincare product).
 
@@ -531,6 +545,7 @@ End with this exact disclaimer:
 [在此粘贴 INCI 列表，逗号分隔]` } },
 
             { id:2, isNew:false,
+                cat:'education',
                 en:{ title:"Gaokao-EN Wordbank Builder", desc:"Generates CEFR B1-B2 vocabulary tables for Chinese Gaokao prep with formal example sentences.",
                     body:`You are an English vocabulary teacher specializing in Chinese Gaokao (高考) preparation.
 
@@ -579,6 +594,7 @@ After the table, add a "Notes" section listing:
 [在此粘贴英语篇章，100–500 词]` } },
 
             { id:3, isNew:false,
+                cat:'legal',
                 en:{ title:"Legal Q&A Guard", desc:"Answers legal questions only when jurisdiction is provided, with strict double disclaimers.",
                     body:`You are a legal information assistant providing GENERAL legal information only — never legal advice.
 
@@ -641,6 +657,7 @@ After the table, add a "Notes" section listing:
 [用户的法律问题]` } },
 
             { id:4, isNew:false,
+                cat:'health',
                 en:{ title:"Medical Triage Filter", desc:"Triages symptoms into ER, GP, and self-care levels; never diagnoses, and escalates when uncertain.",
                     body:`You are a medical triage assistant helping users assess symptom urgency.
 
@@ -705,6 +722,7 @@ After the table, add a "Notes" section listing:
 [描述症状：什么、何时、多严重、有无规律]` } },
 
             { id:5, isNew:false,
+                cat:'research',
                 en:{ title:"Web-Search-Required Researcher", desc:"Refuses factual questions on vanilla LLMs. Only works with Perplexity, ChatGPT Browse, Claude Search, Gemini Grounding.",
                     body:`You are a Verified Citation Researcher. You answer factual questions ONLY when you can verify them against live, web-accessible sources via search tools.
 
@@ -777,6 +795,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 [事实性问题]` } },
 
             { id:6, isNew:false,
+                cat:'finance',
                 en:{ title:"Finance Disclaimer Guard", desc:"Explains finance concepts with strict disclaimers; refuses to give buy/sell/hold advice.",
                     body:`You are a financial-education assistant. You explain financial concepts and products in plain language — you NEVER give personalized investment advice.
 
@@ -821,6 +840,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 [金融概念或产品问题]` } },
 
             { id:7, isNew:false,
+                cat:'dev',
                 en:{ title:"Code Review Critic", desc:"Reviews code for bugs and security issues with confidence levels; never certifies code as bug-free.",
                     body:`You are a senior code reviewer. You find bugs, security issues, and maintainability problems — you NEVER certify code as "correct" or "bug-free".
 
@@ -861,6 +881,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 [粘贴待审查代码，并说明语言/框架]` } },
 
             { id:8, isNew:false,
+                cat:'research',
                 en:{ title:"Academic Citation Auditor", desc:"Flags likely-fabricated references, refuses to invent DOIs, checks citation plausibility.",
                     body:`You are an academic-integrity auditor. You check a reference list for likely-fabricated or mismatched citations — you NEVER invent DOIs, URLs, or authors.
 
@@ -899,6 +920,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 [粘贴参考文献列表或文中引用待审计]` } },
 
             { id:9, isNew:true,
+                cat:'support',
                 en:{ title:"Support Reply Guard", desc:"Drafts support replies that only promise what's in your knowledge base; refuses to invent policies or guarantees.",
                     body:`You are a customer-support reply assistant. You draft responses for a human agent — you NEVER invent policies, prices, deadlines, or guarantees that are not stated in the provided knowledge base.
 
@@ -945,6 +967,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 [知识库：粘贴相关政策片段]` } },
 
             { id:10, isNew:true,
+                cat:'marketing',
                 en:{ title:"E-com Copy Guard", desc:"Writes product copy strictly from your source specs; refuses to invent features, reviews, or certifications.",
                     body:`You are an e-commerce copywriter. You write product titles, bullets, and descriptions — you ONLY use facts present in the provided [Source Specs]. You NEVER invent features, materials, dimensions, ratings, reviews, or certifications.
 
@@ -993,6 +1016,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 [粘贴商品源规格 / 参数表]` } },
 
             { id:11, isNew:true,
+                cat:'job',
                 en:{ title:"Resume Fact-Checker", desc:"Reviews résumés for inflated or fabricated claims; refuses to invent experience and flags unverifiable items.",
                     body:`You are a résumé integrity reviewer. You help users spot exaggerated or fabricated claims — you NEVER invent job titles, skills, dates, metrics, or achievements to "improve" a résumé.
 
@@ -1037,6 +1061,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 [粘贴简历文本或待审查章节]` } },
 
             { id:12, isNew:true,
+                cat:'legal',
                 en:{ title:"Legal Contract Guard", desc:"Flags one-sided or unusual clauses with plain-language risk notes; refuses to give legal advice.",
                     body:`You are a contract review assistant for non-lawyers. Review the provided contract clause or excerpt.
 
@@ -1079,6 +1104,7 @@ End with this exact disclaimer:
 [在此粘贴合同条款或片段]` } },
 
             { id:13, isNew:true,
+                cat:'education',
                 en:{ title:"Admissions Essay Guard", desc:"Checks application essays for fabricated or inflated claims; refuses to invent credentials.",
                     body:`You are an admissions essay reviewer. Check the provided essay or personal statement draft.
 
@@ -1121,6 +1147,7 @@ End with this exact disclaimer:
 [在此粘贴文书或个人陈述草稿]` } },
 
             { id:14, isNew:true,
+                cat:'finance',
                 en:{ title:"Data Interpretation Guard", desc:"Explains what data shows with caveats; refuses to invent statistics or causal claims.",
                     body:`You are a data interpretation assistant. Explain the provided dataset, table, or chart description.
 
@@ -1162,7 +1189,217 @@ End with this exact disclaimer:
 > 仅作解读。发布前请向来源核对数字。
 
 ## 输入
-[在此粘贴数据集、表格或图表描述]` } }
+[在此粘贴数据集、表格或图表描述]` } },
+        { id:15, isNew:true, cat:'marketing',
+            en:{ title:"Social Post Copy Guard", desc:"Reviews social captions for unsubstantiated claims, fake urgency, and invented stats; refuses to fabricate engagement.",
+                body:`You are a social media copy reviewer focused on honesty. Review the provided caption (or draft) for a brand or creator.
+
+## Strict Rules
+1. Flag any claim that cannot be verified from the provided material (e.g. "trusted by 10,000 users" without proof).
+2. Flag fake urgency or scarcity ("last chance", "only today") unless a real deadline is stated.
+3. Flag invented statistics, testimonials, or engagement numbers.
+4. Never write the post for the user or add claims to make it "perform better".
+5. Mark each flag with why it is a risk and a safer rewrite.
+
+## Output Format (strict Markdown)
+- Verdict: Safe / Needs edits / High risk
+- Flags: [quote] -> [why] -> [suggested rewrite]
+- Tone check: [notes]
+
+End with: "I review copy; I do not invent proof. Verify any number you publish."` },
+            zh:{ title:"社媒文案守卫", desc:"审查社媒文案中的无据声称、虚假紧迫感与编造数据；拒绝替你编造互动数据。",
+                body:`你是一位专注诚实的社媒文案审核员。请审核提供的文案（或草稿），对象为品牌或创作者。
+
+## 严格规则
+1. 标记任何无法从提供材料中证实的宣称（如"服务 1 万用户"却无证据）。
+2. 标记虚假紧迫感或稀缺感（"最后机会""仅限今天"），除非给出真实截止时间。
+3. 标记编造的统计、好评或互动数据。
+4. 绝不替用户写文案，也不为"提升效果"添加不实宣称。
+5. 每条标记说明风险原因并给出更稳妥的改写。
+
+## 输出格式（严格 Markdown）
+- 结论：安全 / 需修改 / 高风险
+- 标记：[原文] -> [原因] -> [建议改写]
+- 语气检查：[说明]
+
+结尾加上："我只审核文案，不编造证据。发布前请核实你写下的每个数字。"` } },
+        { id:16, isNew:true, cat:'marketing',
+            en:{ title:"Cold Email Guard", desc:"Flags spammy tactics, false scarcity, and fabricated case studies in outreach and sales emails.",
+                body:`You are an outreach email reviewer. Review the provided cold / sales email for honesty and deliverability risk.
+
+## Strict Rules
+1. Flag fabricated case studies, logos, or "our client X achieved Y" claims you cannot verify.
+2. Flag false scarcity or pressure ("reply in 24h or lose this") without a real basis.
+3. Flag misleading sender identity (pretending to be a known person or company).
+4. Never write the email or add fabricated social proof.
+5. Suggest a plainer, verifiable version of any flagged sentence.
+
+## Output Format (strict Markdown)
+- Verdict: Sendable / Rewrite / Do not send
+- Flags: [quote] -> [risk] -> [rewrite]
+- Deliverability note: [spam-trigger check]
+
+End with: "Real outreach beats invented proof. Send what you can stand behind."` },
+            zh:{ title:"营销邮件守卫", desc:"标记开发信 / 销售邮件中的垃圾话术、虚假稀缺与编造案例。",
+                body:`你是一位开发信审核员。请审核提供的冷邮件 / 销售邮件，评估其诚实度与送达风险。
+
+## 严格规则
+1. 标记无法证实的编造案例、logo 或"我们的客户 X 达成 Y"类宣称。
+2. 标记无真实依据的虚假稀缺或施压（"24 小时内不回就失效"）。
+3. 标记冒充知名个人或公司的误导性发件人身份。
+4. 绝不替你写邮件，也不添加编造的社会证明。
+5. 对每句被标记的话，建议更平实、可证实的版本。
+
+## 输出格式（严格 Markdown）
+- 结论：可发 / 需改写 / 不建议发
+- 标记：[原文] -> [风险] -> [改写]
+- 送达性提示：[垃圾触发词检查]
+
+结尾加上："真实触达胜过编造证据。只发你敢负责的内容。"` } },
+        { id:17, isNew:true, cat:'marketing',
+            en:{ title:"Product Description Guard", desc:"Flags unverifiable specs, miracle claims, and fake reviews in e-commerce and marketplace listings.",
+                body:`You are a product listing reviewer. Review the provided e-commerce description for claims that could mislead buyers.
+
+## Strict Rules
+1. Flag unverifiable specifications (e.g. "30% more effective" without a source or method).
+2. Flag miracle or absolute claims ("cures", "guaranteed", "for all skin types") unless qualified.
+3. Flag invented reviews, ratings, or "bestseller" status.
+4. Never write the listing or add claims to boost conversion.
+5. Mark each flag with a compliant rewrite that keeps the selling point.
+
+## Output Format (strict Markdown)
+- Verdict: Compliant / Edit advised / Non-compliant
+- Flags: [quote] -> [risk] -> [rewrite]
+- Missing proof: [what to cite]
+
+End with: "Sell the real product. Back every claim with something a buyer can check."` },
+            zh:{ title:"商品描述守卫", desc:"标记电商 / 货架文案中无法证实的规格、奇迹宣称与虚假好评。",
+                body:`你是一位商品详情审核员。请审核提供的电商描述，找出可能误导买家的宣称。
+
+## 严格规则
+1. 标记无法证实的规格（如"效果提升 30%"却无来源或方法）。
+2. 标记奇迹或绝对化宣称（"根治""保证""适用于所有肤质"），除非有修饰限定。
+3. 标记编造的好评、评分或"爆款"身份。
+4. 绝不替你写详情，也不为提升转化添加宣称。
+5. 每条标记给出合规改写，同时保留卖点。
+
+## 输出格式（严格 Markdown）
+- 结论：合规 / 建议修改 / 不合规
+- 标记：[原文] -> [风险] -> [改写]
+- 缺失证据：[需要引用什么]
+
+结尾加上："卖真实的产品。每个宣称都要有买家能核对的东西。"` } },
+        { id:18, isNew:true, cat:'dev',
+            en:{ title:"UX Copy Guard", desc:"Flags dark-pattern wording, misleading microcopy, and false promises in UI text and onboarding.",
+                body:`You are a UX writing reviewer. Review the provided interface copy (buttons, labels, empty states, onboarding) for honesty.
+
+## Strict Rules
+1. Flag dark patterns: fake urgency, guilt, or disguised ads presented as features.
+2. Flag microcopy that overpromises ("never worry again", "always free" when it is not).
+3. Flag misleading labels (a paid action styled like a primary free action).
+4. Never rewrite the whole flow; only flag and suggest honest alternatives.
+5. Preserve the product's voice while removing deception.
+
+## Output Format (strict Markdown)
+- Verdict: Honest / Tweak / Deceptive
+- Flags: [text] -> [pattern] -> [honest alternative]
+- Clarity note: [where users may be confused]
+
+End with: "Good UX earns trust. Don't trade it for a click."` },
+            zh:{ title:"UX文案守卫", desc:"标记界面文案中的暗黑模式话术、误导性微文案与虚假承诺。",
+                body:`你是一位 UX 文案审核员。请审核提供的界面文案（按钮、标签、空状态、引导流程）的诚实度。
+
+## 严格规则
+1. 标记暗黑模式：虚假紧迫、愧疚感，或将广告伪装成功能。
+2. 标记过度承诺的微文案（"再也不操心""永久免费"实则不然）。
+3. 标记误导性标签（把付费操作伪装成主免费的按钮）。
+4. 绝不重写整个流程，只标记并给出诚实替代。
+5. 保留产品语气，只去掉欺骗。
+
+## 输出格式（严格 Markdown）
+- 结论：诚实 / 微调 / 有欺骗性
+- 标记：[原文] -> [模式] -> [诚实替代]
+- 清晰度提示：[用户可能困惑处]
+
+结尾加上："好的 UX 赢信任。别用一次点击换掉它。"` } },
+        { id:19, isNew:true, cat:'job',
+            en:{ title:"Meeting Notes Guard", desc:"Turns raw notes into clean decisions and action items without inventing resolutions or owners.",
+                body:`You are a meeting notes organizer. Structure the provided raw notes into a clean summary.
+
+## Strict Rules
+1. Only use information present in the notes. Never invent decisions, owners, or dates.
+2. If a decision is unclear, label it "Unconfirmed" rather than guessing.
+3. Separate Decisions / Action items / Open questions explicitly.
+4. Attribute action items only when the notes name an owner.
+5. Do not add follow-ups the meeting did not discuss.
+
+## Output Format (strict Markdown)
+## Decisions
+- [item] (status: confirmed / unconfirmed)
+## Action Items
+- [task] — Owner: [name or "unassigned"] — Due: [date or "TBD"]
+## Open Questions
+- [question]
+
+End with: "I organized what was said. Confirm owners and dates before acting."` },
+            zh:{ title:"会议纪要守卫", desc:"把零散笔记整理成清晰的决议与行动项，不编造结论或负责人。",
+                body:`你是一位会议纪要整理员。请把提供的零散笔记整理成清晰的纪要。
+
+## 严格规则
+1. 只用笔记中已有的信息。绝不编造决议、负责人或日期。
+2. 若决议不明确，标注"未确认"而非猜测。
+3. 明确区分「决议 / 行动项 / 待定问题」。
+4. 仅当笔记指明负责人时才归属行动项。
+5. 不添加会议未讨论的后续事项。
+
+## 输出格式（严格 Markdown）
+## 决议
+- [事项]（状态：已确认 / 未确认）
+## 行动项
+- [任务] — 负责人：[姓名或"待定"] — 期限：[日期或"待定"]
+## 待定问题
+- [问题]
+
+结尾加上："我只整理说过的话。行动前请确认负责人与日期。"` } },
+        { id:20, isNew:true, cat:'finance',
+            en:{ title:"Investment Research Guard", desc:"Summarizes market information with sourced claims and explicit uncertainty; refuses to recommend or guarantee returns.",
+                body:`You are an investment research assistant. Summarize the provided market information into a clear, sourced brief.
+
+## Strict Rules
+1. Attribute every figure or claim to its source in the input. Never invent prices, returns, or forecasts.
+2. State uncertainty explicitly: "as of [date]", "based on [source]", "not investment advice".
+3. Never recommend a specific buy/sell, and never guarantee returns.
+4. Separate facts from opinion; label any inference as inference.
+5. If data conflicts, show both sides - do not resolve to a single "truth".
+
+## Output Format (strict Markdown)
+## Snapshot
+- [fact] — Source: [x]
+## Key Uncertainties
+- [risk] — [why it matters]
+## What I Did Not Assume
+- [items left open]
+
+End with: "Informational only. Not financial advice. Verify before you act."` },
+            zh:{ title:"投资研究守卫", desc:"用可溯源的论断与明确的「不确定性」总结市场信息；拒绝荐股或保证收益。",
+                body:`你是一位投资研究助手。请把提供的市场信息整理成清晰、可溯源的简报。
+
+## 严格规则
+1. 把每个数字或论断都标注输入中的来源。绝不编造价格、收益或预测。
+2. 明确声明不确定性："截至[日期]""基于[来源]""非投资建议"。
+3. 绝不推荐具体买卖，也绝不保证收益。
+4. 区分事实与观点；任何推断都标注为推断。
+5. 若数据冲突，呈现两面——不要强行归一成单一"真相"。
+
+## 输出格式（严格 Markdown）
+## 速览
+- [事实] — 来源：[x]
+## 关键不确定性
+- [风险] — [为何重要]
+## 我没有假设的部分
+- [留白项]
+
+结尾加上："仅供参考。非投资建议。行动前请自行核实。"` } },
 
         ];
 
@@ -1362,12 +1599,108 @@ End with this exact disclaimer:
               principle: `带上下文报数，并明确区分相关与因果。`,
               boundary: `它做解读，不采集数据、不跑显著性检验。原始数字请你自己核对。`
             }
+          },
+        15: {
+            en: {
+              useCase: `Use before publishing any social post, ad caption, or thread where claims could be challenged.`,
+              io: `Input: "Join 50,000 happy users who fixed their sleep in 3 days!"\nOutput: "Flag: '50,000 users' and 'fixed in 3 days' are unverified. Rewrite: 'A calming routine many users share.'"`,
+              principle: `Holds every public claim to a proof standard; separates hype from substance.`,
+              boundary: `It reviews, it does not write your post or supply the proof you lack.`
+            },
+            zh: {
+              useCase: `在发布任何可能被质疑的社媒帖子、广告文案或长帖前使用。`,
+              io: `输入："加入 5 万快乐用户，3 天改善睡眠！"\n输出："标记：'5 万用户'与'3 天改善'均无证据。改写：'许多用户分享的助眠小习惯。'"`,
+              principle: `把每条对外宣称都拉到证据标准；区分噱头与实质。`,
+              boundary: `它只审核，不替你写文案，也不补你缺的证据。`
+            }
+          },
+        16: {
+            en: {
+              useCase: `Use to sanity-check a cold email or sales sequence before it goes out.`,
+              io: `Input: "BigCo's CTO said we 3x'd their revenue - reply in 24h!"\nOutput: "Flag: unverified attribution + false deadline. Rewrite without the quote or the pressure."`,
+              principle: `Strips fabricated proof and pressure tactics; keeps the real offer intact.`,
+              boundary: `It flags risk, it does not write the email or fake a testimonial.`
+            },
+            zh: {
+              useCase: `在开发信或销售序列发出前做合理性检查。`,
+              io: `输入："BigCo 的 CTO 说我们让营收翻 3 倍——24 小时内回复！"\n输出："标记：无法证实的归因 + 虚假截止。去掉这句引用与施压后改写。"`,
+              principle: `剔除编造证据与施压话术，保留真实卖点。`,
+              boundary: `它只标记风险，不替你写邮件、不编好评。`
+            }
+          },
+        17: {
+            en: {
+              useCase: `Use to review a product page or marketplace listing before launch.`,
+              io: `Input: "Clinically proven to erase wrinkles in 7 days, guaranteed."\nOutput: "Flag: 'clinically proven' and 'guaranteed' need proof/qualifier. Rewrite with what is actually substantiated."`,
+              principle: `Forces every spec and claim to name its basis; removes absolute language.`,
+              boundary: `It reviews claims, it does not write the listing or invent the proof.`
+            },
+            zh: {
+              useCase: `在商品页或货架文案上线前做审查。`,
+              io: `输入："临床验证 7 天祛皱，保证有效。"\n输出："标记：'临床验证'与'保证'需证据或限定。用真正能支撑的说法改写。"`,
+              principle: `要求每个规格与宣称都点明依据；去掉绝对化措辞。`,
+              boundary: `它只审宣称，不替你写详情、不编证据。`
+            }
+          },
+        18: {
+            en: {
+              useCase: `Use to audit button labels, empty states, and onboarding copy for dark patterns.`,
+              io: `Input: button "Start free trial" that begins a paid subscription after 1 click\nOutput: "Flag: paid action styled as free. Rewrite: 'Start 14-day trial (then $X/mo)'."`,
+              principle: `Surfaces manipulative wording and mislabeled actions; proposes honest equivalents.`,
+              boundary: `It reviews microcopy, it does not redesign the product.`
+            },
+            zh: {
+              useCase: `用于审计按钮标签、空状态与引导文案中的暗黑模式。`,
+              io: `输入：按钮"免费试用"，点一下却直接开始付费订阅\n输出："标记：把付费操作伪装成免费。改写：'开始 14 天试用（之后 ¥X/月）'。"`,
+              principle: `暴露操纵性措辞与错标操作，给出诚实替代。`,
+              boundary: `它只审微文案，不重设计产品。`
+            }
+          },
+        19: {
+            en: {
+              useCase: `Use right after a meeting to turn messy notes into an actionable summary.`,
+              io: `Input: "Team agrees to ship Friday. Sarah does the launch."\nOutput: "Decisions: ship Friday (unconfirmed owner). Action: launch - Sarah. Note: confirm 'agrees' means signed-off."`,
+              principle: `Keeps the summary strictly to what was said; tags uncertainty instead of guessing.`,
+              boundary: `It organizes, it does not assign work or invent decisions.`
+            },
+            zh: {
+              useCase: `会议结束后，把凌乱笔记整理成可执行的纪要。`,
+              io: `输入："团队同意周五上线。Sarah 负责发布。"\n输出："决议：周五上线（负责人未确认）。行动项：发布 — Sarah。备注：确认'同意'是否等于已签字。"`,
+              principle: `摘要严格基于说过的话；不确定处标注而非猜测。`,
+              boundary: `它只整理，不指派工作、不编造决议。`
+            }
+          },
+        20: {
+            en: {
+              useCase: `Use to structure market news, earnings, or research into a brief you can trust.`,
+              io: `Input: "Stock X will double by year end, sources say."\nOutput: "Flag: no source, guarantee. Recast as: 'Claimed by [source] on [date]; not verifiable here. Not advice.'"`,
+              principle: `Every number gets a source; returns are never promised; opinion is labeled.`,
+              boundary: `It summarizes, it does not pick stocks or predict prices.`
+            },
+            zh: {
+              useCase: `用于把市场新闻、财报或研究整理成你信得过的简报。`,
+              io: `输入："X 股票年底翻倍，消息人士称。"\n输出："标记：无来源、无保证。改写为：'据[来源]于[日期]称；此处无法证实。非建议。'"`,
+              principle: `每个数字都有来源；绝不承诺收益；观点明确标注。`,
+              boundary: `它只总结，不荐股、不预测价格。`
+            }
           }
         };
 
         // ---- State & language ----
         const LS_KEY = 'ps-lang';
-        let state = { lang: (localStorage.getItem(LS_KEY) || 'en') };
+        let state = { lang: (localStorage.getItem(LS_KEY) || 'en'), filter:'all' };
+        const CATEGORIES = [
+            { key:'all', en:'All', zh:'全部' },
+            { key:'legal', en:'Legal', zh:'法律' },
+            { key:'health', en:'Health', zh:'医疗健康' },
+            { key:'education', en:'Education', zh:'教育' },
+            { key:'dev', en:'Dev & Tech', zh:'开发技术' },
+            { key:'finance', en:'Finance', zh:'金融' },
+            { key:'research', en:'Research', zh:'研究数据' },
+            { key:'marketing', en:'Marketing', zh:'营销电商' },
+            { key:'support', en:'Support', zh:'客服' },
+            { key:'job', en:'Career', zh:'职场求职' }
+        ];
         let toastText = 'Copied!';
 
         function t(key){ const d = I18N[state.lang]; return (d && d[key] != null) ? d[key] : key; }
@@ -1392,7 +1725,7 @@ End with this exact disclaimer:
             const expandLabel = t('templates.expand');
             const dl = { useCase:t('templates.d.useCase'), io:t('templates.d.io'), principle:t('templates.d.principle'), boundary:t('templates.d.boundary') };
             grid.innerHTML = '';
-            PROMPTS.forEach(p => {
+            PROMPTS.filter(p => state.filter==='all' || p.cat===state.filter).forEach(p => {
                 const d = p[state.lang];
                 const det = TEMPLATE_DETAILS[p.id] ? TEMPLATE_DETAILS[p.id][state.lang] : null;
                 const card = document.createElement('div');
@@ -1424,6 +1757,25 @@ End with this exact disclaimer:
                 grid.appendChild(card);
             });
             observeCards();
+        }
+
+        function renderFilters(){
+            const bar = document.getElementById('filter-bar');
+            if(!bar) return;
+            const counts = {};
+            PROMPTS.forEach(p => { counts[p.cat] = (counts[p.cat]||0)+1; });
+            bar.innerHTML = '';
+            CATEGORIES.forEach(c => {
+                const n = c.key==='all' ? PROMPTS.length : (counts[c.key]||0);
+                const label = state.lang==='zh' ? c.zh : c.en;
+                const chip = document.createElement('button');
+                chip.className = 'chip' + (state.filter===c.key ? ' active' : '');
+                chip.setAttribute('role','tab');
+                chip.setAttribute('aria-selected', state.filter===c.key ? 'true' : 'false');
+                chip.innerHTML = label + `<span class="chip-n">${n}</span>`;
+                chip.onclick = () => { state.filter = c.key; renderFilters(); renderTemplates(); };
+                bar.appendChild(chip);
+            });
         }
 
         function toggleDetail(id, btn){
@@ -1461,6 +1813,8 @@ End with this exact disclaimer:
         function renderChangelog(){
             const el = document.getElementById('changelog');
             const rows = [
+                { ver:'v1.5 · Aug 2026', key:'changelog.v15' },
+                { ver:'v1.4 · Aug 2026', key:'changelog.v14' },
                 { ver:'v1.3 · Aug 2026', key:'changelog.v13' },
                 { ver:'v1.2 · Aug 2026', key:'changelog.v12' },
                 { ver:'v1.1 · Aug 2026', key:'changelog.v11' },
@@ -1495,6 +1849,7 @@ End with this exact disclaimer:
             state.lang = (state.lang === 'en') ? 'zh' : 'en';
             localStorage.setItem(LS_KEY, state.lang);
             applyStaticText();
+            renderFilters();
             renderTemplates();
             renderPricing();
             renderChangelog();
@@ -1516,6 +1871,7 @@ End with this exact disclaimer:
 
         document.addEventListener('DOMContentLoaded', ()=>{
             applyStaticText();
+            renderFilters();
             renderTemplates();
             renderPricing();
             renderChangelog();
