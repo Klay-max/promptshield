@@ -59,7 +59,7 @@ python -m http.server 8000
 
 ## 💳 Pricing & payments
 
-- **Free** — all 20 templates, MIT licensed.
+- **Free** — 4 sample templates (full access), MIT licensed.
 - **Lifetime — $49** — first 100 buyers; includes future template drops. Processed by Creem (Merchant of Record). 14-day refund.
 
 ## 🔗 Same author

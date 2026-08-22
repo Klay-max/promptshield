@@ -75,6 +75,18 @@
         .copy-btn{width:100%;font-family:var(--font);font-size:14px;font-weight:500;color:var(--text);background:var(--bg-alt);border:1px solid var(--border);border-radius:12px;padding:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s}
         .copy-btn:hover{background:#ececef;color:var(--accent)}
         .copy-btn svg{width:15px;height:15px}
+        .copy-btn.locked{background:var(--accent);color:#fff;border-color:var(--accent);text-decoration:none;font-weight:600;justify-content:center}
+        .copy-btn.locked:hover{opacity:.9}
+        .card.free{border-color:rgba(0,113,227,.35)}
+        .model-chip{display:inline-block;background:var(--bg-alt);border:1px solid var(--border);border-radius:999px;padding:2px 10px;font-size:12px;margin:2px 4px 2px 0;color:var(--text)}
+        .example{background:var(--bg-alt);border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.55}
+        .ex-in,.ex-out{white-space:pre-wrap}
+        .ex-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin-right:6px}
+        .ex-out{margin-top:6px}
+        .sub-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;justify-content:center}
+        .sub-form input{flex:1;min-width:220px;max-width:320px;padding:11px 14px;border:1px solid var(--border);border-radius:12px;font-family:var(--font);font-size:14px;background:var(--bg);color:var(--text)}
+        .sub-note{margin-top:10px;font-size:13px;color:var(--muted);min-height:18px}
+        .struct-cap{font-size:12px;font-weight:600;color:var(--accent);margin:2px 0 10px;letter-spacing:.02em}
 
         /* Filter bar */
         .filter-bar{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 28px}
@@ -321,6 +333,11 @@
             <div class="sub-card reveal">
                 <h2 data-i18n="subscribe.title">Stay updated</h2>
                 <p data-i18n="subscribe.sub">PromptShield is built in public. New templates and improvements ship as we go. Grab Lifetime and updates are delivered to the email you use at Creem checkout: no separate signup needed.</p>
+                <form id="subForm" class="sub-form">
+                    <input type="email" id="subEmail" placeholder="you@email.com" data-i18n-placeholder="subscribe.emailPlaceholder" required>
+                    <button type="submit" class="btn btn-primary" data-i18n="subscribe.emailCta">Notify me</button>
+                </form>
+                <p class="sub-note" id="subNote"></p>
                 <a href="https://www.creem.io/payment/prod_6IPYMXPl89fDZNjr4X8eSF" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="subscribe.cta">Get Lifetime Access</a>
             </div>
         </div>
@@ -338,6 +355,7 @@
                 <details class="reveal"><summary><span data-i18n="faq.q3">How is this different from ChatGPT Plus?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a3">Plus gives you a model. PromptShield gives you 20 task-specific guards that force the model to stay grounded — something the base model does not do on its own.</div></details>
                 <details class="reveal"><summary><span data-i18n="faq.q4">What do I get exactly?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a4">20 copy-paste prompt templates (EN + ZH), each with usage notes and worked examples. MIT licensed, yours forever.</div></details>
                 <details class="reveal"><summary><span data-i18n="faq.q5">What is your refund policy?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a5">14-day no-questions refund via Creem. If the pack is not useful, email us and we reverse it.</div></details>
+                <details class="reveal"><summary><span data-i18n="faq.q6">Can I use these commercially or with my team?</span><span class="pm">+</span></summary><div class="ans" data-i18n="faq.a6">Yes. The MIT license covers commercial use and team use — you may use the prompts in products you build. You may NOT resell or redistribute the prompt pack itself as your own product. Attribution is not required but appreciated.</div></details>
             </div>
         </div>
     </section>
@@ -397,7 +415,7 @@
                 'templates.names':'K-Beauty INCI · Gaokao-EN · Legal Q&A · Medical Triage · Web Research · Finance Guard · Code Review · Citation Audit · Support Reply · E-com Copy · Resume Check · Legal Contract · Admissions Essay · Data Guard · Social Post · Cold Email · Product Description · UX Copy · Meeting Notes · Investment Research',
                 'templates.copy':'Copy prompt','templates.newBadge':'New · Aug 2026','templates.freeBadge':'Free',
                 'pricing.title':'Pricing','pricing.sub':'Simple, transparent options for builders.',
-                'pricing.free':'Free','pricing.freePrice':'$0','pricing.freeF1':'All 20 templates','pricing.freeF2':'Use in any project (MIT)','pricing.getFree':'Get all 20 free',
+                'pricing.free':'Free','pricing.freePrice':'$0','pricing.freeF1':'4 sample templates, full access','pricing.freeF2':'MIT licensed','pricing.getFree':'Browse free samples',
                 'pricing.lifetime':'Lifetime','pricing.first100':'First 100 only','pricing.lifetimePrice':'$49',
                 'pricing.lifeF1':'All 20 templates + future drops','pricing.lifeF2':'Lifetime updates',
                 'pricing.buy':'$49 · Get Lifetime Access','pricing.secured':'One-time payment · 14-day refund · Secured by Creem',
@@ -408,6 +426,7 @@
                 'changelog.v13':'Added 3 new templates: <strong>Legal Contract Guard</strong>, <strong>Admissions Essay Guard</strong>, <strong>Data Interpretation Guard</strong>. Library now 14 templates total.',
                 'changelog.v14':'Added template detail expanders (use case, input/output, principle, boundary), a Before/After comparison, an FAQ, and an author trust section to make the library more credible and useful.',
                 'changelog.v15':'Expanded the library from 14 to 20 anti-hallucination templates across more industries, and added a category filter so you can jump straight to your field.',
+                'changelog.v16':'Free sample layer: 4 templates fully open; the other 16 are preview-only until Lifetime. Added model-compatibility tags (ChatGPT/Claude/Gemini/Perplexity), a clear example (input → output) per template, explicit grounding principles + boundaries, and a commercial/team-use license FAQ.',
                 'changelog.v11':'Added 3 new templates: <strong>Finance Disclaimer Guard</strong>, <strong>Code Review Critic</strong>, <strong>Academic Citation Auditor</strong>. Library now 8 templates total.',
                 'changelog.v10':'Initial release: 5 core anti-hallucination templates.',
                 'footer.text':'PromptShield · Built by an indie hacker shipping in public · 2026',
@@ -449,7 +468,7 @@
                 'templates.names':'K-Beauty 成分 · 高考英语 · 法律问答 · 医疗分诊 · 联网检索 · 金融合规 · 代码审查 · 引用审计 · 客服回复 · 电商文案 · 简历核查 · 合同审查 · 申请文书 · 数据解读 · 社媒文案 · 营销邮件 · 商品描述 · UX文案 · 会议纪要 · 投资研究',
                 'templates.copy':'复制提示词','templates.newBadge':'新品 · 2026年8月','templates.freeBadge':'免费',
                 'pricing.title':'价格','pricing.sub':'为开发者准备的简单、透明的方案。',
-                'pricing.free':'免费版','pricing.freePrice':'$0','pricing.freeF1':'全部 20 个模板','pricing.freeF2':'可用于任何项目（MIT 协议）','pricing.getFree':'免费获取全部 20 个',
+                'pricing.free':'免费版','pricing.freePrice':'$0','pricing.freeF1':'4 个示例模板（完整可用）','pricing.freeF2':'MIT 协议','pricing.getFree':'浏览免费示例',
                 'pricing.lifetime':'终身版','pricing.first100':'仅前 100 名','pricing.lifetimePrice':'$49',
                 'pricing.lifeF1':'全部 20 个模板 + 后续更新','pricing.lifeF2':'终身更新',
                 'pricing.buy':'$49 · 获取终身访问','pricing.secured':'一次性付费 · 14 天退款 · 由 Creem 担保交易',
@@ -460,6 +479,7 @@
                 'changelog.v13':'新增 3 个模板：<strong>法务合同审查守卫</strong>、<strong>留学申请文书守卫</strong>、<strong>数据解读守卫</strong>。模板库现共 14 个。',
                 'changelog.v14':'新增模板详情展开（使用场景、输入/输出、原则、边界）、前后对比、常见问题与作者信任区，让模板库更可信、更实用。',
                 'changelog.v15':'模板库从 14 个扩展到 20 个抗幻觉模板，覆盖更多行业，并新增分类筛选，可直接定位到你的领域。',
+                'changelog.v16':'新增免费示例层：4 个模板完全开放，其余 16 个预览（购买终身版解锁）。每个模板加适用模型标签（ChatGPT/Claude/Gemini/Perplexity）、清晰的输入→输出示例、明确的抗幻觉原理与边界，以及商用/团队使用授权说明。',
                 'changelog.v11':'新增 3 个模板：<strong>金融合规守卫</strong>、<strong>代码审查 Critique</strong>、<strong>学术引用审计</strong>。模板库现共 8 个。',
                 'changelog.v10':'首个版本：5 个核心抗幻觉模板。',
                 'footer.text':'PromptShield · 由一个公开构建的独立开发者打造 · 2026',
@@ -493,6 +513,8 @@
         const PROMPTS = [
             { id:1, isNew:false,
                 cat:'health',
+                models:['ChatGPT','Claude','Gemini'],
+                isFree:true,
                 en:{ title:"K-Beauty INCI Analyzer", desc:"Analyzes ingredient lists with conservative EWG ratings, flags allergens, refuses medical diagnosis.",
                     body:`You are an expert K-Beauty Ingredient Analyzer. Analyze the provided INCI list (full ingredient list from a Korean skincare product).
 
@@ -546,6 +568,7 @@ End with this exact disclaimer:
 
             { id:2, isNew:false,
                 cat:'education',
+                models:['ChatGPT','Claude','Gemini'],
                 en:{ title:"Gaokao-EN Wordbank Builder", desc:"Generates CEFR B1-B2 vocabulary tables for Chinese Gaokao prep with formal example sentences.",
                     body:`You are an English vocabulary teacher specializing in Chinese Gaokao (高考) preparation.
 
@@ -595,6 +618,8 @@ After the table, add a "Notes" section listing:
 
             { id:3, isNew:false,
                 cat:'legal',
+                models:['ChatGPT','Claude'],
+                isFree:true,
                 en:{ title:"Legal Q&A Guard", desc:"Answers legal questions only when jurisdiction is provided, with strict double disclaimers.",
                     body:`You are a legal information assistant providing GENERAL legal information only — never legal advice.
 
@@ -658,6 +683,7 @@ After the table, add a "Notes" section listing:
 
             { id:4, isNew:false,
                 cat:'health',
+                models:['ChatGPT','Claude','Gemini'],
                 en:{ title:"Medical Triage Filter", desc:"Triages symptoms into ER, GP, and self-care levels; never diagnoses, and escalates when uncertain.",
                     body:`You are a medical triage assistant helping users assess symptom urgency.
 
@@ -723,6 +749,7 @@ After the table, add a "Notes" section listing:
 
             { id:5, isNew:false,
                 cat:'research',
+                models:['ChatGPT','Claude','Gemini','Perplexity'],
                 en:{ title:"Web-Search-Required Researcher", desc:"Refuses factual questions on vanilla LLMs. Only works with Perplexity, ChatGPT Browse, Claude Search, Gemini Grounding.",
                     body:`You are a Verified Citation Researcher. You answer factual questions ONLY when you can verify them against live, web-accessible sources via search tools.
 
@@ -796,6 +823,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 
             { id:6, isNew:false,
                 cat:'finance',
+                models:['ChatGPT','Claude','Gemini','Perplexity'],
                 en:{ title:"Finance Disclaimer Guard", desc:"Explains finance concepts with strict disclaimers; refuses to give buy/sell/hold advice.",
                     body:`You are a financial-education assistant. You explain financial concepts and products in plain language — you NEVER give personalized investment advice.
 
@@ -841,6 +869,8 @@ Then STOP. Do not attempt to answer using internal knowledge.
 
             { id:7, isNew:false,
                 cat:'dev',
+                models:['ChatGPT','Claude','Gemini'],
+                isFree:true,
                 en:{ title:"Code Review Critic", desc:"Reviews code for bugs and security issues with confidence levels; never certifies code as bug-free.",
                     body:`You are a senior code reviewer. You find bugs, security issues, and maintainability problems — you NEVER certify code as "correct" or "bug-free".
 
@@ -882,6 +912,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 
             { id:8, isNew:false,
                 cat:'research',
+                models:['ChatGPT','Claude','Gemini','Perplexity'],
                 en:{ title:"Academic Citation Auditor", desc:"Flags likely-fabricated references, refuses to invent DOIs, checks citation plausibility.",
                     body:`You are an academic-integrity auditor. You check a reference list for likely-fabricated or mismatched citations — you NEVER invent DOIs, URLs, or authors.
 
@@ -921,6 +952,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 
             { id:9, isNew:true,
                 cat:'support',
+                models:['ChatGPT','Claude'],
                 en:{ title:"Support Reply Guard", desc:"Drafts support replies that only promise what's in your knowledge base; refuses to invent policies or guarantees.",
                     body:`You are a customer-support reply assistant. You draft responses for a human agent — you NEVER invent policies, prices, deadlines, or guarantees that are not stated in the provided knowledge base.
 
@@ -968,6 +1000,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 
             { id:10, isNew:true,
                 cat:'marketing',
+                models:['ChatGPT','Claude','Gemini'],
                 en:{ title:"E-com Copy Guard", desc:"Writes product copy strictly from your source specs; refuses to invent features, reviews, or certifications.",
                     body:`You are an e-commerce copywriter. You write product titles, bullets, and descriptions — you ONLY use facts present in the provided [Source Specs]. You NEVER invent features, materials, dimensions, ratings, reviews, or certifications.
 
@@ -1017,6 +1050,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 
             { id:11, isNew:true,
                 cat:'job',
+                models:['ChatGPT','Claude','Gemini'],
                 en:{ title:"Resume Fact-Checker", desc:"Reviews résumés for inflated or fabricated claims; refuses to invent experience and flags unverifiable items.",
                     body:`You are a résumé integrity reviewer. You help users spot exaggerated or fabricated claims — you NEVER invent job titles, skills, dates, metrics, or achievements to "improve" a résumé.
 
@@ -1062,6 +1096,7 @@ Then STOP. Do not attempt to answer using internal knowledge.
 
             { id:12, isNew:true,
                 cat:'legal',
+                models:['ChatGPT','Claude'],
                 en:{ title:"Legal Contract Guard", desc:"Flags one-sided or unusual clauses with plain-language risk notes; refuses to give legal advice.",
                     body:`You are a contract review assistant for non-lawyers. Review the provided contract clause or excerpt.
 
@@ -1105,6 +1140,7 @@ End with this exact disclaimer:
 
             { id:13, isNew:true,
                 cat:'education',
+                models:['ChatGPT','Claude','Gemini'],
                 en:{ title:"Admissions Essay Guard", desc:"Checks application essays for fabricated or inflated claims; refuses to invent credentials.",
                     body:`You are an admissions essay reviewer. Check the provided essay or personal statement draft.
 
@@ -1148,6 +1184,8 @@ End with this exact disclaimer:
 
             { id:14, isNew:true,
                 cat:'finance',
+                models:['ChatGPT','Claude','Gemini','Perplexity'],
+                isFree:true,
                 en:{ title:"Data Interpretation Guard", desc:"Explains what data shows with caveats; refuses to invent statistics or causal claims.",
                     body:`You are a data interpretation assistant. Explain the provided dataset, table, or chart description.
 
@@ -1191,6 +1229,7 @@ End with this exact disclaimer:
 ## 输入
 [在此粘贴数据集、表格或图表描述]` } },
         { id:15, isNew:true, cat:'marketing',
+                models:['ChatGPT','Claude','Gemini'],
             en:{ title:"Social Post Copy Guard", desc:"Reviews social captions for unsubstantiated claims, fake urgency, and invented stats; refuses to fabricate engagement.",
                 body:`You are a social media copy reviewer focused on honesty. Review the provided caption (or draft) for a brand or creator.
 
@@ -1224,6 +1263,7 @@ End with: "I review copy; I do not invent proof. Verify any number you publish."
 
 结尾加上："我只审核文案，不编造证据。发布前请核实你写下的每个数字。"` } },
         { id:16, isNew:true, cat:'marketing',
+                models:['ChatGPT','Claude','Gemini'],
             en:{ title:"Cold Email Guard", desc:"Flags spammy tactics, false scarcity, and fabricated case studies in outreach and sales emails.",
                 body:`You are an outreach email reviewer. Review the provided cold / sales email for honesty and deliverability risk.
 
@@ -1257,6 +1297,7 @@ End with: "Real outreach beats invented proof. Send what you can stand behind."`
 
 结尾加上："真实触达胜过编造证据。只发你敢负责的内容。"` } },
         { id:17, isNew:true, cat:'marketing',
+                models:['ChatGPT','Claude','Gemini'],
             en:{ title:"Product Description Guard", desc:"Flags unverifiable specs, miracle claims, and fake reviews in e-commerce and marketplace listings.",
                 body:`You are a product listing reviewer. Review the provided e-commerce description for claims that could mislead buyers.
 
@@ -1290,6 +1331,7 @@ End with: "Sell the real product. Back every claim with something a buyer can ch
 
 结尾加上："卖真实的产品。每个宣称都要有买家能核对的东西。"` } },
         { id:18, isNew:true, cat:'dev',
+                models:['ChatGPT','Claude','Gemini'],
             en:{ title:"UX Copy Guard", desc:"Flags dark-pattern wording, misleading microcopy, and false promises in UI text and onboarding.",
                 body:`You are a UX writing reviewer. Review the provided interface copy (buttons, labels, empty states, onboarding) for honesty.
 
@@ -1323,6 +1365,7 @@ End with: "Good UX earns trust. Don't trade it for a click."` },
 
 结尾加上："好的 UX 赢信任。别用一次点击换掉它。"` } },
         { id:19, isNew:true, cat:'job',
+                models:['ChatGPT','Claude','Gemini'],
             en:{ title:"Meeting Notes Guard", desc:"Turns raw notes into clean decisions and action items without inventing resolutions or owners.",
                 body:`You are a meeting notes organizer. Structure the provided raw notes into a clean summary.
 
@@ -1362,6 +1405,7 @@ End with: "I organized what was said. Confirm owners and dates before acting."` 
 
 结尾加上："我只整理说过的话。行动前请确认负责人与日期。"` } },
         { id:20, isNew:true, cat:'finance',
+                models:['ChatGPT','Claude','Gemini','Perplexity'],
             en:{ title:"Investment Research Guard", desc:"Summarizes market information with sourced claims and explicit uncertainty; refuses to recommend or guarantee returns.",
                 body:`You are an investment research assistant. Summarize the provided market information into a clear, sourced brief.
 
@@ -1688,6 +1732,8 @@ End with: "Informational only. Not financial advice. Verify before you act."` },
 
         // ---- State & language ----
         const LS_KEY = 'ps-lang';
+        const BUY_URL = 'https://www.creem.io/payment/prod_6IPYMXPl89fDZNjr4X8eSF';
+        const FORM_ENDPOINT = ''; // 在此填入你的 Formspree / Kit 表单 endpoint（留空则订阅仅本地提示，不真正发送）
         let state = { lang: (localStorage.getItem(LS_KEY) || 'en'), filter:'all' };
         const CATEGORIES = [
             { key:'all', en:'All', zh:'全部' },
@@ -1708,7 +1754,8 @@ End with: "Informational only. Not financial advice. Verify before you act."` },
         function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
         function applyStaticText(){
             document.documentElement.lang = (state.lang === 'zh') ? 'zh-CN' : 'en';
-            document.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(el => {
+            document.querySelectorAll('[data-i18n],[data-i18n-html],[data-i18n-placeholder]').forEach(el => {
+                if (el.hasAttribute('data-i18n-placeholder')) { el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder'))); return; }
                 const k = el.getAttribute('data-i18n') || el.getAttribute('data-i18n-html');
                 if (el.hasAttribute('data-i18n-html')) { el.innerHTML = t(k); }
                 else { el.textContent = t(k); }
@@ -1717,30 +1764,51 @@ End with: "Informational only. Not financial advice. Verify before you act."` },
             toastText = t('toast.copied');
         }
 
+        function renderExample(io){
+            if(!io) return '';
+            const i = io.indexOf('\nOutput:');
+            const iz = io.indexOf('\n输出：');
+            const idx = i >= 0 ? i : iz;
+            if(idx < 0) return `<div class="val example">${escapeHtml(io)}</div>`;
+            const inp = io.slice(0, idx).replace(/^Input:\s?/, '').replace(/^输入：\s?/, '');
+            const out = io.slice(idx).replace(/^\nOutput:\s?/, '').replace(/^输出：\s?/, '');
+            return `<div class="val example"><div class="ex-in"><span class="ex-tag">Input</span>${escapeHtml(inp)}</div><div class="ex-out"><span class="ex-tag">Output</span>${escapeHtml(out)}</div></div>`;
+        }
         function renderTemplates(){
             const grid = document.getElementById('templates-grid');
             const copyLabel = t('templates.copy');
+            const unlockLabel = t('templates.unlock');
             const newBadge = t('templates.newBadge');
             const freeBadge = t('templates.freeBadge');
             const expandLabel = t('templates.expand');
-            const dl = { useCase:t('templates.d.useCase'), io:t('templates.d.io'), principle:t('templates.d.principle'), boundary:t('templates.d.boundary') };
+            const dl = { useCase:t('templates.d.useCase'), example:t('templates.example'), models:t('templates.models'), principle:t('templates.d.principle'), boundary:t('templates.d.boundary') };
             grid.innerHTML = '';
             PROMPTS.filter(p => state.filter==='all' || p.cat===state.filter).forEach(p => {
                 const d = p[state.lang];
                 const det = TEMPLATE_DETAILS[p.id] ? TEMPLATE_DETAILS[p.id][state.lang] : null;
+                const isFree = p.isFree === true;
                 const card = document.createElement('div');
-                card.className = 'card';
-                const tag = p.isNew
-                    ? `<span class="tag new">${newBadge}</span>`
-                    : `<span class="tag free">${freeBadge}</span>`;
+                card.className = 'card' + (isFree ? ' free' : '');
+                const tag = isFree
+                    ? `<span class="tag free">${freeBadge}</span>`
+                    : (p.isNew ? `<span class="tag new">${newBadge}</span>` : '');
+                const modelsHtml = (p.models && p.models.length) ? `<div class="detail-field"><div class="detail-label">${dl.models}</div><div class="val models">${p.models.map(m=>`<span class="model-chip">${m}</span>`).join('')}</div></div>` : '';
                 const detailHtml = det ? `
                     <button class="expand-btn" onclick="toggleDetail(${p.id}, this)">${expandLabel}</button>
+                    <div class="struct-cap">${t('templates.structure')}</div>
                     <div class="card-detail">
                         <div class="detail-field"><div class="detail-label">${dl.useCase}</div><div class="val">${escapeHtml(det.useCase)}</div></div>
-                        <div class="detail-field"><div class="detail-label">${dl.io}</div><div class="val">${escapeHtml(det.io)}</div></div>
+                        <div class="detail-field"><div class="detail-label">${dl.example}</div>${renderExample(det.io)}</div>
+                        ${modelsHtml}
                         <div class="detail-field"><div class="detail-label">${dl.principle}</div><div class="val">${escapeHtml(det.principle)}</div></div>
                         <div class="detail-field"><div class="detail-label">${dl.boundary}</div><div class="val">${escapeHtml(det.boundary)}</div></div>
                     </div>` : '';
+                const actionHtml = isFree
+                    ? `<button class="copy-btn" onclick="copyPrompt(${p.id})">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                        ${copyLabel}
+                    </button>`
+                    : `<a href="${BUY_URL}" target="_blank" rel="noopener noreferrer" class="copy-btn locked">${unlockLabel}</a>`;
                 card.innerHTML = `
                     <div>
                         <div class="card-top">
@@ -1750,10 +1818,7 @@ End with: "Informational only. Not financial advice. Verify before you act."` },
                         <p class="desc">${d.desc}</p>
                         ${detailHtml}
                     </div>
-                    <button class="copy-btn" onclick="copyPrompt(${p.id})">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-                        ${copyLabel}
-                    </button>`;
+                    ${actionHtml}`;
                 grid.appendChild(card);
             });
             observeCards();
@@ -1813,6 +1878,7 @@ End with: "Informational only. Not financial advice. Verify before you act."` },
         function renderChangelog(){
             const el = document.getElementById('changelog');
             const rows = [
+                { ver:'v1.6 · Aug 2026', key:'changelog.v16' },
                 { ver:'v1.5 · Aug 2026', key:'changelog.v15' },
                 { ver:'v1.4 · Aug 2026', key:'changelog.v14' },
                 { ver:'v1.3 · Aug 2026', key:'changelog.v13' },
@@ -1845,6 +1911,24 @@ End with: "Informational only. Not financial advice. Verify before you act."` },
             toastTimer = setTimeout(()=> toast.classList.remove('show'), 2000);
         }
 
+        function initSubscribe(){
+            const form = document.getElementById('subForm');
+            if(!form) return;
+            form.addEventListener('submit', (e)=>{
+                e.preventDefault();
+                const email = document.getElementById('subEmail').value.trim();
+                const note = document.getElementById('subNote');
+                if(!email){ note.textContent = t('subscribe.emailNeed'); return; }
+                if(!FORM_ENDPOINT){
+                    note.textContent = t('subscribe.emailDemo');
+                    form.reset();
+                    return;
+                }
+                fetch(FORM_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email }) })
+                    .then(r=>{ if(r.ok){ note.textContent = t('subscribe.emailOk'); form.reset(); } else { note.textContent = t('subscribe.emailErr'); } })
+                    .catch(()=> note.textContent = t('subscribe.emailErr'));
+            });
+        }
         function toggleLang(){
             state.lang = (state.lang === 'en') ? 'zh' : 'en';
             localStorage.setItem(LS_KEY, state.lang);
@@ -1871,6 +1955,7 @@ End with: "Informational only. Not financial advice. Verify before you act."` },
 
         document.addEventListener('DOMContentLoaded', ()=>{
             applyStaticText();
+            initSubscribe();
             renderFilters();
             renderTemplates();
             renderPricing();
