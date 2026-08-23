@@ -73,3 +73,12 @@
 - 安全：footer 邮箱 HTML 实体混淆
 **当前状态：** 已合并 main，工作树干净；Vercel 合并后自动部署 anjianzhao.online
 **卡在哪里 / 下一步：** 订阅表单落库需 Vercel 配 GH_TOKEN（promptshield 仓库 contents:write 的 fine-grained token）；用户加后改环境变量触发重部署即可。公开转 Public 前须 grep 全仓密钥审计。
+
+## WorkBuddy（主机）— 2026-08-23 21:35
+**做了什么：**
+- 全仓密钥审计通过（工作树无 .env/真实令牌；git 历史无 DeepSeek/阿里云/真实 key 残留；GH_TOKEN 仅在 Vercel 环境变量，代码仅 process.env 引用）
+- PII 隔离：订阅落库目标从公开主库改为独立私有库 Klay-max/promptshield-data（api/subscribe.js 改 REPO + 支持 GITHUB_REPO 覆盖）；主库 subscribers.csv 已删
+- 用户更新 fine-grained token 权限覆盖 promptshield-data → 实测订阅写入私有库成功
+- 仓库由 Private 转 Public（`gh repo edit --visibility public --accept-visibility-change-consequences`）；promptshield-data 保持 Private
+**当前状态：** promptshield = public；订阅 PII 全程不公开；anjianzhao.online 全功能上线
+**卡在哪里 / 下一步：** 无。后续收订阅改用真实邮箱，数据进私有库 promptshield-data。本地工作目录为 github/promptshield_r（原 promptshield 因 checkout 空 SHA 损坏，待用户手动清理）
