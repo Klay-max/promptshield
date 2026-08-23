@@ -64,3 +64,12 @@
 **做了什么：** 补齐 MIT LICENSE；README 增加 MIT 许可徽章与「同作者其他项目」互链区块；evalkit/hiring-ai 标注截图待补充
 **当前状态：** 改动已本地提交，未推送（仓库保持 Private）
 **下一步：** 待用户决定公开后推送；公开前补齐各仓库 Demo 截图与在线演示
+
+## WorkBuddy（主机）— 2026-08-23 18:05
+**做了什么：** 本轮本地改动经 sat/darwin/promptshield-seo-opt → PR #11 → 主机 squash 合并（906f62a），已对齐本地 main
+- P2 SEO：description/canonical/OG/Twitter meta + robots.txt + sitemap.xml + og-image.png + favicon.svg
+- P1：Hero 双 CTA（Get Lifetime $1.9 直跳 Creem）+ JSON-LD（Product+FAQPage）+ hreflang
+- P0：subscribe 文案修正 + api/subscribe.js（Vercel 函数，未配 GH_TOKEN 时优雅降级）
+- 安全：footer 邮箱 HTML 实体混淆
+**当前状态：** 已合并 main，工作树干净；Vercel 合并后自动部署 anjianzhao.online
+**卡在哪里 / 下一步：** 订阅表单落库需 Vercel 配 GH_TOKEN（promptshield 仓库 contents:write 的 fine-grained token）；用户加后改环境变量触发重部署即可。公开转 Public 前须 grep 全仓密钥审计。
