@@ -2,14 +2,15 @@
 // 接收订阅邮箱，追加写入 GitHub 仓库 subscribers.csv（通过 GitHub Contents API）
 //
 // 部署前需在 Vercel 后台配置环境变量：
-//   GH_TOKEN = 仅对 Klay-max/promptshield 仓库有 contents:write 权限的 GitHub fine-grained token
+//   GH_TOKEN = 仅对 Klay-max/promptshield-data 仓库有 contents:write 权限的 GitHub fine-grained token
+//   （订阅邮箱存于独立私有库，promptshield 主库公开后订阅者 PII 不暴露）
 //
 // 说明：
 //   - 访客提交走 Vercel 境外节点，顺畅；前端同源调用 /api/subscribe，无需 CORS 也保留兼容头
 //   - token 仅存于服务端环境变量，不进入前端代码，不入库
 //   - 邮箱落盘到仓库 subscribers.csv（email,subscribed_at），可随时 git pull 或网页查看
 
-const REPO = 'Klay-max/promptshield';
+const REPO = process.env.GITHUB_REPO || 'Klay-max/promptshield-data';
 const FILE_PATH = 'subscribers.csv';
 
 function isValidEmail(email) {
