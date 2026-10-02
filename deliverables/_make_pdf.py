@@ -167,7 +167,7 @@ story.append(Paragraph(
     "必须给引用、不确定就拒绝、显式免责声明。把模板粘贴进 ChatGPT / Claude / Gemini / Perplexity，"
     "即可获得有依据的输出。", S['coverBody']))
 story.append(Spacer(1, 10))
-story.append(Paragraph('By Darwin An · <font color="#0071E3">https://anjianzhao.online</font> · August 2026 · v1.6', S['coverSub']))
+story.append(Paragraph('By Darwin An · <font color="#0071E3">https://anjianzhao.space</font> · August 2026 · v1.6', S['coverSub']))
 story.append(PageBreak())
 
 # toc

@@ -81,7 +81,7 @@
 
 ## 🌐 在线站点 & 免费配套工具
 
-- **站点：** https://anjianzhao.online —— 浏览模板、查看示例、解锁完整合集。
+- **站点：** https://anjianzhao.space —— 浏览模板、查看示例、解锁完整合集。
 - **AI Launchpad**（免费工具）：把一句话想法变成项目 README + 蓝图 —— 见 `launchpad/index.html`。
 
 ---
@@ -90,7 +90,7 @@
 
 - 纯 HTML5 + 手写 CSS（Apple 风格设计体系） + 原生 JavaScript
 - 无构建步骤、无后端、无运行时依赖
-- 部署在 Vercel（自定义域名 `anjianzhao.online`）
+- 部署在 Vercel（自定义域名 `anjianzhao.space`）
 
 ## 💻 本地运行
 

@@ -82,3 +82,20 @@
 - 仓库由 Private 转 Public（`gh repo edit --visibility public --accept-visibility-change-consequences`）；promptshield-data 保持 Private
 **当前状态：** promptshield = public；订阅 PII 全程不公开；anjianzhao.online 全功能上线
 **卡在哪里 / 下一步：** 无。后续收订阅改用真实邮箱，数据进私有库 promptshield-data。本地工作目录为 github/promptshield_r（原 promptshield 因 checkout 空 SHA 损坏，待用户手动清理）
+
+---
+
+## 2026-10-02 17:15 · darwin · 域名迁移 anjianzhao.online → anjianzhao.space（WorkBuddy 主线程）
+
+**做了什么：**
+- Darwin 拍板：.online 10-24 到期不续费，PromptShield 全链路迁移到新注册的 anjianzhao.space（.space 为工信部批准后缀，Radix/然迪克思 2020 获批，可备案）
+- 代码替换（统一裸域，去 www）：index.html（canonical/alternate×3/og:url/og:image/twitter:image）、robots.txt、sitemap.xml×3、README.md、README.zh-CN.md、deliverables/_make_pdf.py 封面 URL；活代码中 .online 引用清零（grep 复核）
+- Vercel 侧：本地无有效 token（凭据台账 vcp_ token 实测 invalidToken），域名挂载待 Darwin 重新发 token 或手动 dashboard 添加
+
+**当前状态：**
+- 已提交本仓并推送 main（触发 Vercel 自动部署，站点内容不变仅域名引用更新）
+- .online 在 Vercel 项目上建议保留挂载至 10-24 自然到期，旧链接访客不受影响
+
+**卡在哪里 / 下一步：**
+- 🔴 .space DNS 未配置（RDAP/whois 暂查无记录，需确认注册商）：A @ → Vercel（以 dashboard 给出的记录为准，通常 A 76.76.21.21 / CNAME www → cname.vercel-dns.com）
+- Vercel dashboard 将 anjianzhao.space 加进本仓对应项目；aboutresume 名片页回链已同步改（本机待 01 岗推送）

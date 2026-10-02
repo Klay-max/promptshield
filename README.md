@@ -81,7 +81,7 @@ Each template is a **Mega-Prompt**: a clear `Role` + `Strict Rules` + `Output Fo
 
 ## 🌐 Live site & free companion
 
-- **Site:** https://anjianzhao.online — browse templates, see examples, unlock the full pack.
+- **Site:** https://anjianzhao.space — browse templates, see examples, unlock the full pack.
 - **AI Launchpad** (free tool): turns a one-line idea into a project README + blueprint — `launchpad/index.html`.
 
 ---
@@ -90,7 +90,7 @@ Each template is a **Mega-Prompt**: a clear `Role` + `Strict Rules` + `Output Fo
 
 - Pure HTML5 + hand-written CSS (Apple-style design system) + vanilla JavaScript
 - No build step, no backend, no runtime dependencies
-- Deployed on Vercel (custom domain `anjianzhao.online`)
+- Deployed on Vercel (custom domain `anjianzhao.space`)
 
 ## 💻 Local development
 
