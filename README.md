@@ -83,7 +83,7 @@ Each template is a **Mega-Prompt**: a clear `Role` + `Strict Rules` + `Output Fo
 
 ## 🌐 Site & free companion
 
-- **Site:** https://anjianzhao.space — returned HTTP 200 on 2026-10-15; this repository's copy changes are not deployed, and checkout/payment were not tested.
+- **Site:** https://anjianzhao.space — Vercel Production deployment completed on 2026-10-15. Darwin confirms one successful checkout test; this does not establish ongoing payment or fulfillment reliability.
 - **AI Launchpad** (free tool): turns a one-line idea into a project README + blueprint — `launchpad/index.html`.
 
 ---
@@ -92,7 +92,7 @@ Each template is a **Mega-Prompt**: a clear `Role` + `Strict Rules` + `Output Fo
 
 - Pure HTML5 + hand-written CSS (Apple-style design system) + vanilla JavaScript
 - No build step, no backend, no runtime dependencies
-- Static site source; deployment status is not verified by this repository check.
+- Static site source; the 2026-10-15 Vercel Production deployment completed successfully.
 
 ## 💻 Local development
 
@@ -106,7 +106,7 @@ python -m http.server 8000
 
 ## 🧊 Maintenance scope
 
-This repository is frozen at v1.6. Do not infer that the website, checkout, or support channel is currently available from the source snapshot. No fast-response support or future template releases are promised.
+This repository is frozen at v1.6. One successful checkout test was reported by Darwin; it does not guarantee ongoing payment or fulfillment. No fast-response support or future template releases are promised.
 
 The legacy v1.6 PDF was removed from the working tree because its marketing claims were outdated. A reviewed replacement is blocked until the source template data is available; the current generator references a file not included in this repository.
 

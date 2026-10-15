@@ -109,4 +109,5 @@
 - 做了什么：经 Darwin 确认，准备推送 v1.6 双语说明与页面边界修订；待同步 GitHub 仓库简介和 Topics，不修改网站字段或结账配置。
 - 当前状态：PromptShield 维持 Public、v1.6 冻结；旧 PDF 已在本地归档，当前源码不含它；本地静态页面目检通过。
 - 下一步：推送后核验远端 Actions / 部署记录及站点内容；支付与订阅履约未核验，避免对外声称可用。
-- 发布核验：提交 `8242e32` 已推送；仓库 Description / Topics 已设置并经 API 回读确认，visibility 仍为 Public。随后提交 `49ebd50` 的 Vercel Production 部署延迟出现并报告成功；旧 PDF 已本地归档，结账与订阅未验证。
+- 发布核验：提交 `8242e32` 已推送；仓库 Description / Topics 已设置并经 API 回读确认，visibility 仍为 Public。Darwin 随后确认曾成功完成一次结账测试；不据此保证持续履约，订阅生命周期未核验。
+- Darwin 后续确认：GitHub Website 字段已更新为 `https://anjianzhao.space`；Vercel Production 部署成功。公开说明已修正为一次成功结账测试，不代表持续稳定。
