@@ -2,9 +2,11 @@
 
 # PromptShield — Anti-Hallucination Prompt Templates
 
-🛡️ **PromptShield** is a curated pack of **anti-hallucination AI prompt templates** for developers and indie builders. Every template bakes in strict rules — citations required, refuse when uncertain, explicit disclaimers — so your AI features stop making things up in production.
+🛡️ **PromptShield** is a curated pack of prompt templates for developers and indie builders. Templates encourage source-grounded answers, explicit uncertainty, and refusal boundaries; they do not guarantee correct model behavior.
 
-> A small digital product by Darwin (Klay). It is **not** a security scanner or injection-detection tool — it's a set of prompts you copy and paste.
+> **Scope:** copy-and-paste prompt templates only. PromptShield is not a security scanner, prompt-injection detector, or runtime guardrail, and it cannot guarantee that a model will not hallucinate.
+>
+> **Maintenance:** frozen at v1.6. No feature roadmap or response-time commitment is offered; Issues are reviewed periodically.
 
 ---
 
@@ -22,12 +24,12 @@ LLMs sound confident even when they're wrong. For anyone shipping AI into a real
 
 ## ✨ What it does
 
-You paste a template into ChatGPT / Claude / Gemini / Perplexity, drop in your content, and get output that is:
+You can paste a template into a model and provide your content. The template asks the model to:
 
-- **Grounded** — refuses to answer without verified sources (researcher, citation auditor, data guard).
-- **Bounded** — explicitly states what it will *not* do: no diagnosis, no buy/sell advice, no legal opinion (medical, finance, legal, contract guards).
-- **Honest about uncertainty** — surfaces caveats instead of confident hallucinations (data, UX, support guards).
-- **Fact-checking by default** — flags inflated résumés, fake reviews, unverified social claims, fabricated case studies.
+- **Prefer sources** — request citations or decline unsupported claims (researcher, citation auditor, data guard).
+- **State boundaries** — clarify limits such as no diagnosis, buy/sell advice, or legal opinion.
+- **Surface uncertainty** — include caveats and distinguish supplied facts from assumptions.
+- **Review claims** — flag résumé, review, social, and case-study claims that need verification.
 
 Each template is a **Mega-Prompt**: a clear `Role` + `Strict Rules` + `Output Format` + your `Input` — the same professional structure that makes prompts reliably behave.
 
@@ -60,12 +62,12 @@ Each template is a **Mega-Prompt**: a clear `Role` + `Strict Rules` + `Output Fo
 
 ## 🔑 Key features
 
-- **Anti-hallucination by design** — every template encodes "cite-or-refuse" and no-fabrication constraints.
+- **Grounding-oriented templates** — templates ask models to cite sources, state uncertainty, and avoid unsupported claims; results still require human review.
 - **Real input → output examples** — see exactly what a template produces before you buy.
 - **Mega-Prompt structure** — Role + Strict Rules + Output Format, visible on every template.
 - **Multi-model** — each template is tagged with the models it works best on (ChatGPT / Claude / Gemini / Perplexity).
-- **Free sample layer** — 4 full-access templates, MIT licensed, no paywall.
-- **Lifetime unlock** — one payment, all 20 templates + future drops.
+- **Free sample layer** — 4 templates marked FREE in this repository snapshot.
+- **Template collection** — 20 templates across 10 categories in this repository snapshot.
 - **Bilingual site** — English / 中文 with a one-tap toggle.
 
 ---
@@ -79,9 +81,9 @@ Each template is a **Mega-Prompt**: a clear `Role` + `Strict Rules` + `Output Fo
 
 ---
 
-## 🌐 Live site & free companion
+## 🌐 Site & free companion
 
-- **Site:** https://anjianzhao.space — browse templates, see examples, unlock the full pack.
+- **Site:** https://anjianzhao.space — returned HTTP 200 on 2026-10-15; this repository's copy changes are not deployed, and checkout/payment were not tested.
 - **AI Launchpad** (free tool): turns a one-line idea into a project README + blueprint — `launchpad/index.html`.
 
 ---
@@ -90,7 +92,7 @@ Each template is a **Mega-Prompt**: a clear `Role` + `Strict Rules` + `Output Fo
 
 - Pure HTML5 + hand-written CSS (Apple-style design system) + vanilla JavaScript
 - No build step, no backend, no runtime dependencies
-- Deployed on Vercel (custom domain `anjianzhao.space`)
+- Static site source; deployment status is not verified by this repository check.
 
 ## 💻 Local development
 
@@ -102,16 +104,11 @@ python -m http.server 8000
 
 ---
 
-## 💳 Pricing & payments
+## 🧊 Maintenance scope
 
-- **Free** — 4 sample templates (full access), MIT licensed.
-- **Lifetime — $1.9** — one-time payment; all 20 templates + future drops. Processed by Creem (Merchant of Record). 14-day refund.
+This repository is frozen at v1.6. Do not infer that the website, checkout, or support channel is currently available from the source snapshot. No fast-response support or future template releases are promised.
 
----
-
-## 🔗 Same author
-
-Private repos in Darwin's AI toolkit: `aboutresume` (portfolio), `evalkit` (AI education assessment), `MyHomepage`, `hiring-ai`.
+The legacy v1.6 PDF was removed from the working tree because its marketing claims were outdated. A reviewed replacement is blocked until the source template data is available; the current generator references a file not included in this repository.
 
 ---
 

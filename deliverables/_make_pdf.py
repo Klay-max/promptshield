@@ -154,18 +154,17 @@ story.append(Paragraph('PromptShield', S['coverTitle']))
 story.append(Spacer(1, 6))
 story.append(Paragraph('🛡️ → 🛡 replaced', S['small']))  # placeholder replaced below
 story = story[:-1]
-story.append(Paragraph('20 Anti-Hallucination Prompt Templates<br/>20 个抗幻觉提示词模板', S['coverSub']))
+story.append(Paragraph('20 Prompt Templates · v1.6 Snapshot<br/>20 个提示词模板 · v1.6 快照', S['coverSub']))
 story.append(Spacer(1, 10))
-story.append(Paragraph('One-time <font color="#0071E3"><b>$1.9</b></font> · Lifetime access · 一次买断 · 终身使用', S['coverSub']))
+story.append(Paragraph('Copy-and-paste templates · Not a security scanner · No behavior guarantee<br/>可复制提示词 · 非安全扫描器 · 不保证模型行为', S['coverSub']))
 story.append(Spacer(1, 16))
 story.append(HRFlowable(width='40%', thickness=0.6, color=BORDER, spaceAfter=14, hAlign='CENTER'))
 story.append(Paragraph(
-    "PromptShield is a curated pack of anti-hallucination prompt templates: every template enforces "
-    "“cite-or-refuse” discipline — citations required, refuse when uncertain, explicit disclaimers. "
-    "Paste a template into ChatGPT / Claude / Gemini / Perplexity and ship grounded output.<br/><br/>"
-    "PromptShield 是一套精选的抗幻觉提示词模板：每个模板都强制“有依据就给、没依据就拒绝”的纪律——"
-    "必须给引用、不确定就拒绝、显式免责声明。把模板粘贴进 ChatGPT / Claude / Gemini / Perplexity，"
-    "即可获得有依据的输出。", S['coverBody']))
+    "PromptShield is a collection of copy-and-paste prompt templates. They ask models to cite sources, "
+    "state uncertainty, and respect refusal boundaries; prompts cannot enforce model behavior or guarantee accuracy. "
+    "PromptShield is not a security scanner or runtime guardrail.<br/><br/>"
+    "PromptShield 是一套可复制使用的提示词模板，尝试引导模型给出来源、说明不确定性并遵守拒答边界；"
+    "提示词不能强制模型遵守，也不能保证结果准确。PromptShield 不是安全扫描器或运行时防护。", S['coverBody']))
 story.append(Spacer(1, 10))
 story.append(Paragraph('By Darwin An · <font color="#0071E3">https://anjianzhao.space</font> · August 2026 · v1.6', S['coverSub']))
 story.append(PageBreak())
@@ -190,7 +189,7 @@ t.setStyle(TableStyle([
 ]))
 story.append(t)
 story.append(Spacer(1, 8))
-story.append(Paragraph('4 templates are fully free (marked FREE) · 16 require the one-time $1.9 unlock.<br/>4 个模板完全免费（标注 FREE）· 16 个需 $1.9 一次性解锁。', S['small']))
+story.append(Paragraph('20 templates in this v1.6 repository snapshot · 4 are marked FREE.<br/>本 v1.6 仓库快照包含 20 个模板，其中 4 个标记为 FREE。', S['small']))
 story.append(PageBreak())
 
 # templates

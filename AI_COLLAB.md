@@ -99,3 +99,13 @@
 **卡在哪里 / 下一步：**
 - 🔴 .space DNS 未配置（RDAP/whois 暂查无记录，需确认注册商）：A @ → Vercel（以 dashboard 给出的记录为准，通常 A 76.76.21.21 / CNAME www → cname.vercel-dns.com）
 - Vercel dashboard 将 anjianzhao.space 加进本仓对应项目；aboutresume 名片页回链已同步改（本机待 01 岗推送）
+
+## Codex — 2026-10-15（冻结版文档整理）
+- 做了什么：中英文 README、AGENTS 与在线站点源码统一到模板产品边界和 v1.6 冻结口径；移除失效的旧仓列表及过期营销 PDF（已归档）；新增 description/topics 草稿，修正提示词效果和更新承诺文案，并修复手机 Hero 示例横向溢出。
+- 当前状态：本地未提交；线上 `anjianzhao.space` 返回 HTTP 200，未测试支付；本地 Playwright 验证中英文切换与桌面/手机 Hero；未修改 GitHub metadata、未推送或部署。
+- 待办 / 风险：description/topics 需单独确认后在 GitHub 设置；结账功能未核验。缺少 `_templates.json`，PDF 无法重建；维护期间应避免把提示词效果表述为保证。
+
+## Codex — 2026-10-15（冻结版整理发布）
+- 做了什么：经 Darwin 确认，准备推送 v1.6 双语说明与页面边界修订；待同步 GitHub 仓库简介和 Topics，不修改网站字段或结账配置。
+- 当前状态：PromptShield 维持 Public、v1.6 冻结；旧 PDF 已在本地归档，当前源码不含它；本地静态页面目检通过。
+- 下一步：推送后核验远端 Actions / 部署记录及站点内容；支付与订阅履约未核验，避免对外声称可用。
